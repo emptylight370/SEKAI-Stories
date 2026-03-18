@@ -10,7 +10,7 @@ import { getBackground } from "../../utils/GetBackground";
 import { useTranslation } from "react-i18next";
 import IBackground from "../../types/IBackground";
 import { SoftErrorContext } from "../../contexts/SoftErrorContext";
-import { IBackgroundBookmark } from "../../types/IBackgroundBookmark";
+import { SettingsContext } from "../../contexts/SettingsContext";
 
 const pngList = ["bg_transparent"];
 interface IBackgroundList {
@@ -31,18 +31,17 @@ const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
     background,
     setFunction,
 }) => {
-    const backgroundBookmarkCookie = localStorage.getItem("backgroundBookmark");
     const { t } = useTranslation();
 
     const [show, setShow] = useState<boolean>(false);
     const [filterValue, setFilterValue] = useState<string>("all");
-    const [backgroundBookmarks, setBackgroundBookmarks] =
-        useState<IBackgroundBookmark>([]);
 
+    const settings = useContext(SettingsContext);
     const softError = useContext(SoftErrorContext);
 
-    if (!softError) throw new Error("Context not found");
+    if (!softError || !settings) throw new Error("Context not found");
     const { setErrorInformation } = softError;
+    const { backgroundBookmarks, setBackgroundBookmarks } = settings;
 
     const scrollToSelectedBackground = () => {
         if (show && background?.filename) {
@@ -66,15 +65,6 @@ const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
             }
         };
         document.addEventListener("keydown", handleEsc);
-
-        if (!backgroundBookmarkCookie) {
-            localStorage.setItem("backgroundBookmark", JSON.stringify([]));
-        } else {
-            const bookmarks: IBackgroundBookmark = JSON.parse(
-                backgroundBookmarkCookie,
-            );
-            setBackgroundBookmarks(bookmarks);
-        }
     }, []);
 
     useEffect(() => {

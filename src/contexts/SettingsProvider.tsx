@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SettingsContext } from "./SettingsContext";
 import { IEasyNameTag } from "../types/IEasyNameTag";
 import { announcementKey } from "../data/Constants";
+import { IBackgroundBookmark } from "../types/IBackgroundBookmark";
 
 interface SidebarProviderProps {
     children: React.ReactNode;
@@ -22,6 +23,9 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
     const [openTextOption, setOpenTextOption] = useState<string>("name-tag");
     const [openModelOption, setOpenModelOption] =
         useState<string>("select-layer");
+    const [backgroundBookmarks, setBackgroundBookmarks] = useState<string[]>(
+        [],
+    );
     const [nameTags, setNameTags] = useState<IEasyNameTag>({});
     const [nameTagInputs, setNameTagInputs] = useState<number>(2);
     const [easySwitch, setEasySwitch] = useState<boolean>(false);
@@ -78,6 +82,16 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
         if (storedNameTagInputs) {
             setNameTagInputs(Number(storedNameTagInputs));
         }
+        const backgroundBookmarkCookie =
+            localStorage.getItem("backgroundBookmark");
+        if (!backgroundBookmarkCookie) {
+            localStorage.setItem("backgroundBookmark", JSON.stringify([]));
+        } else {
+            const bookmarks: IBackgroundBookmark = JSON.parse(
+                backgroundBookmarkCookie,
+            );
+            setBackgroundBookmarks(bookmarks);
+        }
 
         setSettingsLoaded(true);
     }, []);
@@ -111,6 +125,8 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
                 setOpenTextOption,
                 openModelOption,
                 setOpenModelOption,
+                backgroundBookmarks,
+                setBackgroundBookmarks,
                 easySwitch,
                 setEasySwitch,
                 nameTags,

@@ -30,6 +30,8 @@ export default interface ISettingsContextType {
     setOpenTextOption: Dispatch<SetStateAction<string>>;
     openModelOption: string;
     setOpenModelOption: Dispatch<SetStateAction<string>>;
+    backgroundBookmarks: string[];
+    setBackgroundBookmarks: Dispatch<SetStateAction<string[]>>;
     allowRefresh: boolean;
     setAllowRefresh: Dispatch<SetStateAction<boolean>>;
     audio: boolean;
