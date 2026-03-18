@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import AddModelSelect from "../../../Window/AddModelSelect";
 import { Cubism4InternalModel } from "@sekai-world/pixi-live2d-display-mulmotion";
 import IModel from "../../../../types/IModel";
+import { SettingsContext } from "../../../../contexts/SettingsContext";
 
 interface SelectedLayerProps {
     isLoading: boolean;
@@ -32,11 +33,12 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
 }) => {
     const { t } = useTranslation();
     const scene = useContext(SceneContext);
+    const settings = useContext(SettingsContext);
     const softError = useContext(SoftErrorContext);
     const [showAddModelScreen, setShowAddModelScreen] =
         useState<boolean>(false);
 
-    if (!scene || !softError) {
+    if (!scene || !softError || !settings) {
         throw new Error("Context not found");
     }
     const {
@@ -55,6 +57,8 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
     } = scene;
 
     const { setErrorInformation } = softError;
+
+    const { setOpenModelOption } = settings;
 
     if (!models || !currentModel) return <p>{t("loadings.please-wait")}</p>;
 
@@ -110,6 +114,7 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
         setCurrentSelectedCharacter("none");
         setNextLayer(nextLayer + 1);
         setLayers(layers + 1);
+        setOpenModelOption("character");
         setInitialState(false);
     };
 
