@@ -356,13 +356,14 @@ const ModelSidebar: React.FC = () => {
                     show={setLive2DChangedWarnWindow}
                     confirmFunction={live2DChangedFunction}
                     confirmLabel={t("global.continue-ok")}
+                    closeLabel={t("global.cancel")}
                     danger
                 >
                     <div className="window__content">
                         <div className="window__divider">
-                            <h3 className="text-center">
+                            <h2 className="text-center">
                                 {t("model.live2d-changed-warn")}
-                            </h3>
+                            </h2>
                         </div>
                     </div>
                 </Window>

@@ -5,6 +5,7 @@ import { useAudioManager } from "../../hooks/useAudioManager";
 interface WindowProps {
     show: React.Dispatch<React.SetStateAction<boolean>>;
     confirmFunction?: () => void;
+    closeLabel?: string;
     confirmLabel?: string;
     danger?: boolean;
     hideClose?: boolean;
@@ -17,6 +18,7 @@ interface WindowProps {
 const Window: React.FC<WindowProps> = ({
     show,
     confirmFunction,
+    closeLabel,
     confirmLabel = "OK",
     danger = false,
     hideClose = false,
@@ -109,7 +111,7 @@ const Window: React.FC<WindowProps> = ({
                             className="btn-regular btn-white center close-button"
                             onClick={() => handleClose()}
                         >
-                            {t("global.close")}
+                            {closeLabel ? closeLabel : t("global.close")}
                         </button>
                     )}
                 </div>
