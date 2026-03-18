@@ -125,22 +125,26 @@ const Dialogue: React.FC<DialogueProps> = ({
         }
     };
 
-    const handleFontSizeChange = (
+    const handleFontSizeSlider = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         let changedFontSize = Number(event.target.value);
         if (changedFontSize > 44 - SNAP && changedFontSize < 44 + SNAP) {
             changedFontSize = 44;
         }
+        handleInputFontSizeChange(changedFontSize);
+    };
+
+    const handleInputFontSizeChange = async (inputChange: string | number) => {
+        const changedFontSize = Number(inputChange);
+        if (changedFontSize == null || isNaN(changedFontSize)) return;
         text.dialogue.forEach((t, i) => {
             t.style.fontSize = changedFontSize;
+            t.style.lineHeight = Math.floor(
+                55 + (changedFontSize / 44 - 1) * 40,
+            );
             if (i == 0) {
-                t.style.strokeThickness = Math.floor(
-                    8 + (changedFontSize / 44 - 1) * 2,
-                );
-                t.style.lineHeight = Math.floor(
-                    55 + (changedFontSize / 44 - 1) * 40,
-                );
+                t.style.strokeThickness = 8 + (changedFontSize / 44 - 1) * 2;
             }
             t.updateText(true);
         });
@@ -150,24 +154,6 @@ const Dialogue: React.FC<DialogueProps> = ({
         });
     };
 
-    const handleInputFontSizeChange = async (inputChange: string) => {
-        if (inputChange == null || isNaN(Number(inputChange))) return;
-        const changedFontSize = Number(inputChange);
-        text.dialogue.forEach((t, i) => {
-            t.style.fontSize = changedFontSize;
-            if (i == 0) {
-                t.style.strokeThickness = 8 + (changedFontSize / 44 - 1) * 2;
-                t.style.lineHeight = Math.floor(
-                    55 + (changedFontSize / 44 - 1) * 40,
-                );
-            }
-            t.updateText(true);
-        });
-        setText({
-            ...text,
-            fontSize: changedFontSize,
-        });
-    };
     const handleTextBoxTypeChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
@@ -220,7 +206,7 @@ const Dialogue: React.FC<DialogueProps> = ({
                         <i
                             className="bi bi-arrow-counterclockwise"
                             onClick={() => {
-                                handleInputFontSizeChange("44");
+                                handleInputFontSizeChange(44);
                             }}
                         ></i>
                     </div>
@@ -232,7 +218,7 @@ const Dialogue: React.FC<DialogueProps> = ({
                     value={text.fontSize}
                     min={10}
                     max={120}
-                    onChange={handleFontSizeChange}
+                    onChange={handleFontSizeSlider}
                 />
             </div>
             <div className="option__content">
