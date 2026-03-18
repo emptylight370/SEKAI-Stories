@@ -51,6 +51,7 @@ const randomText = {
         "Burn Your Dread.",
         "Bonds of people is the true power.",
         "It's pronounced 'DEKO-NINA'.",
+        "Stream Moe Shop!",
         "Untitled.",
     ],
     fil: [

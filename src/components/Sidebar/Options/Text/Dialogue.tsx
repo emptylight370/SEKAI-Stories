@@ -15,6 +15,8 @@ import { mentalCheck } from "../../../../utils/MentalCheck";
 import { SettingsContext } from "../../../../contexts/SettingsContext";
 import RadioButton from "../../../UI/RadioButton";
 
+const SNAP = 5;
+
 const symbols = {
     star: "☆",
     "star-filled": "★",
@@ -36,17 +38,13 @@ interface DialogueProps {
     setBell: Dispatch<SetStateAction<boolean>>;
     mentalFound: boolean;
     setMentalFound: Dispatch<SetStateAction<boolean>>;
-    lockFontSizeState: boolean;
-    setLockFontSizeState: Dispatch<SetStateAction<boolean>>;
 }
 
 const Dialogue: React.FC<DialogueProps> = ({
-    bell,
-    setBell,
     mentalFound,
     setMentalFound,
-    lockFontSizeState,
-    setLockFontSizeState,
+    bell,
+    setBell,
 }) => {
     const { t } = useTranslation();
 
@@ -130,7 +128,10 @@ const Dialogue: React.FC<DialogueProps> = ({
     const handleFontSizeChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
-        const changedFontSize = Number(event.target.value);
+        let changedFontSize = Number(event.target.value);
+        if (changedFontSize > 44 - SNAP && changedFontSize < 44 + SNAP) {
+            changedFontSize = 44;
+        }
         text.dialogue.forEach((t, i) => {
             t.style.fontSize = changedFontSize;
             if (i == 0) {
@@ -217,17 +218,9 @@ const Dialogue: React.FC<DialogueProps> = ({
                             onClick={() => setShowFontSizeInput(true)}
                         ></i>
                         <i
-                            className={
-                                lockFontSizeState
-                                    ? "bi bi-unlock-fill"
-                                    : "bi bi-lock-fill"
-                            }
+                            className="bi bi-arrow-counterclockwise"
                             onClick={() => {
-                                setLockFontSizeState(!lockFontSizeState);
-                                localStorage.setItem(
-                                    "lockFontSize",
-                                    String(!lockFontSizeState),
-                                );
+                                handleInputFontSizeChange("44");
                             }}
                         ></i>
                     </div>
@@ -240,7 +233,6 @@ const Dialogue: React.FC<DialogueProps> = ({
                     min={10}
                     max={120}
                     onChange={handleFontSizeChange}
-                    {...(lockFontSizeState ? { disabled: true } : {})}
                 />
             </div>
             <div className="option__content">

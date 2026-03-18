@@ -19,11 +19,6 @@ const TextSidebar: React.FC = () => {
     const [mentalFound, setMentalFound] = useState<boolean>(false);
     const [easyNameTagSelected, setEasyNameTagSelected] = useState<string>("");
 
-    const lockFontSize = localStorage.getItem("lockFontSize");
-    const [lockFontSizeState, setLockFontSizeState] = useState<boolean>(
-        lockFontSize === "true" ? true : false,
-    );
-
     if (!scene || !settings || !error) {
         throw new Error("Context not found");
     }
@@ -58,8 +53,7 @@ const TextSidebar: React.FC = () => {
                     setBell={setBell}
                     mentalFound={mentalFound}
                     setMentalFound={setMentalFound}
-                    lockFontSizeState={lockFontSizeState}
-                    setLockFontSizeState={setLockFontSizeState}
+                    
                 />
             </SidebarOption>
             <SidebarOption
