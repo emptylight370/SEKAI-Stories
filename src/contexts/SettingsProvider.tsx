@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SettingsContext } from "./SettingsContext";
 import { IEasyNameTag } from "../types/IEasyNameTag";
 import { announcementKey } from "../data/Constants";
 import { IBackgroundBookmark } from "../types/IBackgroundBookmark";
+import { SoftErrorContext } from "./SoftErrorContext";
 
 interface SidebarProviderProps {
     children: React.ReactNode;
@@ -10,6 +11,10 @@ interface SidebarProviderProps {
 export const SettingsProvider: React.FC<SidebarProviderProps> = ({
     children,
 }) => {
+    const error = useContext(SoftErrorContext);
+    if (!error) throw new Error("Context not loaded");
+    const { setErrorInformation } = error;
+
     const [openedSidebar, setOpenedSidebar] = useState<string>("text");
     const [hide, setHide] = useState<boolean>(false);
     const [showAnnouncement, setShowAnnouncements] = useState<boolean>(false);
@@ -31,6 +36,9 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
     const [easySwitch, setEasySwitch] = useState<boolean>(false);
     const [allowRefresh, setAllowRefresh] = useState<boolean>(false);
     const [audio, setAudio] = useState<boolean>(false);
+    const [startingBoxType, setStartingBoxType] = useState<
+        "default" | "classic"
+    >("default");
     const [loading, setLoading] = useState<number>(0);
     const [settingsLoaded, setSettingsLoaded] = useState<boolean>(false);
 
@@ -92,7 +100,21 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
             );
             setBackgroundBookmarks(bookmarks);
         }
-
+        const startingBoxTypeCookie = localStorage.getItem(
+            "startingBoxType",
+        ) as "default" | "classic";
+        const valid = ["default", "classic", null].includes(
+            startingBoxTypeCookie,
+        );
+        if (startingBoxTypeCookie && valid) {
+            setStartingBoxType(startingBoxTypeCookie);
+        }
+        else if (!valid) {
+            setErrorInformation(
+                "SEKAI Stories found an invalid starting box type on your settings. Please avoid altering the cookies!",
+            );
+            localStorage.setItem("startingBoxType", "default");
+        }
         setSettingsLoaded(true);
     }, []);
 
@@ -137,6 +159,8 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
                 setAllowRefresh,
                 audio,
                 setAudio,
+                startingBoxType,
+                setStartingBoxType,
                 loading,
                 setLoading,
                 settingsLoaded,

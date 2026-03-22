@@ -29,6 +29,7 @@ import {
 
 interface GetDefaultSceneProps {
     app: PIXI.Application | undefined;
+    startingBoxType: "default" | "classic";
     setStartingMessage: Dispatch<SetStateAction<string>>;
     setLoading: Dispatch<SetStateAction<number>>;
     blankCanvas: boolean;
@@ -190,6 +191,7 @@ const LoadText = async (
     childAt: number,
     nameTag: string,
     dialogue: string,
+    startingBoxType: "default" | "classic",
 ): Promise<IText> => {
     const textAlignmentCookie = Number(
         localStorage.getItem("textAlignment-v2") ?? 0,
@@ -205,6 +207,7 @@ const LoadText = async (
         dialogueBoxesSetupData.default,
         nameTag,
         dialogue,
+        startingBoxType == "default",
     );
     const {
         textContainer: classicTextContainer,
@@ -214,6 +217,7 @@ const LoadText = async (
         dialogueBoxesSetupData.classic,
         nameTag,
         dialogue,
+        startingBoxType == "classic",
     );
     const {
         textContainer: mySekaiTextContainer,
@@ -223,6 +227,7 @@ const LoadText = async (
         dialogueBoxesSetupData.mySekai,
         nameTag,
         dialogue,
+        false,
     );
 
     textContainer.addChildAt(defaultTextContainer, 0);
@@ -250,7 +255,7 @@ const LoadText = async (
         visible: true,
         yOffset: textAlignmentCookie,
         hideEverything: false,
-        typeSelected: "default",
+        typeSelected: startingBoxType,
     };
 };
 
@@ -262,6 +267,7 @@ const LoadChoicesText = async (
         choice1: string;
         choice2: string;
     },
+    startingBoxType: "default" | "classic",
 ): Promise<IChoicesText> => {
     const choicesTextContainer = new PIXI.Container();
 
@@ -269,12 +275,20 @@ const LoadChoicesText = async (
         choicesTextContainer: defaultChoicesTextContainer,
         choicesFirstText: defaultChoicesFirstText,
         choicesSecondText: defaultChoicesSecondText,
-    } = await SetupChoicesText(choicesTextsSetupData.default, choices);
+    } = await SetupChoicesText(
+        choicesTextsSetupData.default,
+        choices,
+        startingBoxType == "default",
+    );
     const {
         choicesTextContainer: classicChoicesTextContainer,
         choicesFirstText: classicChoicesFirstText,
         choicesSecondText: classicChoicesSecondText,
-    } = await SetupChoicesText(choicesTextsSetupData.classic, choices);
+    } = await SetupChoicesText(
+        choicesTextsSetupData.classic,
+        choices,
+        startingBoxType == "classic",
+    );
 
     choicesTextContainer.addChildAt(defaultChoicesTextContainer, 0);
     choicesTextContainer.addChildAt(classicChoicesTextContainer, 1);
@@ -292,7 +306,7 @@ const LoadChoicesText = async (
         secondChoiceText: [defaultChoicesSecondText, classicChoicesSecondText],
         firstChoiceTextString: choices.choice1,
         secondChoiceTextString: choices.choice2,
-        typeSelected: "default",
+        typeSelected: startingBoxType,
         visible: enabled,
     };
 };
@@ -301,34 +315,44 @@ const LoadSceneText = async (
     app: PIXI.Application,
     childAt: number,
     scene: string,
+    startingBoxType: "default" | "classic",
 ): Promise<ISceneText> => {
     const sceneTextContainer = new PIXI.Container();
 
     const {
         sceneText: defaultSceneTextMiddle,
         sceneTextContainer: defaultSceneTextMiddleContainer,
-    } = await SetupSceneText(sceneCenterTextsSetupData.default, scene);
+    } = await SetupSceneText(
+        sceneCenterTextsSetupData.default,
+        scene,
+        startingBoxType == "default",
+    );
     const {
         sceneText: classicSceneTextMiddle,
         sceneTextContainer: classicSceneTextMiddleContainer,
-    } = await SetupSceneText(sceneCenterTextsSetupData.classic, scene);
+    } = await SetupSceneText(
+        sceneCenterTextsSetupData.classic,
+        scene,
+        startingBoxType == "classic",
+    );
     const {
         sceneText: defaultSceneTextTopLeft,
         sceneTextContainer: defaultSceneTextTopLeftContainer,
-    } = await SetupSceneText(sceneTopLeftTexts.default, scene);
+    } = await SetupSceneText(sceneTopLeftTexts.default, scene, false);
     const {
         sceneText: classicSceneTextTopLeft,
         sceneTextContainer: classicSceneTextTopLeftContainer,
-    } = await SetupSceneText(sceneTopLeftTexts.classic, scene);
+    } = await SetupSceneText(sceneTopLeftTexts.classic, scene, false);
 
     const defaultSceneTextBox = new PIXI.Container();
     defaultSceneTextBox.addChildAt(defaultSceneTextMiddleContainer, 0);
     defaultSceneTextBox.addChildAt(defaultSceneTextTopLeftContainer, 1);
+    defaultSceneTextBox.visible = startingBoxType == "default";
 
     const classicSceneTextBox = new PIXI.Container();
     classicSceneTextBox.addChildAt(classicSceneTextMiddleContainer, 0);
     classicSceneTextBox.addChildAt(classicSceneTextTopLeftContainer, 1);
-    classicSceneTextBox.visible = false;
+    classicSceneTextBox.visible = startingBoxType == "classic";
 
     sceneTextContainer.addChildAt(defaultSceneTextBox, 0);
     sceneTextContainer.addChildAt(classicSceneTextBox, 1);
@@ -361,7 +385,7 @@ const LoadSceneText = async (
         ],
         textString: scene,
         visible: false,
-        typeSelected: "default",
+        typeSelected: startingBoxType,
         variantSelected: "middle",
     };
 };
@@ -386,6 +410,7 @@ const LoadGuideline = async (
 
 export const LoadScene = async ({
     app,
+    startingBoxType,
     setStartingMessage,
     setLoading,
     blankCanvas,
@@ -455,6 +480,7 @@ export const LoadScene = async ({
         1,
         initialScene.nameTag,
         initialScene.text,
+        startingBoxType,
     );
 
     // Load Choices Text
@@ -465,6 +491,7 @@ export const LoadScene = async ({
         2,
         initialScene.choicesEnabled ?? false,
         initialScene.choices ?? { choice1: "Choice 1", choice2: "Choice 2" },
+        startingBoxType,
     );
 
     // Load Scene Setting Text
@@ -474,6 +501,7 @@ export const LoadScene = async ({
         initApplication,
         3,
         initialScene.sceneText,
+        startingBoxType,
     );
 
     setLoading(90);

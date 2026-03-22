@@ -12,20 +12,17 @@ export interface IDialogueTextSetup {
     bg: string;
     nameTag: IBaseTextSceneSetup;
     dialogue: IBaseTextSceneSetup;
-    visible: boolean;
 }
 
 export interface IChoicesTextSetup {
     bg: string;
     choice1: IBaseTextSceneSetup;
     choice2: IBaseTextSceneSetup;
-    visible: boolean;
 }
 
 export interface ISceneTextSetup {
     bg: string;
     text: IBaseTextSceneSetup;
-    visible: boolean;
 }
 
 interface ITextPosition {

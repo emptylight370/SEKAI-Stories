@@ -14,6 +14,7 @@ export const SetupDialogueText = async (
     setup: IDialogueTextSetup,
     nameTag: string,
     dialogue: string,
+    visible: boolean,
 ) => {
     const textBackgroundTexture = await Assets.load(setup.bg);
     const textBackgroundSprite = new PIXI.Sprite(textBackgroundTexture);
@@ -37,7 +38,7 @@ export const SetupDialogueText = async (
     textContainer.addChildAt(textNameTag, 1);
     textContainer.addChildAt(textDialogue, 2);
 
-    textContainer.visible = setup.visible;
+    textContainer.visible = visible;
     return { textContainer, textNameTag, textDialogue };
 };
 export const SetupChoicesText = async (
@@ -46,6 +47,7 @@ export const SetupChoicesText = async (
         choice1: string;
         choice2: string;
     },
+    visible: boolean,
 ) => {
     const choicesTextTexture = await Assets.load(setup.bg);
     const choicesTextSprite = new PIXI.Sprite(choicesTextTexture);
@@ -80,7 +82,7 @@ export const SetupChoicesText = async (
     choicesTextContainer.addChildAt(choicesFirstText, 1);
     choicesTextContainer.addChildAt(choicesSecondText, 2);
 
-    choicesTextContainer.visible = setup.visible;
+    choicesTextContainer.visible = visible;
 
     return {
         choicesTextContainer,
@@ -89,7 +91,11 @@ export const SetupChoicesText = async (
     };
 };
 
-export const SetupSceneText = async (setup: ISceneTextSetup, scene: string) => {
+export const SetupSceneText = async (
+    setup: ISceneTextSetup,
+    scene: string,
+    visible: boolean,
+) => {
     const sceneTextTexture = await Assets.load(setup.bg);
     const sceneTextSprite = new PIXI.Sprite(sceneTextTexture);
     const sceneText = new PIXI.Text(scene, setup.text.textStyle);
@@ -103,7 +109,7 @@ export const SetupSceneText = async (setup: ISceneTextSetup, scene: string) => {
     sceneTextContainer.addChildAt(sceneTextSprite, 0);
     sceneTextContainer.addChildAt(sceneText, 1);
 
-    sceneTextContainer.visible = setup.visible;
+    sceneTextContainer.visible = visible;
 
     return {
         sceneTextContainer,

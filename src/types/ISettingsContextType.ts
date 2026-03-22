@@ -36,6 +36,8 @@ export default interface ISettingsContextType {
     setAllowRefresh: Dispatch<SetStateAction<boolean>>;
     audio: boolean;
     setAudio: Dispatch<SetStateAction<boolean>>;
+    startingBoxType: "default" | "classic";
+    setStartingBoxType: Dispatch<SetStateAction<"default" | "classic">>;
     loading: number;
     setLoading: Dispatch<SetStateAction<number>>;
     settingsLoaded: boolean;

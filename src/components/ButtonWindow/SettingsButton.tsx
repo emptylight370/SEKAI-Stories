@@ -50,6 +50,8 @@ const SettingsButton: React.FC = () => {
         setShowTutorial,
         audio,
         setAudio,
+        startingBoxType,
+        setStartingBoxType,
     } = settings;
     const { setErrorInformation } = softError;
     const mentalHealthCookie =
@@ -71,7 +73,6 @@ const SettingsButton: React.FC = () => {
         a.click();
         a.remove();
     };
-
 
     const handleAudio = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.checked;
@@ -103,6 +104,11 @@ const SettingsButton: React.FC = () => {
     const handleAnnouncement = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.checked;
         setShowAnnouncements(value);
+    };
+    const handleBoxType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        localStorage.setItem("startingBoxType", value);
+        setStartingBoxType(value as "default" | "classic");
     };
 
     return (
@@ -145,6 +151,23 @@ const SettingsButton: React.FC = () => {
                             >
                                 Contribute for translation!
                             </a>
+                        </div>
+                        <div className="window__divider">
+                            <h2>{t("settings.starting-box-type")}</h2>
+                            <p>{t("settings.starting-box-type-description")}</p>
+                            <select
+                                name="box-type"
+                                id="box-type"
+                                value={startingBoxType}
+                                onChange={handleBoxType}
+                            >
+                                <option value="default">
+                                    {t("text.dialogue.box-type.default")}
+                                </option>
+                                <option value="classic">
+                                    {t("text.dialogue.box-type.classic")}
+                                </option>
+                            </select>
                         </div>
                         <div className="window__divider">
                             <h2>{t("settings.auto-save")}</h2>
@@ -208,7 +231,6 @@ const SettingsButton: React.FC = () => {
                                 checked={showAnnouncements}
                                 onChange={handleAnnouncement}
                             />
-                            
                         </div>
                         <div
                             className="window__divider center flex flex-vertical"

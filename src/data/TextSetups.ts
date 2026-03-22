@@ -37,7 +37,6 @@ export const dialogueBoxesSetupData: Record<string, IDialogueTextSetup> = {
                 y: 845,
             },
         },
-        visible: true,
     },
     classic: {
         bg: "/img/Dialogue_Background_Classic.png",
@@ -67,7 +66,6 @@ export const dialogueBoxesSetupData: Record<string, IDialogueTextSetup> = {
                 y: 805,
             },
         },
-        visible: false,
     },
     mySekai: {
         bg: "/img/Dialogue_Background_MYSEKAI.png",
@@ -97,7 +95,6 @@ export const dialogueBoxesSetupData: Record<string, IDialogueTextSetup> = {
                 y: 810,
             },
         },
-        visible: false,
     },
 };
 
@@ -138,7 +135,6 @@ export const choicesTextsSetupData: Record<string, IChoicesTextSetup> = {
                 y: 0.5,
             },
         },
-        visible: true,
     },
     classic: {
         bg: "/img/Choices_Background_Classic.png",
@@ -176,7 +172,6 @@ export const choicesTextsSetupData: Record<string, IChoicesTextSetup> = {
                 y: 0.5,
             },
         },
-        visible: false,
     },
 };
 
@@ -199,7 +194,6 @@ export const sceneCenterTextsSetupData: Record<string, ISceneTextSetup> = {
                 y: 0.5,
             },
         },
-        visible: true,
     },
     classic: {
         bg: "/img/SceneText_Background_Classic.png",
@@ -219,7 +213,6 @@ export const sceneCenterTextsSetupData: Record<string, ISceneTextSetup> = {
                 y: 0.5,
             },
         },
-        visible: false,
     },
 };
 
@@ -242,7 +235,6 @@ export const sceneTopLeftTexts: Record<string, ISceneTextSetup> = {
                 y: 0.5,
             },
         },
-        visible: false,
     },
     classic: {
         bg: "/img/SceneText_TopLeft_Classic.png",
@@ -262,6 +254,5 @@ export const sceneTopLeftTexts: Record<string, ISceneTextSetup> = {
                 y: 0.5,
             },
         },
-        visible: false,
     },
 };
