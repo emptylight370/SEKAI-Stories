@@ -6,26 +6,30 @@ body:
       label: The problem
       description: Provide details of the bug, how to get the bug, etc.
       value: |
-        <!-- 
-          PLEASE READ:
-          There are some known bugs:
-            1. disappearing parts after save (see Issue #20)
-            2. incomplete Live2D parts after loading
-
-          These bugs are caused by the PIXI.js-Live2D Renderer library, not the application itself.
-          Any issues created related to these bugs will be automatically closed.
-        -->
         ### Description 
         <!-- Describe the bug -->
 
         ### To produce the bug 
         <!-- A clear step by step instructions on how to reproduce the bug -->
+
+        ### OS and Browser Version
+        <!-- Please provide your device's and browser's information -->
+        Device: 
+        OS Version: 
+
+        Browser: 
+        App Version: 
     validations:
       required: true
   - type: textarea 
     attributes:
       label: Screenshot/Screen recording
       description: Add a screenshot or a screen recording of the bug
+      placeholder: You can drag and drop the file here.
+  - type: textarea 
+    attributes:
+      label: Traceback
+      description: Paste the traceback here if you got a crash (the one with Mizu5 'I'm sorry' sticker.)
       placeholder: You can drag or drop the file here.
     validations:
       required: true
