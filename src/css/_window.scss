@@ -53,7 +53,11 @@
         width: 100%;
         max-width: 100%;
     }
-    animation: open_window 0.05s linear;
+    animation: open_window 0.1s linear;
+}
+
+.window.window_close {
+    animation: close_window 0.1s linear;
 }
 
 .window__90_width {
@@ -65,10 +69,19 @@
 
 @keyframes open_window {
     0% {
-        transform: scale(50%);
+        transform: scale(0%);
     }
     100% {
         transform: scale(100%);
+    }
+}
+
+@keyframes close_window {
+    0% {
+        transform: scale(100%);
+    }
+    100% {
+        transform: scale(0%);
     }
 }
 
