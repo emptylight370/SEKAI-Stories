@@ -43,18 +43,18 @@ export const dialogueBoxesSetupData: Record<string, IDialogueTextSetup> = {
         nameTag: {
             textStyle: {
                 fontFamily: "FOT-RodinNTLGPro-DB",
-                fontSize: 44,
+                fontSize: 48,
                 fill: 0xffffff,
             },
             textPosition: {
-                x: 295,
-                y: 730,
+                x: 292,
+                y: 745,
             },
         },
         dialogue: {
             textStyle: {
                 fontFamily: "FOT-RodinNTLGPro-DB",
-                fontSize: 44,
+                fontSize: 48,
                 fill: 0x444466,
                 wordWrap: true,
                 wordWrapWidth: 1300,
@@ -62,8 +62,8 @@ export const dialogueBoxesSetupData: Record<string, IDialogueTextSetup> = {
                 lineHeight: 55,
             },
             textPosition: {
-                x: 245,
-                y: 805,
+                x: 240,
+                y: 825,
             },
         },
     },

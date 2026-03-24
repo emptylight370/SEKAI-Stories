@@ -139,7 +139,11 @@ const Dialogue: React.FC<DialogueProps> = ({
         const changedFontSize = Number(inputChange);
         if (changedFontSize == null || isNaN(changedFontSize)) return;
         text.dialogue.forEach((t, i) => {
-            t.style.fontSize = changedFontSize;
+            if (i == 1) {
+                t.style.fontSize = changedFontSize + 4;
+            } else {
+                t.style.fontSize = changedFontSize;
+            }
             t.style.lineHeight = Math.floor(
                 55 + (changedFontSize / 44 - 1) * 40,
             );
