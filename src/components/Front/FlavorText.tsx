@@ -43,6 +43,7 @@ const randomText = {
         "WONDERHOY!",
         "Lovely, Fairy, Momoi Airi!",
         "Meet SEKAI Stories's cousin, SIFAS Dialogue Sandbox!",
+        '"Smilie, how many more Lo〇e Li〇e! VA joke are you going to make!?"',
         "私は雨。(turns into ame-chan)",
         "恋をして",
         "██ ██ ██ ██ /  ██ ██ ██",
@@ -190,7 +191,7 @@ const FlavorText: React.FC = () => {
 export default FlavorText;
 
 /* 
-    LAST UPDATE: 02/14/2026
+    LAST UPDATE: 04/10/2026
     Will not list the obvious PJSK references.
     Placed here for people who needs explaination when translating.
 
@@ -239,6 +240,13 @@ export default FlavorText;
         -> Persona 4 Song Reference: "Beauty of Destiny"
     "Meet SEKAI Stories's cousin SIFAS Dialogue Sandbox!"
         -> lezzthanthree's Love Live! SIFAS Story Generator
+    '"Smilie, how many more Lo〇e Li〇e! VA jokes are you going to make!?"'
+        -> Smilie is lezzthanthree's other name.
+        -> Lo〇e Li〇e! = Love Live!
+        -> In the default scenes, there are three VA jokes.
+            -> Satou Hinata, VA of Akiyama Mizuki, is the same VA of Kazuno Leah from LLS!
+            -> Furihata Ai, VA of Momoi Airi, is the same VA of Kurosawa Ruby from LLS!
+            -> Kusunoki Tomori, VA of Yoisaki Kanade, is the same VA of Yuki Setsuna from LL! Nijigaku
     "It's pronounced 'DEKO-NINA'."
         -> DECO*27
 */

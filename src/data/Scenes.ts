@@ -11,7 +11,6 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
             pngName: "airi_littledemon",
             sceneText: "Uranohoshi High School Rooftop",
         },
-
         {
             background: "/background_special/Background_Nijigasaki.jpg",
             text: "A-am I doing it right?",
@@ -20,6 +19,15 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
             modelY: 630,
             pngName: "kanade-idol",
             sceneText: "Nijigasaki School Idol Club",
+        },
+        {
+            background: "/background_compressed/bg_a002302.jpg",
+            text: "Me?! A school idol?",
+            nameTag: "Mizuki",
+            modelX: 960,
+            modelY: 540,
+            pngName: "mizuki_idol",
+            sceneText: "Scramble Crossing",
         },
         {
             background: "/background_special/Background_Circle.png",
