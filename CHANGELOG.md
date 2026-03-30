@@ -1,3 +1,11 @@
+# 2026.04.05
+- Imitate classic dialogue box like the original (thanks to RetroSEKAI!)
+- Allow user to set the starting dialogue box type on Settings
+- Replaced the font size lock with reset
+- Added snapping on font size slider 
+- Open the character options after adding a Live2D model
+- Fixed line height issue when changing font size
+
 # 2026.03.05
 - March 5th trauma (My eyes feels heavy... )
 - Added custom choices text box

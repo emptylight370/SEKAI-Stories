@@ -22,14 +22,18 @@ const Announcements: React.FC = () => {
     return (
         <div id="announcements" onClick={handleAnnouncements}>
             <h2>Notice</h2>
-            <p>Few updates has been made:</p>
+            <p>Few updates have been made:</p>
             <ul>
                 <li>
-                    You can now make your own choices text! (I'll be waiting
-                    your "choose your own path" stories.)
+                    Imitate classic dialogue box to look more like the original (thanks to RetroSEKAI for booting the old UI game back up!)
                 </li>
-                <li>Updated list of models and backgrounds.</li>
-                <li>Updated the tutorial with the recent features.</li>
+                <li>
+                    Allow user to set the starting dialogue box type on Settings
+                </li>
+                <li>Replaced the font size lock with reset</li>
+                <li>Added snapping on font size slider </li>
+                <li>Open the character options after adding a Live2D model</li>
+                <li>Fixed line height issue when changing font size</li>
             </ul>
 
             <p>Tap this section to close.</p>
