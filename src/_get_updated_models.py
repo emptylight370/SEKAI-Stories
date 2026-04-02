@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 
 character_models = {
@@ -32,10 +33,12 @@ character_models = {
 
 
 def fetch_model_list():
+    print("Fetching models from Sekai Live2D Assets...")
     response = requests.get(
         "https://storage.sekai.best/sekai-live2d-assets/live2d/model_list.json"
     )
     response.raise_for_status()
+    print("Models fetched successfully.\n")
     return response.json()
 
 
@@ -58,7 +61,7 @@ def arrange_models_by_character(models):
 
 
 def compare_models(old_models, new_models):
-    updated_models = {}
+    model_diff = {}
     for character, models in new_models.items():
         if character in old_models:
             new_model_ids = [model["modelName"] for model in models]
@@ -67,27 +70,39 @@ def compare_models(old_models, new_models):
                 model_id for model_id in new_model_ids if model_id not in old_model_ids
             ]
             if updated_model_ids:
-                updated_models[character] = updated_model_ids
-    return updated_models
+                model_diff[character] = updated_model_ids
+    return model_diff
+
+
+def create_character_data(new_character_data, confirmation=False):
+    filename: str = (
+        "character_sekai.json" if confirmation else "character_sekai_temp.json"
+    )
+
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(new_character_data, f, indent=4, ensure_ascii=False)
+
+    print(f"Character data saved to {filename}.")
 
 
 def main():
-    print("Fetching models from Sekai Live2D Assets...")
     models = fetch_model_list()
-    print("Models fetched successfully.")
 
     sorted_models = sorted(models, key=lambda x: x["modelBase"])
 
-    character_data: dict[str, list[dict]] = arrange_models_by_character(sorted_models)
-
-    with open("new_character.json", "w", encoding="utf-8") as f:
-        json.dump(character_data, f, indent=4, ensure_ascii=False)
+    new_character_data: dict[str, list[dict]] = arrange_models_by_character(
+        sorted_models
+    )
 
     old_character_data = {}
-    with open("character_sekai.json", "r", encoding="utf-8") as f:
-        old_character_data = json.load(f)
-    updated_models = compare_models(old_character_data, character_data)
-    models_removed = compare_models(character_data, old_character_data)
+    if os.path.exists("character_sekai.json"):
+        with open("character_sekai.json", "r", encoding="utf-8") as f:
+            old_character_data = json.load(f)
+
+    updated_models = compare_models(old_character_data, new_character_data)
+    models_removed = compare_models(new_character_data, old_character_data)
+
+    print("\n")
 
     if not updated_models:
         print("No new models found.")
@@ -96,7 +111,7 @@ def main():
         for character, model_ids in updated_models.items():
             if model_ids:
                 print(f"{character}: {model_ids}")
-                
+
     print("\n")
 
     if not models_removed:
@@ -106,6 +121,17 @@ def main():
         for character, model_ids in models_removed.items():
             if model_ids:
                 print(f"{character}: {model_ids}")
+
+    print("\n")
+    confirmation = (
+        input("Do you want to update the character_sekai.json data? (y/[N]): ")
+        .strip()
+        .lower()
+    )
+    if confirmation == "y":
+        create_character_data(new_character_data, confirmation=True)
+    else:
+        create_character_data(new_character_data, confirmation=False)
 
 
 if __name__ == "__main__":
