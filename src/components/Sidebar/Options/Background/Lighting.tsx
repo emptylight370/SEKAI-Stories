@@ -16,7 +16,7 @@ const defaultPresets: Record<string, ILighting> = {
     warm: {
         red: 1,
         green: 0.95,
-        blue: 0.85,
+        blue: 0.9,
         brightness: 1,
         saturation: 1,
     },
@@ -30,7 +30,7 @@ const defaultPresets: Record<string, ILighting> = {
     night: {
         red: 0.9,
         green: 0.9,
-        blue: 1,
+        blue: 0.95,
         brightness: 1,
         saturation: 1,
     },

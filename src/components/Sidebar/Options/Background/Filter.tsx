@@ -26,6 +26,7 @@ const Filter: React.FC = () => {
         if (value) {
             const adjustmentFilter = new AdjustmentFilter({
                 saturation: 0.5,
+                brightness: 0.9
             });
             filter.container.filters = [adjustmentFilter];
         } else {
