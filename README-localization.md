@@ -27,7 +27,7 @@ To contribute to the localization of the project, please follow these steps:
         ...
     };
     ```
-6. Open a pull request with your changes. 
+6. Open a pull request under the `release` branch with your changes. 
 
 #### Optional
 For creativity, you can translate the flavor texts or add your own at [`src/components/FlavorText.tsx`](./src/components/Front/FlavorText.tsx). **Make sure not to add any offensive or inappropriate texts**.
@@ -35,15 +35,15 @@ For creativity, you can translate the flavor texts or add your own at [`src/comp
 ## List of languages translated
 | Language               | Locale Code | Translator/s                          | Completeness  |
 |------------------------|-------------|---------------------------------------|---------------|
-| Spanish                | es-ES       | GatoMago                              | 94.35%        |
+| Spanish                | es-ES       | GatoMago                              | 86.61%        |
 | Filipino               | fil-PH      | lezzthanthree                         | 100.00%       | 
-| French                 | fr-FR       | 39Choko                               | 99.70%        | 
-| Malay                  | ms-MY       | fab144                                | 86.01%        | 
-| Polish                 | pl-PL       | counter185, KrajeQQ                   | 92.26%        |
-| Thai                   | th-TH       | aungpaos                              | 100.00%       |
-| S. Chinese             | zh-CN       | MiddleRed, SteveLF, emptylight370     | 99.70%        |
-| T. Chinese (Hong Kong) | zh-HK       | lmaodick1239                          | 95.24%        |
-| T. Chinese (Taiwan)    | zh-TW       | lmaodick1239                          | 95.24%        |
+| French                 | fr-FR       | 39Choko                               | 91.53%        | 
+| Malay                  | ms-MY       | fab144                                | 78.96%        | 
+| Polish                 | pl-PL       | counter185, KrajeQQ                   | 84.70%        |
+| Thai                   | th-TH       | aungpaos                              | 94.81%        |
+| S. Chinese             | zh-CN       | MiddleRed, SteveLF, emptylight370     | 91.80%        |
+| T. Chinese (Hong Kong) | zh-HK       | lmaodick1239                          | 87.43%        |
+| T. Chinese (Taiwan)    | zh-TW       | lmaodick1239                          | 87.43%        |
 
 You can run the [`_check_missing.py`](./src/locale/_check_missing.py) Python script to check for missing keys in your translation. 
 

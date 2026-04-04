@@ -192,7 +192,7 @@
         "refresh": "I-refresh"
     },
     "clear": {
-        "message": "Mawawala LAHAT ng nilalaman sa canvas. Ang lahat ng ginawa mo ay mawawala!",
+        "message": "Mawawala LAHAT ng nilalaman sa canvas. Ang mga ginawa mo ay mawawala!",
         "start-blank": "Magsimula sa blangkong canvas sa susunod."
     },
     "support": {
@@ -265,6 +265,8 @@
     "settings": {
         "header": "Settings",
         "language": "Wika",
+        "starting-box-type": "Panimulang Uri ng Box",
+        "starting-box-type-description": "Makikita ang pagbabago nito matapos i-clear ang canvas.",
         "auto-save": "Auto-save",
         "auto-save-description": "Awtomatikong naisa-save ang iyong gawa kada tatlong minuto. Kung may problema, maaari mong i-download ang pinakabagong backup bilang JSON file.",
         "auto-save-button": "Kunin ang huling save",
