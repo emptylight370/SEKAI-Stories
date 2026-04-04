@@ -31,7 +31,7 @@ const randomText = {
         "Akito is spotted unconscious after eating Ena's favorite cheesecake.",
         "ABSOLUTE CINEMA",
         "The Disapperance of Hatsune Miku",
-        "Listening to その音が鳴るなら",
+        "Listening to Heat Abnormal (WxS Version)",
         "Do not overdose yourself with shipping~",
         "Please take only the recommended shipping dosage.",
         "Just Monika.",

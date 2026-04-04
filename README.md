@@ -10,9 +10,11 @@ A Dialogue Generator for making fan-made stories from the game [Project SEKAI CO
 ## Special Thanks
 ### SEKAI Viewer
 I would like to thank the developers of [Sekai Viewer](https://github.com/Sekai-World/sekai-viewer/) for allowing me to connect their server through this application!
+
 [<img src="./public/img/sekai-viewer.png" alt="smilie pop" width="300"/>](https://sekai.best)
+
 ### The Localization Contributors
-A huge thanks to our translators!
+Huge thanks to our translators!
 
 [<img src="https://yt3.googleusercontent.com/bXEX1lrt2hFwcGYSGUuWDDYSd2VtHMJ-_-FnJMWzVRjcpQZMlpYeWe7MSCI9kszUAbydBSN5=s120-c-k-c0x00ffffff-no-rj" width="50">](https://www.youtube.com/@GatoMagoMusic)
 [<img src="https://avatars.githubusercontent.com/u/98752512?v=4" width="50">](https://github.com/MiddleRed)
@@ -42,15 +44,23 @@ Type the dialogues of who's speaking and adjust their font size to match their t
 
 ![](./public/img/Preview-3.png)
 
+![](./public/img/Preview-4.png)
+
 ### Live2D Models as your sprites!
 
 With their Live2D Models, you can use them as your sprite and choose your perfect poses and emotions to the character of your choosing!
 
-![](./public/img/Preview-4.png)
+![](./public/img/Preview-5.png)
 
 Or, you could upload your own normal PNG Sprite! It's your own choice!
 
-![](./public/img/Preview-5.png)
+![](./public/img/Preview-6.png)
+
+### Make your own poses!
+
+Adjust the parameters of the Live2D models to make your own poses!
+
+![](./public/img/Preview-7.png)
 
 ## Developing
 ### Prerequisites
@@ -69,13 +79,18 @@ npm run dev
 ## Report an issue
 If you think there's a problem on using the dialogue generator, please [submit a report by opening an issue here](https://github.com/lezzthanthree/SEKAI-Stories/issues).
 
-
 ## Relevant Links
 - [Project Sekai Stickers](https://st.ayaka.one/) by [TheOriginalAyaka](https://github.com/TheOriginalAyaka/sekai-stickers)
 - [SEKAI Viewer](https://sekai.best/) by [Sekai-World](https://github.com/Sekai-World/sekai-viewer)
 - [SIFAS Dialogue Sandbox](https://sifas-dialogue-sandbox.vercel.app/) by me!
 
+## License
+This project is licensed under the GNU General Public License v3.0.
+
+All assets used in this project are property of SEGA, Colorful Palette, and Crypton. This project is not affiliated with said companies in any way.
+
 ----
+
 mizuki is a programmer
 
 [<img src="./public/img/sp.png" alt="smilie pop" width="150"/>](https://www.youtube.com/c/SmiliePop)[<img src="./public/img/lezzthanthree.png" alt="lezzthanthree" width="150"/>](https://reddit.com/user/lezzthanthree)
