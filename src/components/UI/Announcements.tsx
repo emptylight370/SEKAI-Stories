@@ -25,17 +25,46 @@ const Announcements: React.FC = () => {
             <p>Few updates have been made:</p>
             <ul>
                 <li>
-                    Imitate classic dialogue box to look more like the original (thanks to RetroSEKAI for booting the old UI game back up!)
+                    Imitate classic dialogue box to look more like the original
+                    (thanks to RetroSEKAI for booting the old UI game back up!)
                 </li>
                 <li>
                     Allow user to set the starting dialogue box type on Settings
                 </li>
-                <li>Replaced the font size lock with reset</li>
-                <li>Added snapping on font size slider </li>
-                <li>Open the character options after adding a Live2D model</li>
-                <li>Fixed line height issue when changing font size</li>
             </ul>
+            <p>
+                You can check the announcement here about the recent April Fools
+                event and about getting Just Mizuki's sprite files. Your feedback is
+                also appreciated!
+            </p>
+            <div className="flex flex-horizontal flex-wrap gap-10">
+                <button
+                    className="btn-regular btn-blue"
+                    onClick={(e) => {
+                        e.stopPropagation();
 
+                        window.open(
+                            "https://ko-fi.com/post/Just-Mizuki-W7W21X7LMQ",
+                            "_blank",
+                        );
+                    }}
+                >
+                    Ko-fi Announcement
+                </button>
+                <button
+                    className="btn-regular btn-blue"
+                    onClick={(e) => {
+                        e.stopPropagation();
+
+                        window.open(
+                            "https://forms.gle/BC4Pmv5HLZThrTaY8",
+                            "_blank",
+                        );
+                    }}
+                >
+                    Feedback Form
+                </button>
+            </div>
             <p>Tap this section to close.</p>
         </div>
     );
