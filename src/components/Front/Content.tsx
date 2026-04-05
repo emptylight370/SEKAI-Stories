@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Canvas from "./Canvas";
 import SidebarSelect from "./SidebarSelect";
 import DownloadButton from "../ButtonWindow/DownloadButton";
@@ -43,8 +43,35 @@ const Content: React.FC = () => {
     if (!scene || !settings || !softError) {
         throw new Error("Context is not loaded properly.");
     }
+
     const { hide, setHide, showTutorial, setShowTutorial } = settings;
-    const { showErrorInformation } = softError;
+    const { showErrorInformation, setErrorInformation } = softError;
+
+    // Remove by April 20th
+    useEffect(() => {
+        const aprilFoolsPersistence = localStorage.getItem(
+            "aprilFoolsDialogueKey",
+        );
+        const postAprilFools =
+            localStorage.getItem("postAprilFools") === "true";
+        const deletedMizuki = localStorage.getItem("deleted");
+        const skipped = localStorage.getItem("skippedFools");
+
+        if (!postAprilFools && aprilFoolsPersistence != null) {
+            if (skipped === "true") {
+                setErrorInformation(
+                    "I won't mess with the character files now. Thank you for restoring me～ ♡\n(April Fools event has ended.)",
+                );
+            } else {
+                setErrorInformation(
+                    deletedMizuki === "true"
+                        ? "I'm back. Don't worry about it now～ ♡\n(Mizuki is back in the character list. April Fools event has ended.)"
+                        : "Everyone is back. Don't worry about it now～ ♡\n(All characters are back in the character list. April Fools event has ended.)",
+                );
+            }
+        }
+        localStorage.setItem("postAprilFools", "true");
+    }, []);
 
     return (
         <div id="content" className="center" style={{ position: "relative" }}>
