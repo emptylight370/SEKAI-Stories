@@ -7,6 +7,7 @@ import { getBackground } from "../../../../utils/GetBackground";
 import * as PIXI from "pixi.js";
 import { useTranslation } from "react-i18next";
 import POVFilter from "./POVFilter";
+import Contrast from "./Contrast";
 
 const Filter: React.FC = () => {
     const scene = useContext(SceneContext);
@@ -17,7 +18,7 @@ const Filter: React.FC = () => {
     const { app, filter, setFilter } = scene;
 
     const handleFlashback = async (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         if (!filter?.container) return;
 
@@ -26,7 +27,7 @@ const Filter: React.FC = () => {
         if (value) {
             const adjustmentFilter = new AdjustmentFilter({
                 saturation: 0.5,
-                brightness: 0.9
+                brightness: 0.9,
             });
             filter.container.filters = [adjustmentFilter];
         } else {
@@ -36,6 +37,33 @@ const Filter: React.FC = () => {
         setFilter({
             ...filter,
             flashback: value,
+        });
+    };
+
+    const handleMonochrome = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        if (!filter?.container) return;
+
+        const value = event.target.checked;
+        let adjustmentFilter: AdjustmentFilter | undefined;
+
+        if (value) {
+            adjustmentFilter = new AdjustmentFilter({
+                saturation: 0,
+            });
+            filter.container.filters = [adjustmentFilter];
+        } else {
+            filter.container.filters = [];
+        }
+
+        setFilter({
+            ...filter,
+            monochrome: {
+                contrast: 1,
+                show: value,
+                adjustmentFilter: adjustmentFilter ?? undefined,
+            },
         });
     };
 
@@ -136,6 +164,15 @@ const Filter: React.FC = () => {
                 checked={filter?.flashback}
                 onChange={handleFlashback}
             />
+            <Checkbox
+                id="monochrome"
+                label={t("background.filters.monochrome")}
+                checked={filter?.monochrome?.show}
+                onChange={handleMonochrome}
+            />
+            {filter?.monochrome?.show && (
+                <Contrast filter={filter} setFilter={setFilter} />
+            )}
             <Checkbox
                 id="sick"
                 label={t("background.filters.sick")}

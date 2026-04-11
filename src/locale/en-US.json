@@ -46,6 +46,10 @@
         "filters": {
             "header": "Filters",
             "flashback": "Flashback",
+            "monochrome": "Monochrome",
+            "monochrome-settings": {
+                "contrast": "Contrast"
+            },
             "sick": "Sick",
             "drooping-lines": "Drooping Lines",
             "pov": "POV/FOV",

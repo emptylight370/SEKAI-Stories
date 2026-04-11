@@ -1,3 +1,4 @@
+import { AdjustmentFilter } from "pixi-filters";
 import * as PIXI from "pixi.js";
 
 export interface IFilter {
@@ -5,6 +6,11 @@ export interface IFilter {
     flashback?: boolean;
     sick?: { container?: PIXI.Container | null; show?: boolean };
     droop?: { container?: PIXI.Container | null; show?: boolean };
+    monochrome?: {
+        contrast: number;
+        show: boolean;
+        adjustmentFilter?: AdjustmentFilter;
+    };
     pov?: {
         show?: boolean;
         zoom: number;
