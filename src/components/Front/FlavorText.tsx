@@ -10,6 +10,7 @@ const randomText = {
         "Can you hear the ominous bells tolling?",
         "Nene is playing maimai. The map is Xaleid◆scopiX.",
         "Rui with his ThinkPad laptop.",
+        "Rui is on his way to recreate GLaDOS for their next show.",
         "Tsukasa is laughing in the hallway like a kid again.",
         'Emu breaks the fourth wall, staring at you and says "Wonderhoy!"',
         "Ichika is fangirling over Miku. Again.",
@@ -44,12 +45,19 @@ const randomText = {
         "Lovely, Fairy, Momoi Airi!",
         "Meet SEKAI Stories's cousin, SIFAS Dialogue Sandbox!",
         '"Smilie, how many more Lo〇e Li〇e! VA joke are you going to make!?"',
+        "Girls are now composing...",
+        "Squad is now vibing...",
+        "Idols are now practicing...",
+        "Troupe is now rehearsing...",
+        "Band is now playing...",
         "私は雨。(turns into ame-chan)",
         "恋をして",
         "██ ██ ██ ██ /  ██ ██ ██",
         "kurukurukurukurukurikaesu",
         "saa anyo anyo kocchi oide",
         "Burn Your Dread.",
+        "It's a amazing!",
+        "This was a triumph.",
         "Bonds of people is the true power.",
         "It's pronounced 'DEKO-NINA'.",
         "Stream Moe Shop!",
@@ -200,6 +208,8 @@ export default FlavorText;
     "Nene is playing maimai. The map is Xaleid◆scopiX."
         -> maimai is SEGA's arcade game. 
         -> Xaleid◆scopiX is currently the hardest chart.
+    "Rui is on his way to recreate GlaDOS for their next show."
+        -> GlaDOS is the main antagonist of the Portal series.
     "Rui with his ThinkPad laptop."
         -> ThinkPads are usually associated with engineers and programmers.
         -> can also be a programming socks humor (iykwim)
@@ -236,6 +246,10 @@ export default FlavorText;
         -> Song Reference: "Looping the Rooms"
     "Burn Your Dread.",
         -> Persona 3 Song Reference: "Burn My Dread" and "Full Moon Full Life"
+    "It's a amazing!",
+        -> Song Reference: "Envy Baby"
+    "This was a triumph.",
+        -> Portal Song Reference: "Still Alive"
     "Bonds of people is the true power.",
         -> Persona 4 Song Reference: "Beauty of Destiny"
     "Meet SEKAI Stories's cousin SIFAS Dialogue Sandbox!"
@@ -247,6 +261,17 @@ export default FlavorText;
             -> Satou Hinata, VA of Akiyama Mizuki, is the same VA of Kazuno Leah from LLS!
             -> Furihata Ai, VA of Momoi Airi, is the same VA of Kurosawa Ruby from LLS!
             -> Kusunoki Tomori, VA of Yoisaki Kanade, is the same VA of Yuki Setsuna from LL! Nijigaku
+    "Girls are now composing..."
+    "Squad is now vibing..."
+    "Idols are now practicing..."
+    "Troupe is now rehearsing..."
+    "Band is now playing..."
+        -> Touhou Loading Reference
+        -> "Girls" is for N25 characters.
+        -> "Squad" is for the VBS members.
+        -> "Idols" is for the MMJ members.
+        -> "Troupe" is for the WxS members.
+        -> "Band" is for the L/N members.
     "It's pronounced 'DEKO-NINA'."
         -> DECO*27
 */
