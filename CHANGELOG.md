@@ -1,3 +1,6 @@
+# 2026.04.11
+- Added monochrome filter
+
 # 2026.04.05
 - Imitate classic dialogue box like the original (thanks to RetroSEKAI!)
 - Allow user to set the starting dialogue box type on Settings
