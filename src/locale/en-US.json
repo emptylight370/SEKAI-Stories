@@ -337,6 +337,10 @@
             "paragraph-2": "You can also open this tutorial at any time on Settings.",
             "confirm-first-time": "It's my first time here"
         },
+        "video": {
+            "header": "You can watch the whole tutorial on YouTube!",
+            "youtube": "Open YouTube"
+        },
         "menu-navigation": {
             "header": "These will navigate you between menus!"
         },

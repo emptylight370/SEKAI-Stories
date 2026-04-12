@@ -56,7 +56,7 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
             setOpenAll(true);
         }
         const showTutorialCookie = localStorage.getItem(
-            "showTutorialAndSetup-v2",
+            "showTutorialAndSetup-v3",
         );
         if (!showTutorialCookie || showTutorialCookie === "true") {
             setShowTutorial(true);
@@ -119,7 +119,7 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("showTutorialAndSetup-v2", String(showTutorial));
+        localStorage.setItem("showTutorialAndSetup-v3", String(showTutorial));
     }, [showTutorial]);
 
     return (

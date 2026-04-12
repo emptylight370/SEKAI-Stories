@@ -1,5 +1,6 @@
 # 2026.04.11
 - Added monochrome filter
+- Added a video tutorial for SEKAI Stories
 
 # 2026.04.05
 - Imitate classic dialogue box like the original (thanks to RetroSEKAI!)

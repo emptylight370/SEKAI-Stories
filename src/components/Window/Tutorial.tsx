@@ -83,6 +83,47 @@ const Tutorial: React.FC<TutorialProps> = ({ show }) => {
             )}
             {page == 1 && (
                 <Window
+                    className="window__90_width"
+                    show={show}
+                    buttons={
+                        <>
+                            <button
+                                className="btn-white btn-regular"
+                                onClick={() => {
+                                    window.open(
+                                        "https://youtu.be/t5SjbYaCj4E",
+                                        "_blank",
+                                    );
+                                }}
+                            >
+                                {t("tutorial.video.youtube")}
+                            </button>
+                        </>
+                    }
+                    confirmLabel={t("global.next")}
+                    confirmFunction={() => setPage(page + 1)}
+                    skipCloseInConfirm
+                    hideClose
+                >
+                    <div className="window__content">
+                        <h2 className="text-center">
+                            {t("tutorial.video.header")}
+                        </h2>
+                        <div className="window__divider center padding-top-bottom-10">
+                            <iframe
+                                width="560"
+                                height="315"
+                                src="https://www.youtube.com/embed/t5SjbYaCj4E"
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        </div>
+                    </div>
+                </Window>
+            )}
+            {page == 2 && (
+                <Window
                     show={show}
                     confirmLabel={t("global.next")}
                     confirmFunction={() => setPage(page + 1)}
@@ -103,7 +144,7 @@ const Tutorial: React.FC<TutorialProps> = ({ show }) => {
                     </div>
                 </Window>
             )}
-            {page == 2 && (
+            {page == 3 && (
                 <Window
                     show={show}
                     confirmLabel={t("global.next")}
@@ -198,7 +239,7 @@ const Tutorial: React.FC<TutorialProps> = ({ show }) => {
                     </div>
                 </Window>
             )}
-            {page == 3 && (
+            {page == 4 && (
                 <Window
                     show={show}
                     confirmLabel={t("global.next")}
@@ -276,7 +317,7 @@ const Tutorial: React.FC<TutorialProps> = ({ show }) => {
                     </div>
                 </Window>
             )}
-            {page == 4 && (
+            {page == 5 && (
                 <Window
                     show={show}
                     confirmLabel={t("global.next")}
@@ -437,7 +478,7 @@ const Tutorial: React.FC<TutorialProps> = ({ show }) => {
                     </div>
                 </Window>
             )}
-            {page == 5 && (
+            {page == 6 && (
                 <Window
                     show={show}
                     confirmLabel={t("global.next")}
@@ -466,7 +507,7 @@ const Tutorial: React.FC<TutorialProps> = ({ show }) => {
                     </div>
                 </Window>
             )}
-            {page == 6 && (
+            {page == 7 && (
                 <Window show={show}>
                     <div className="window__content">
                         <h2 className="text-center">
