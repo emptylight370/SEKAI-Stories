@@ -2,8 +2,10 @@ import { useContext, useEffect } from "react";
 import { SceneContext } from "../../contexts/SceneContext";
 import { SettingsContext } from "../../contexts/SettingsContext";
 import Window from "./Window";
+import { useTranslation } from "react-i18next";
 
 export function ErrorFallback({ error }: { error: Error }) {
+    const { t } = useTranslation();
     const scene = useContext(SceneContext);
     const settings = useContext(SettingsContext);
     if (!scene || !settings) throw new Error("Context not prepared.");
@@ -57,13 +59,13 @@ export function ErrorFallback({ error }: { error: Error }) {
                             className="btn-red btn-regular"
                             onClick={handleAutoSaveData}
                         >
-                            Save Data
+                            {t("error-boundary.save-data-button")}
                         </button>
 
                         <button
                             onClick={() => {
                                 navigator.clipboard.writeText(message);
-                                alert("The traceback has been copied. Please paste it when making a report.");
+                                alert(t("error-boundary.copied-to-clipboard"));
                                 window.open(
                                     "https://github.com/lezzthanthree/SEKAI-Stories/blob/master/README.md#report-an-issue",
                                     "_blank",
@@ -71,7 +73,7 @@ export function ErrorFallback({ error }: { error: Error }) {
                             }}
                             className="btn-regular btn-blue"
                         >
-                            Report Issue
+                            {t("error-boundary.report-issue-button")}
                         </button>
                     </>
                 }
@@ -83,34 +85,32 @@ export function ErrorFallback({ error }: { error: Error }) {
                     </div>
                     <h2 className="text-center">「。。。ごめん。。。」</h2>
                     <p className="text-center">
-                        An unexpected error has occurred.
+                        {t("error-boundary.unexpected")}
                     </p>
 
-                    {showExperimental ? (
+                    {!showExperimental ? (
                         <p className="text-center">
-                            Did you somehow forget a variable?
+                            {t("error-boundary.forget-variable")}
                         </p>
                     ) : (
                         <>
                             <p className="text-center">
-                                We're really sorry for the inconvenience.
+                                {t("error-boundary.inconvenience")}
                             </p>
                             <p className="text-center">
-                                Please clear the cookies, refresh the page, and
-                                try again.
+                                {t("error-boundary.clear-cookies")}
                             </p>
                             <p className="text-center">
-                                If the problem persists, please report this
-                                issue on GitHub.
+                                {t("error-boundary.report-issue")}
                             </p>
                             <p className="text-center">
-                                Your work is automatically saved.
+                                {t("error-boundary.automatic-save")}
                             </p>
                             <p
                                 className="text-center link"
                                 onClick={handleAutoSaveData}
                             >
-                                Save it as soon as possible.
+                                {t("error-boundary.save-data")}
                             </p>
                         </>
                     )}

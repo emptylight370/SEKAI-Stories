@@ -32,4 +32,4 @@ body:
       description: Paste the traceback here if you got a crash (the one with Mizu5 'I'm sorry' sticker.)
       placeholder: You can drag or drop the file here.
     validations:
-      required: true
+      required: false

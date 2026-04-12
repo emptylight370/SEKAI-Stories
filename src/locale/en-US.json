@@ -308,6 +308,17 @@
         "background-bookmark": "You cannot set a bookmark for a custom background.",
         "hide-everything-warning": "The \"Hide models and dialogue\" option under Scene Text is enabled.\nPlease disable this option on Text Menu."
     },
+    "error-boundary": {
+        "unexpected": "An unexpected error has occurred",
+        "inconvenience": "We're really sorry for the inconvenience.",
+        "clear-cookies": "Please clear the cookies, refresh the page, and try again.",
+        "report-issue": "If the problem persists, please report this issue on GitHub.",
+        "automatic-save": "Your work is automatically saved.",
+        "save-data": "Save it as soon as possible.",
+        "save-data-button": "Save Data",
+        "report-issue-button": "Report Issue",
+        "copied-to-clipboard": "The traceback has been copied. Please paste it when making a report."
+    },
     "mental-health": {
         "header": "It's okay to reach out",
         "details": "What you are feeling matters and you are not alone. If you're going through a difficult moment, you can click the button below to find resources and people who are there to help.",
