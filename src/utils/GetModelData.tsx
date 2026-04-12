@@ -52,7 +52,7 @@ export const GetModelDataFromSekai = async (
         .get(`${sekaiUrl}/model/${modelList.modelPath}/${modelList.modelFile}`)
         .catch((error) => {
             throw new Error(
-                `SEKAI Stories received ${error.response?.status ? `a ${error.response?.status} code` : `an error`} from sekai.best! 
+                `SEKAI Stories received ${error.response?.status ? `a ${error.response?.status} status code` : `an error`} from sekai.best! 
                 Could be the server is down or something's missing.
                 Please use SEKAI Stories's models instead.`,
             );

@@ -99,7 +99,8 @@ async function GetMotionUrl(
         throw new Error(
             `Motion data not found for ${modelItem.modelBase}/${
                 modelItem.modelName
-            }\nStatus codes encountered: ${JSON.stringify(statusCodeCounts)}`,
+            }\nStatus codes encountered: ${JSON.stringify(statusCodeCounts)}\n
+            If this keeps happening, please consider SEKAI Stories's models.`,
         );
     }
 
