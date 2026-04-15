@@ -1,7 +1,7 @@
 # 2026 04.15
 - Updated Thai Localization
 - Added new models from the latest JP April Fools update
-- 
+- Fixed issue regarding Y-Offset on Classic
 
 # 2026.04.11
 - Added monochrome filter
