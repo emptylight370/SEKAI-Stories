@@ -1,3 +1,8 @@
+# 2026 04.15
+- Updated Thai Localization
+- Added new models from the latest JP April Fools update
+- 
+
 # 2026.04.11
 - Added monochrome filter
 - Added a video tutorial for SEKAI Stories

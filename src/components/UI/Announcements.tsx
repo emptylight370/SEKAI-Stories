@@ -24,47 +24,12 @@ const Announcements: React.FC = () => {
             <h2>Notice</h2>
             <p>Few updates have been made:</p>
             <ul>
-                <li>
-                    Imitate classic dialogue box to look more like the original
-                    (thanks to RetroSEKAI for booting the old UI game back up!)
-                </li>
-                <li>
-                    Allow user to set the starting dialogue box type on Settings
-                </li>
+                <li>Updated Thai localization</li>
+                <li>Added new models from the latest JP April Fools update</li>
+                <li>Added a video tutorial for the application</li>
+                <li>Added Monochrome Filter</li>
             </ul>
-            <p>
-                You can check the announcement here about the recent April Fools
-                event and about getting Just Mizuki's sprite files. Your feedback is
-                also appreciated!
-            </p>
-            <div className="flex flex-horizontal flex-wrap gap-10">
-                <button
-                    className="btn-regular btn-blue"
-                    onClick={(e) => {
-                        e.stopPropagation();
 
-                        window.open(
-                            "https://ko-fi.com/post/Just-Mizuki-W7W21X7LMQ",
-                            "_blank",
-                        );
-                    }}
-                >
-                    Ko-fi Announcement
-                </button>
-                <button
-                    className="btn-regular btn-blue"
-                    onClick={(e) => {
-                        e.stopPropagation();
-
-                        window.open(
-                            "https://forms.gle/BC4Pmv5HLZThrTaY8",
-                            "_blank",
-                        );
-                    }}
-                >
-                    Feedback Form
-                </button>
-            </div>
             <p>Tap this section to close.</p>
         </div>
     );

@@ -55,6 +55,12 @@
             "modelFile": "01ichika_2025aprilfool_t01.model3.json"
         },
         {
+            "modelName": "01ichika_clothes2_2026april_t01",
+            "modelBase": "v2_01ichika_april2026",
+            "modelPath": "v2/main/01_ichika/v2_01ichika_april2026",
+            "modelFile": "01ichika_clothes2_2026april_t01.model3.json"
+        },
+        {
             "modelName": "01ichika_clothes2_4_t09",
             "modelBase": "v2_01ichika_casual",
             "modelPath": "v2/main/01_ichika/v2_01ichika_casual",
@@ -183,10 +189,28 @@
             "modelFile": "v2_02saki_2025aprilfool_school_t01.model3.json"
         },
         {
+            "modelName": "v2_02saki_clothes_2026april",
+            "modelBase": "v2_02saki_april2026",
+            "modelPath": "v2/main/02_saki/v2_02saki_april2026",
+            "modelFile": "v2_02saki_clothes_2026april.model3.json"
+        },
+        {
+            "modelName": "v2_02saki_clothes_t09",
+            "modelBase": "v2_02saki_casual",
+            "modelPath": "v2/main/02_saki/v2_02saki_casual",
+            "modelFile": "v2_02saki_clothes_t09.model3.json"
+        },
+        {
             "modelName": "v2_02saki_clothes_t08",
             "modelBase": "v2_02saki_casual",
             "modelPath": "v2/main/02_saki/v2_02saki_casual",
             "modelFile": "v2_02saki_clothes_t08.model3.json"
+        },
+        {
+            "modelName": "v2_02saki_clothes_t10",
+            "modelBase": "v2_02saki_casual",
+            "modelPath": "v2/main/02_saki/v2_02saki_casual",
+            "modelFile": "v2_02saki_clothes_t10.model3.json"
         },
         {
             "modelName": "v2_02saki_clothes_t06",
@@ -217,6 +241,12 @@
             "modelBase": "v2_02saki_school01",
             "modelPath": "v2/main/02_saki/v2_02saki_school01",
             "modelFile": "v2_02saki_uniform_t04.model3.json"
+        },
+        {
+            "modelName": "v2_02saki_uniform_t05",
+            "modelBase": "v2_02saki_school01",
+            "modelPath": "v2/main/02_saki/v2_02saki_school01",
+            "modelFile": "v2_02saki_uniform_t05.model3.json"
         },
         {
             "modelName": "v2_02saki_tenniswear_t02",
@@ -303,6 +333,12 @@
             "modelBase": "v2_03honami_april2025_school",
             "modelPath": "v2/main/03_honami/v2_03honami_april2025_school",
             "modelFile": "v2_03honami_2025aprilfool_school_t01.model3.json"
+        },
+        {
+            "modelName": "03honami_april2026_t01",
+            "modelBase": "v2_03honami_april2026",
+            "modelPath": "v2/main/03_honami/v2_03honami_april2026",
+            "modelFile": "03honami_april2026_t01.model3.json"
         },
         {
             "modelName": "03honami_clothes2_4_t03",
@@ -413,6 +449,18 @@
             "modelBase": "v2_04shiho_april2025",
             "modelPath": "v2/main/04_shiho/v2_04shiho_april2025",
             "modelFile": "v2_04shiho_2025aprilfool_t01.model3.json"
+        },
+        {
+            "modelName": "v2_04shiho_april2026_t01",
+            "modelBase": "v2_04shiho_april2026",
+            "modelPath": "v2/main/04_shiho/v2_04shiho_april2026",
+            "modelFile": "v2_04shiho_april2026_t01.model3.json"
+        },
+        {
+            "modelName": "v2_04shiho_casual_t04",
+            "modelBase": "v2_04shiho_casual",
+            "modelPath": "v2/main/04_shiho/v2_04shiho_casual",
+            "modelFile": "v2_04shiho_casual_t04.model3.json"
         },
         {
             "modelName": "v2_04shiho_casual_t03",
@@ -529,6 +577,12 @@
             "modelBase": "v2_05minori_april2025",
             "modelPath": "v2/main/05_minori/v2_05minori_april2025",
             "modelFile": "v2_05_minori_2025aprilfool_t02.model3.json"
+        },
+        {
+            "modelName": "v2_05_minori_april2026_t02",
+            "modelBase": "v2_05minori_april2026",
+            "modelPath": "v2/main/05_minori/v2_05minori_april2026",
+            "modelFile": "v2_05_minori_april2026_t02.model3.json"
         },
         {
             "modelName": "v2_05_minori_casual_t06",
@@ -695,6 +749,12 @@
             "modelFile": "06haruka_2025aprilfool_school_t01.model3.json"
         },
         {
+            "modelName": "v2_06_haruka_april2026_t01",
+            "modelBase": "v2_06haruka_april2026",
+            "modelPath": "v2/main/06_haruka/v2_06haruka_april2026",
+            "modelFile": "v2_06_haruka_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_06_haruka_clothes_t05",
             "modelBase": "v2_06haruka_casual",
             "modelPath": "v2/main/06_haruka/v2_06haruka_casual",
@@ -841,6 +901,12 @@
             "modelFile": "v2_07_airi_2025aprilfool_school_t01.model3.json"
         },
         {
+            "modelName": "v2_07_airi_april2026_t01",
+            "modelBase": "v2_07airi_april2026",
+            "modelPath": "v2/main/07_airi/v2_07airi_april2026",
+            "modelFile": "v2_07_airi_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_07_airi_casual_t07",
             "modelBase": "v2_07airi_casual",
             "modelPath": "v2/main/07_airi/v2_07airi_casual",
@@ -973,6 +1039,12 @@
             "modelBase": "v2_08shizuku_april2025",
             "modelPath": "v2/main/08_shizuku/v2_08shizuku_april2025",
             "modelFile": "08shizuku_2025aprilfool_t02.model3.json"
+        },
+        {
+            "modelName": "08shizuku_april2026",
+            "modelBase": "v2_08shizuku_april2026",
+            "modelPath": "v2/main/08_shizuku/v2_08shizuku_april2026",
+            "modelFile": "08shizuku_april2026.model3.json"
         },
         {
             "modelName": "08shizuku_clothes2",
@@ -1109,6 +1181,12 @@
             "modelFile": "v2_09_kohane_2025aprilfool_t01.model3.json"
         },
         {
+            "modelName": "v2_09_kohane_april2026_t01",
+            "modelBase": "v2_09kohane_april2026",
+            "modelPath": "v2/main/09_kohane/v2_09kohane_april2026",
+            "modelFile": "v2_09_kohane_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_09_kohane_casual_t07",
             "modelBase": "v2_09kohane_casual",
             "modelPath": "v2/main/09_kohane/v2_09kohane_casual",
@@ -1207,6 +1285,12 @@
             "modelFile": "v2_10_an_2025aprilfool_t02.model3.json"
         },
         {
+            "modelName": "v2_10_an_april2026_t02",
+            "modelBase": "v2_10an_april2026",
+            "modelPath": "v2/main/10_an/v2_10an_april2026",
+            "modelFile": "v2_10_an_april2026_t02.model3.json"
+        },
+        {
             "modelName": "v2_10_an_clothes_t07",
             "modelBase": "v2_10an_casual",
             "modelPath": "v2/main/10_an/v2_10an_casual",
@@ -1279,6 +1363,12 @@
             "modelBase": "v2_11akito_april2025",
             "modelPath": "v2/main/11_akito/v2_11akito_april2025",
             "modelFile": "v2_11akito_2025april_t01.model3.json"
+        },
+        {
+            "modelName": "v2_11akito_april2026_t01",
+            "modelBase": "v2_11akito_april2026",
+            "modelPath": "v2/main/11_akito/v2_11akito_april2026",
+            "modelFile": "v2_11akito_april2026_t01.model3.json"
         },
         {
             "modelName": "v2_11akito_casual_t11",
@@ -1379,6 +1469,12 @@
             "modelFile": "v2_12_touya_2025aprilfool_t02.model3.json"
         },
         {
+            "modelName": "v2_12_touya_april2026_t01",
+            "modelBase": "v2_12touya_april2026",
+            "modelPath": "v2/main/12_touya/v2_12touya_april2026",
+            "modelFile": "v2_12_touya_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_12_touya_clothes_t04",
             "modelBase": "v2_12touya_casual",
             "modelPath": "v2/main/12_touya/v2_12touya_casual",
@@ -1421,6 +1517,12 @@
             "modelFile": "v2_12_touya_uniform_t03.model3.json"
         },
         {
+            "modelName": "v2_12_touya_uniform_t05",
+            "modelBase": "v2_12touya_school01",
+            "modelPath": "v2/main/12_touya/v2_12touya_school01",
+            "modelFile": "v2_12_touya_uniform_t05.model3.json"
+        },
+        {
             "modelName": "v2_12_touya_uniform_t04",
             "modelBase": "v2_12touya_school01",
             "modelPath": "v2/main/12_touya/v2_12touya_school01",
@@ -1437,6 +1539,12 @@
             "modelBase": "v2_12touya_unit",
             "modelPath": "v2/main/12_touya/v2_12touya_unit",
             "modelFile": "v2_12_touya_unit_t09.model3.json"
+        },
+        {
+            "modelName": "v2_12_touya_unit_t10",
+            "modelBase": "v2_12touya_unit",
+            "modelPath": "v2/main/12_touya/v2_12touya_unit",
+            "modelFile": "v2_12_touya_unit_t10.model3.json"
         }
     ],
     "tsukasa": [
@@ -1501,6 +1609,12 @@
             "modelFile": "v2_13_tsukasa_2025aprilfool_t02.model3.json"
         },
         {
+            "modelName": "v2_13_tsukasa_april2026_t02",
+            "modelBase": "v2_13tsukasa_april2026",
+            "modelPath": "v2/main/13_tsukasa/v2_13tsukasa_april2026",
+            "modelFile": "v2_13_tsukasa_april2026_t02.model3.json"
+        },
+        {
             "modelName": "v2_13_tsukasa_clothes_t09",
             "modelBase": "v2_13tsukasa_casual",
             "modelPath": "v2/main/13_tsukasa/v2_13tsukasa_casual",
@@ -1535,6 +1649,12 @@
             "modelBase": "v2_13tsukasa_liondance",
             "modelPath": "v2/main/13_tsukasa/v2_13tsukasa_liondance",
             "modelFile": "v2_13_tsukasa_unit_liondance_t01.model3.json"
+        },
+        {
+            "modelName": "v2_13_tsukasa_school_t07",
+            "modelBase": "v2_13tsukasa_school01",
+            "modelPath": "v2/main/13_tsukasa/v2_13tsukasa_school01",
+            "modelFile": "v2_13_tsukasa_school_t07.model3.json"
         },
         {
             "modelName": "v2_13_tsukasa_uniform_t05",
@@ -1611,6 +1731,12 @@
             "modelFile": "v2_14emu_2025aprilfool_t03.model3.json"
         },
         {
+            "modelName": "v2_14_emu_april2026_t02",
+            "modelBase": "v2_14emu_april2026",
+            "modelPath": "v2/main/14_emu/v2_14emu_april2026",
+            "modelFile": "v2_14_emu_april2026_t02.model3.json"
+        },
+        {
             "modelName": "v2_14_emu_casual_t08",
             "modelBase": "v2_14emu_casual",
             "modelPath": "v2/main/14_emu/v2_14emu_casual",
@@ -1627,6 +1753,12 @@
             "modelBase": "v2_14emu_casual_black",
             "modelPath": "v2/main/14_emu/v2_14emu_casual_black",
             "modelFile": "v2_14_emu_casual_t07_black.model3.json"
+        },
+        {
+            "modelName": "v2_14_igs_princess_t02",
+            "modelBase": "v2_14emu_igs_princess",
+            "modelPath": "v2/main/14_emu/v2_14emu_igs_princess",
+            "modelFile": "v2_14_igs_princess_t02.model3.json"
         },
         {
             "modelName": "v2_14emu_school_t02",
@@ -1721,10 +1853,28 @@
             "modelFile": "v2_15_nene_2025aprilfool_t03.model3.json"
         },
         {
+            "modelName": "v2_15_nene_april2026_t01",
+            "modelBase": "v2_15nene_april2026",
+            "modelPath": "v2/main/15_nene/v2_15nene_april2026",
+            "modelFile": "v2_15_nene_april2026_t01.model3.json"
+        },
+        {
+            "modelName": "v2_15_nene_april2026_t01",
+            "modelBase": "v2_15nene_april2026_transform",
+            "modelPath": "v2/main/15_nene/v2_15nene_april2026_transform",
+            "modelFile": "v2_15_nene_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_15_nene_clothes_t06",
             "modelBase": "v2_15nene_casual",
             "modelPath": "v2/main/15_nene/v2_15nene_casual",
             "modelFile": "v2_15_nene_clothes_t06.model3.json"
+        },
+        {
+            "modelName": "v2_15_nene_clothes_t07",
+            "modelBase": "v2_15nene_casual",
+            "modelPath": "v2/main/15_nene/v2_15nene_casual",
+            "modelFile": "v2_15_nene_clothes_t07.model3.json"
         },
         {
             "modelName": "v2_15_nene_clothes_t05_black",
@@ -1831,6 +1981,12 @@
             "modelFile": "v2_16rui_2025aprilfool_t01.model3.json"
         },
         {
+            "modelName": "v2_16rui_april2026_t02",
+            "modelBase": "v2_16rui_april2026",
+            "modelPath": "v2/main/16_rui/v2_16rui_april2026",
+            "modelFile": "v2_16rui_april2026_t02.model3.json"
+        },
+        {
             "modelName": "v2_16rui_casual_t04",
             "modelBase": "v2_16rui_casual",
             "modelPath": "v2/main/16_rui/v2_16rui_casual",
@@ -1915,6 +2071,12 @@
             "modelBase": "v2_17kanade_april2025",
             "modelPath": "v2/main/17_kanade/v2_17kanade_april2025",
             "modelFile": "v2_17kanade_2025aprilfool_t02.model3.json"
+        },
+        {
+            "modelName": "v2_17kanade_april2026_t01",
+            "modelBase": "v2_17kanade_april2026",
+            "modelPath": "v2/main/17_kanade/v2_17kanade_april2026",
+            "modelFile": "v2_17kanade_april2026_t01.model3.json"
         },
         {
             "modelName": "v2_17kanade_casual_t06",
@@ -2039,6 +2201,12 @@
             "modelFile": "v2_18mafuyu_2025aprilfool_t02.model3.json"
         },
         {
+            "modelName": "v2_18mafuyu_april2026_t02",
+            "modelBase": "v2_18mafuyu_april2026",
+            "modelPath": "v2/main/18_mafuyu/v2_18mafuyu_april2026",
+            "modelFile": "v2_18mafuyu_april2026_t02.model3.json"
+        },
+        {
             "modelName": "v2_18mafuyu_casual_t03",
             "modelBase": "v2_18mafuyu_casual",
             "modelPath": "v2/main/18_mafuyu/v2_18mafuyu_casual",
@@ -2129,6 +2297,12 @@
             "modelBase": "v2_19ena_april2025",
             "modelPath": "v2/main/19_ena/v2_19ena_april2025",
             "modelFile": "19ena_2025aprilfool_t02.model3.json"
+        },
+        {
+            "modelName": "v2_19_ena_april2026_t01",
+            "modelBase": "v2_19ena_april2026",
+            "modelPath": "v2/main/19_ena/v2_19ena_april2026",
+            "modelFile": "v2_19_ena_april2026_t01.model3.json"
         },
         {
             "modelName": "19ena_clathes2_4_t06",
@@ -2265,10 +2439,22 @@
             "modelFile": "v2_20mizuki_2025aprilfool_t02.model3.json"
         },
         {
+            "modelName": "v2_20mizuki_april2026_t01",
+            "modelBase": "v2_20mizuki_april2026",
+            "modelPath": "v2/main/20_mizuki/v2_20mizuki_april2026",
+            "modelFile": "v2_20mizuki_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_20mizuki_casual_t06",
             "modelBase": "v2_20mizuki_casual",
             "modelPath": "v2/main/20_mizuki/v2_20mizuki_casual",
             "modelFile": "v2_20mizuki_casual_t06.model3.json"
+        },
+        {
+            "modelName": "v2_20mizuki_casual_t08",
+            "modelBase": "v2_20mizuki_casual",
+            "modelPath": "v2/main/20_mizuki/v2_20mizuki_casual",
+            "modelFile": "v2_20mizuki_casual_t08.model3.json"
         },
         {
             "modelName": "v2_20mizuki_casual_t07",
@@ -2293,6 +2479,12 @@
             "modelBase": "v2_20mizuki_culture_back",
             "modelPath": "v2/sub/v2_20mizuki_culture_back",
             "modelFile": "v2_20mizuki_culture_back_t04.model3.json"
+        },
+        {
+            "modelName": "20mizuki_uniform2_4_t10",
+            "modelBase": "v2_20mizuki_school01",
+            "modelPath": "v2/main/20_mizuki/v2_20mizuki_school01",
+            "modelFile": "20mizuki_uniform2_4_t10.model3.json"
         },
         {
             "modelName": "20mizuki_uniform2_4_t09",
@@ -2335,6 +2527,12 @@
             "modelBase": "v2_20mizuki_unit",
             "modelPath": "v2/main/20_mizuki/v2_20mizuki_unit",
             "modelFile": "20mizuki_unit2.model3.json"
+        },
+        {
+            "modelName": "20mizuki_unit2_t03",
+            "modelBase": "v2_20mizuki_unit",
+            "modelPath": "v2/main/20_mizuki/v2_20mizuki_unit",
+            "modelFile": "20mizuki_unit2_t03.model3.json"
         }
     ],
     "miku": [
@@ -2453,16 +2651,34 @@
             "modelFile": "21miku_leoneed2_t03.model3.json"
         },
         {
+            "modelName": "v2_21miku_band_april2026_t01",
+            "modelBase": "v2_21miku_band_april2026",
+            "modelPath": "v2/main/21_miku/v2_21miku_band_april2026",
+            "modelFile": "v2_21miku_band_april2026_t01.model3.json"
+        },
+        {
             "modelName": "21miku_morejump2_t02",
             "modelBase": "v2_21miku_idol",
             "modelPath": "v2/main/21_miku/v2_21miku_idol",
             "modelFile": "21miku_morejump2_t02.model3.json"
         },
         {
+            "modelName": "v2_21miku_idol_april2026_t01",
+            "modelBase": "v2_21miku_idol_april2026",
+            "modelPath": "v2/main/21_miku/v2_21miku_idol_april2026",
+            "modelFile": "v2_21miku_idol_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_21miku_night_t01",
             "modelBase": "v2_21miku_night",
             "modelPath": "v2/main/21_miku/v2_21miku_night",
             "modelFile": "v2_21miku_night_t01.model3.json"
+        },
+        {
+            "modelName": "v2_21miku_night_april2026_t01",
+            "modelBase": "v2_21miku_night_april2026",
+            "modelPath": "v2/main/21_miku/v2_21miku_night_april2026",
+            "modelFile": "v2_21miku_night_april2026_t01.model3.json"
         },
         {
             "modelName": "21miku_normal_3.0_f_t03",
@@ -2489,10 +2705,22 @@
             "modelFile": "21miku_normal_3.0_f_t05.model3.json"
         },
         {
+            "modelName": "21miku_normal_black_t01",
+            "modelBase": "v2_21miku_normal_black",
+            "modelPath": "v2/main/21_miku/v2_21miku_normal_black",
+            "modelFile": "21miku_normal_black_t01.model3.json"
+        },
+        {
             "modelName": "v2_21miku_street_t01",
             "modelBase": "v2_21miku_street",
             "modelPath": "v2/main/21_miku/v2_21miku_street",
             "modelFile": "v2_21miku_street_t01.model3.json"
+        },
+        {
+            "modelName": "v2_21miku_street_april2026_t01",
+            "modelBase": "v2_21miku_street_april2026",
+            "modelPath": "v2/main/21_miku/v2_21miku_street_april2026",
+            "modelFile": "v2_21miku_street_april2026_t01.model3.json"
         },
         {
             "modelName": "21miku_wondershow2_t02",
@@ -2511,6 +2739,12 @@
             "modelBase": "v2_21miku_wonder_april2025",
             "modelPath": "v2/main/21_miku/v2_21miku_wonder_april2025",
             "modelFile": "21miku_wondershow2_2025april_t01.model3.json"
+        },
+        {
+            "modelName": "21miku_wondershow2_april2026_t02",
+            "modelBase": "v2_21miku_wonder_april2026",
+            "modelPath": "v2/main/21_miku/v2_21miku_wonder_april2026",
+            "modelFile": "21miku_wondershow2_april2026_t02.model3.json"
         },
         {
             "modelName": "v2_clb01_21miku_t03",
@@ -2573,6 +2807,12 @@
             "modelBase": "22rin_street",
             "modelPath": "v1/main/22_rin/22rin_street",
             "modelFile": "22rin_street_t06.model3.json"
+        },
+        {
+            "modelName": "22rin_wonder_3.0_f_t03",
+            "modelBase": "22rin_wonder",
+            "modelPath": "v1/main/22_rin/22rin_wonder",
+            "modelFile": "22rin_wonder_3.0_f_t03.model3.json"
         },
         {
             "modelName": "22rin_wonder_3.0_f_t02",
@@ -2653,10 +2893,22 @@
             "modelFile": "22rin_street_t06.model3.json"
         },
         {
+            "modelName": "22rin_wonder_3.0_f_t03",
+            "modelBase": "v2_22rin_wonder",
+            "modelPath": "v2/main/22_rin/v2_22rin_wonder",
+            "modelFile": "22rin_wonder_3.0_f_t03.model3.json"
+        },
+        {
             "modelName": "22rin_wonder_3.0_f_t02",
             "modelBase": "v2_22rin_wonder",
             "modelPath": "v2/main/22_rin/v2_22rin_wonder",
             "modelFile": "22rin_wonder_3.0_f_t02.model3.json"
+        },
+        {
+            "modelName": "22rin_wonder_april2026_t02",
+            "modelBase": "v2_22rin_wonder_april2026",
+            "modelPath": "v2/main/22_rin/v2_22rin_wonder_april2026",
+            "modelFile": "22rin_wonder_april2026_t02.model3.json"
         }
     ],
     "len": [
@@ -2769,6 +3021,12 @@
             "modelFile": "23len_night_2025aprilfool_t01.model3.json"
         },
         {
+            "modelName": "23len_night_april2026_t01",
+            "modelBase": "v2_23len_night_april2026",
+            "modelPath": "v2/main/23_len/v2_23len_night_april2026",
+            "modelFile": "23len_night_april2026_t01.model3.json"
+        },
+        {
             "modelName": "v2_23len_normal_3.0_f_t05",
             "modelBase": "v2_23len_normal",
             "modelPath": "v2/main/23_len/v2_23len_normal",
@@ -2877,6 +3135,12 @@
             "modelBase": "v2_24luka_band",
             "modelPath": "v2/main/24_luka/v2_24luka_band",
             "modelFile": "24luka_leoneed2_t03.model3.json"
+        },
+        {
+            "modelName": "24luka_april2026_t01",
+            "modelBase": "v2_24luka_band_april2026",
+            "modelPath": "v2/main/24_luka/v2_24luka_band_april2026",
+            "modelFile": "24luka_april2026_t01.model3.json"
         },
         {
             "modelName": "24luka_idol_t06",
@@ -3023,6 +3287,12 @@
             "modelBase": "v2_25meiko_idol",
             "modelPath": "v2/main/25_meiko/v2_25meiko_idol",
             "modelFile": "25meiko_idol_t02.model3.json"
+        },
+        {
+            "modelName": "25meiko_idol_april2026_t01",
+            "modelBase": "v2_25meiko_idol_april2026",
+            "modelPath": "v2/main/25_meiko/v2_25meiko_idol_april2026",
+            "modelFile": "25meiko_idol_april2026_t01.model3.json"
         },
         {
             "modelName": "25meiko_idol_black_t01",
@@ -3199,6 +3469,18 @@
             "modelBase": "v2_26kaito_street",
             "modelPath": "v2/main/26_kaito/v2_26kaito_street",
             "modelFile": "26kaito_street_t06.model3.json"
+        },
+        {
+            "modelName": "26kaito_street_t07",
+            "modelBase": "v2_26kaito_street",
+            "modelPath": "v2/main/26_kaito/v2_26kaito_street",
+            "modelFile": "26kaito_street_t07.model3.json"
+        },
+        {
+            "modelName": "26kaito_street_april2026_t01",
+            "modelBase": "v2_26kaito_street_april2026",
+            "modelPath": "v2/main/26_kaito/v2_26kaito_street_april2026",
+            "modelFile": "26kaito_street_april2026_t01.model3.json"
         },
         {
             "modelName": "v2_26kaito_wonder_t01",
@@ -3413,6 +3695,12 @@
             "modelFile": "sub_divablack_t01.model3.json"
         },
         {
+            "modelName": "sub_emu_princess_t07",
+            "modelBase": "sub_emu_princess",
+            "modelPath": "v1/sub/sub_emu_princess",
+            "modelFile": "sub_emu_princess_t07.model3.json"
+        },
+        {
             "modelName": "sub_emuchild_t05",
             "modelBase": "sub_emuchild",
             "modelPath": "v1/sub/sub_emuchild",
@@ -3459,6 +3747,18 @@
             "modelBase": "sub_hikarin",
             "modelPath": "v1/sub/sub_hikarin",
             "modelFile": "sub_hikarin_t05.model3.json"
+        },
+        {
+            "modelName": "sub_igs_princess_t05",
+            "modelBase": "sub_igs_princess",
+            "modelPath": "v1/sub/sub_igs_princess",
+            "modelFile": "sub_igs_princess_t05.model3.json"
+        },
+        {
+            "modelName": "sub_igs_princess_t05_black",
+            "modelBase": "sub_igs_princess_black",
+            "modelPath": "v1/sub/sub_igs_princess_black",
+            "modelFile": "sub_igs_princess_t05_black.model3.json"
         },
         {
             "modelName": "sub_iori_t03",
@@ -4007,10 +4307,22 @@
             "modelFile": "sub_honamichild02_t08.model3.json"
         },
         {
+            "modelName": "sub_mafuyuchild02_t06",
+            "modelBase": "v2_sub_child_mafuyu",
+            "modelPath": "v2/sub/v2_sub_child_mafuyu",
+            "modelFile": "sub_mafuyuchild02_t06.model3.json"
+        },
+        {
             "modelName": "sub_minorichild_t04",
             "modelBase": "v2_sub_child_minori",
             "modelPath": "v2/sub/v2_sub_child_minori",
             "modelFile": "sub_minorichild_t04.model3.json"
+        },
+        {
+            "modelName": "v2_sub_child10_shizuku_t04",
+            "modelBase": "v2_sub_child_shizuku",
+            "modelPath": "v2/sub/v2_sub_child_shizuku",
+            "modelFile": "v2_sub_child10_shizuku_t04.model3.json"
         },
         {
             "modelName": "sub_egg_mametchi_t07",
