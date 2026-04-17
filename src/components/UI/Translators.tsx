@@ -11,6 +11,10 @@ const Translators: React.FC<TranslatorsProps> = ({ lng }) => {
                 img: "https://yt3.googleusercontent.com/bXEX1lrt2hFwcGYSGUuWDDYSd2VtHMJ-_-FnJMWzVRjcpQZMlpYeWe7MSCI9kszUAbydBSN5=s120-c-k-c0x00ffffff-no-rj",
                 link: "https://www.youtube.com/@GatoMagoMusic",
             },
+            {
+                img: "https://avatars.githubusercontent.com/u/132699819?v=4",
+                link: "https://github.com/733402",
+            },
         ],
         zh: [
             {
