@@ -26,6 +26,7 @@ const Announcements: React.FC = () => {
             <ul>
                 <li>Updated Thai localization</li>
                 <li>Added new models from the latest JP April Fools update</li>
+                <li>Added new backgrounds</li>
                 <li>Added a video tutorial for the application</li>
                 <li>Added Monochrome Filter</li>
             </ul>
