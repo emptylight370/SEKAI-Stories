@@ -306,6 +306,17 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
             sceneText: "Fashion Figure Subculture Miku",
         },
     ],
+    nomizu5: [
+        {
+            background: "/background_compressed/bg_a000702.jpg",
+            text: "I know why you're here and I hope it's not about 10/03.",
+            nameTag: "Mizuki",
+            modelX: 1010,
+            modelY: 540,
+            pngName: "mizuki_smile_pissed_off",
+            sceneText: "Kamiyama High School Rooftop",
+        },
+    ],
     blank: [
         {
             background: "/background_special/blank_bg.png",
@@ -334,13 +345,14 @@ export const CheckSceneCategory = (blank: boolean): string => {
         "3-9": "sankyuu",
         "7-27": "727",
         "8-27": "mizuki",
+        "10-3": "nomizu5",
     };
 
     if (exact[`${month}-${day}`]) return exact[`${month}-${day}`];
 
     const range: Array<[number, number, number, string]> = [
         [2, 13, 19, "valentine"],
-        [4, 10, 30, "anniversary"],
+        // [4, 10, 30, "anniversary"],
     ];
 
     for (const [m, start, end, value] of range) {
@@ -354,5 +366,5 @@ export const CheckSceneCategory = (blank: boolean): string => {
 
     if (month in months) return months[month];
 
-    return "default";
+    return "nomizu5";
 };
