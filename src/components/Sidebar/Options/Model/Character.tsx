@@ -54,6 +54,7 @@ const Character: React.FC<CharacterProps> = ({
         setIsLoading(true);
         const character = value;
         setCurrentSelectedCharacter(character);
+        updateModelState({ character }); // set character even if loading fails
 
         try {
             if (!currentModel) return;
