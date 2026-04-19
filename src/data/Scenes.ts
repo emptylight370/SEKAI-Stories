@@ -308,13 +308,17 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
     ],
     blank: [
         {
-            background: "/background_compressed/bg_white.jpg",
-            text: "<insert text here>",
-            nameTag: "<name>",
-            modelX: 900,
-            modelY: 550,
+            background: "/background_special/blank_bg.png",
+            text: "",
+            nameTag: "",
+            modelX: 1025,
+            modelY: 540,
             pngName: "blank",
-            sceneText: "<white>",
+            sceneText: "",
+            choices: {
+                choice1: "",
+                choice2: "" 
+            }
         },
     ],
 };
