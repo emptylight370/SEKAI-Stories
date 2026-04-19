@@ -24,7 +24,7 @@ SEKAI_STORIES_JSON = "./background.json"
 LOWRES_DIR = WORKSPACE / "output"
 COMPRESSED_DIR = LOWRES_DIR / "background_compressed"
 PREVIEW_DIR = LOWRES_DIR / "background_preview"
-BACKGROUND_REGEX = r"bg_[a-hs][0-9]{6}$"
+BACKGROUND_REGEX = r"bg_[a-is][0-9]{6}$"
 
 app = {
     "hash": None,
@@ -82,8 +82,8 @@ def prepare_abcache():
 
 def download_backgrounds():
     run(
-        f'sssekai --unity-version "{UNITY_VERSION}" abcache --db "{DB_PATH}" --no-update --download-dir ./bundles --download-filter '
-        + ".*bg_[a-hs][0-9]{6}"
+        f'sssekai --unity-version "{UNITY_VERSION}" abcache --db "{DB_PATH}" --no-update --download-dir {WORKSPACE}/bundles --download-filter '
+        + ".*bg_[a-is][0-9]{6}"
     )
 
 
@@ -125,11 +125,18 @@ def convert_unity_to_img():
     )
 
 
-def convert_img_to_lowres(new_backgrounds=None, only_save_json=False):
+def convert_img_to_lowres(new_backgrounds=[], only_save_json=False):
     data = {
         "update": str(datetime.datetime.now().date()),
         "background": {
-            "general": [],
+            "general": [
+                "bg_transparent",
+                "bg_white",
+                "bg_black",
+                "bg_green",
+                "bg_blue",
+                "bg_magenta",
+            ],
             "mmj": [],
             "vbs": [],
             "wxs": [],
@@ -140,19 +147,6 @@ def convert_img_to_lowres(new_backgrounds=None, only_save_json=False):
             "temp": [],
             "cards": [],
         },
-    }
-
-    file_convention = {
-        "general": "bg_a",
-        "mmj": "bg_b",
-        "vbs": "bg_c",
-        "wxs": "bg_d",
-        "n25": "bg_e",
-        "ln": "bg_f",
-        "vs": "bg_g",
-        "split": "bg_h",
-        "temp": "bg_i",
-        "cards": "bg_s",
     }
 
     x = sorted(os.listdir(f"./{TEXTURE_DIR}/"))
@@ -187,13 +181,30 @@ def convert_img_to_lowres(new_backgrounds=None, only_save_json=False):
                 f'ffmpeg -hide_banner -loglevel error -n -i "{input_path}" "{compressed_path}"'
             )
 
-        if re.match(r"bg_a0000[0-9]{2}$", filename):
-            data["background"]["cards"].append(filename)
-            continue
-
-        for key, prefix in file_convention.items():
-            if filename.startswith(prefix):
-                data["background"][key].append(filename)
+        prefix = filename[:4]
+        match prefix:
+            case "bg_a" if re.match(r"bg_a0000[0-9]{2}$", filename):
+                data["background"]["cards"].append(filename)
+            case "bg_a" :
+                data["background"]["general"].append(filename)
+            case "bg_b":
+                data["background"]["mmj"].append(filename)
+            case "bg_c":
+                data["background"]["vbs"].append(filename)
+            case "bg_d":
+                data["background"]["wxs"].append(filename)
+            case "bg_e":
+                data["background"]["n25"].append(filename)
+            case "bg_f":
+                data["background"]["ln"].append(filename)
+            case "bg_g":
+                data["background"]["vs"].append(filename)
+            case "bg_h":
+                data["background"]["split"].append(filename)
+            case "bg_i":
+                data["background"]["temp"].append(filename)
+            case "bg_s":
+                data["background"]["cards"].append(filename)
 
     with open("_background.json", "w") as f:
         json.dump(data, f, indent=4)
