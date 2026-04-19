@@ -328,8 +328,8 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
             sceneText: "",
             choices: {
                 choice1: "",
-                choice2: "" 
-            }
+                choice2: "",
+            },
         },
     ],
 };
@@ -352,7 +352,7 @@ export const CheckSceneCategory = (blank: boolean): string => {
 
     const range: Array<[number, number, number, string]> = [
         [2, 13, 19, "valentine"],
-        // [4, 10, 30, "anniversary"],
+        [4, 10, 30, "anniversary"],
     ];
 
     for (const [m, start, end, value] of range) {
@@ -366,5 +366,5 @@ export const CheckSceneCategory = (blank: boolean): string => {
 
     if (month in months) return months[month];
 
-    return "nomizu5";
+    return "default";
 };
