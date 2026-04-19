@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Canvas from "./Canvas";
 import SidebarSelect from "./SidebarSelect";
 import DownloadButton from "../ButtonWindow/DownloadButton";
@@ -12,6 +12,7 @@ import SoftError from "../UI/SoftError";
 import ExportButton from "../ButtonWindow/ExportButton";
 import ClearButton from "../ButtonWindow/ClearButton";
 import ContentBackground from "./ContentBackground";
+import AnniversaryAnnouncement from "../Window/AnniversaryAnnouncement";
 
 const Content: React.FC = () => {
     const scene = useContext(SceneContext);
@@ -44,40 +45,17 @@ const Content: React.FC = () => {
         throw new Error("Context is not loaded properly.");
     }
 
-    const { hide, setHide, showTutorial, setShowTutorial } = settings;
-    const { showErrorInformation, setErrorInformation } = softError;
-
-    // Remove by April 20th
-    useEffect(() => {
-        const aprilFoolsPersistence = localStorage.getItem(
-            "aprilFoolsDialogueKey",
-        );
-        const postAprilFools =
-            localStorage.getItem("postAprilFools") === "true";
-        const deletedMizuki = localStorage.getItem("deleted");
-        const skipped = localStorage.getItem("skippedFools");
-
-        if (!postAprilFools && aprilFoolsPersistence != null) {
-            if (skipped === "true") {
-                setErrorInformation(
-                    "I won't mess with the character files now. Thank you for restoring me～ ♡\n(April Fools event has ended.)",
-                );
-            } else {
-                setErrorInformation(
-                    deletedMizuki === "true"
-                        ? "I'm back. Don't worry about it now～ ♡\n(Mizuki is back in the character list. April Fools event has ended.)"
-                        : "Everyone is back. Don't worry about it now～ ♡\n(All characters are back in the character list. April Fools event has ended.)",
-                );
-            }
-        }
-        localStorage.setItem("postAprilFools", "true");
-    }, []);
+    const { hide, setHide, showTutorial, setShowTutorial, anniversary } =
+        settings;
+    const { showErrorInformation } = softError;
 
     return (
         <div id="content" className="center" style={{ position: "relative" }}>
             <ContentBackground />
 
+            {anniversary && <AnniversaryAnnouncement />}
             {showTutorial && <Tutorial show={setShowTutorial} />}
+
             {!hide && <SidebarSelect />}
 
             <div className="absolute bottom-left flex-vertical">

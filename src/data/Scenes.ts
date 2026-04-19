@@ -198,7 +198,7 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
             sceneText: "Emu's Room",
         },
     ],
-    anniversary: [
+    "pre-anniversary": [
         {
             background: "/background_special/Background_Uranohoshi.png",
             text: "No, I will not do Ai♡Scream for you.",
@@ -208,6 +208,18 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
             modelScale: 1,
             pngName: "airi",
             sceneText: "Uranohoshi High School Club Room",
+        },
+    ],
+    "anniversary-event": [
+        {
+            background: "/background_compressed/bg_g000101.jpg",
+            text: "SEKAI Stories has reached its first anniversary!\nCreate your own one-shot story and have it placed in this scene!",
+            nameTag: "Miku",
+            modelX: 960,
+            modelY: 540,
+            modelScale: 1,
+            pngName: "miku_event",
+            sceneText: "Miku's SEKAI",
         },
     ],
     "727": [
@@ -352,7 +364,8 @@ export const CheckSceneCategory = (blank: boolean): string => {
 
     const range: Array<[number, number, number, string]> = [
         [2, 13, 19, "valentine"],
-        [4, 10, 30, "anniversary"],
+        [4, 10, 18, "pre-anniversary"],
+        [4, 19, 30, "anniversary-event"],
     ];
 
     for (const [m, start, end, value] of range) {

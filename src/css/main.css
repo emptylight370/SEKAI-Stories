@@ -952,6 +952,7 @@ select:disabled {
 
 #announcements p,
 #announcements h2,
+#announcements h3,
 #announcements ul {
   color: #ffffff;
 }

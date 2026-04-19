@@ -41,4 +41,6 @@ export default interface ISettingsContextType {
     loading: number;
     setLoading: Dispatch<SetStateAction<number>>;
     settingsLoaded: boolean;
+    anniversary: boolean;
+    setAnniversary: Dispatch<SetStateAction<boolean>>;
 }

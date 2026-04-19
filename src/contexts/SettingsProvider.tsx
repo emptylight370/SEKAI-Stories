@@ -40,6 +40,7 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
         "default" | "classic"
     >("default");
     const [loading, setLoading] = useState<number>(0);
+    const [anniversary, setAnniversary] = useState<boolean>(false);
     const [settingsLoaded, setSettingsLoaded] = useState<boolean>(false);
 
     useEffect(() => {
@@ -108,12 +109,15 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
         );
         if (startingBoxTypeCookie && valid) {
             setStartingBoxType(startingBoxTypeCookie);
-        }
-        else if (!valid) {
+        } else if (!valid) {
             setErrorInformation(
                 "SEKAI Stories found an invalid starting box type on your settings. Please avoid altering the cookies!",
             );
             localStorage.setItem("startingBoxType", "default");
+        }
+        const anniversaryCookie = localStorage.getItem("anniversary");
+        if (!anniversaryCookie || anniversaryCookie === "true") {
+            setAnniversary(true);
         }
         setSettingsLoaded(true);
     }, []);
@@ -163,6 +167,8 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
                 setStartingBoxType,
                 loading,
                 setLoading,
+                anniversary,
+                setAnniversary,
                 settingsLoaded,
             }}
         >

@@ -129,6 +129,21 @@ const SettingsButton: React.FC = () => {
                         <SupportButton />
                         <h1>{t("settings.header")}</h1>
                         <div className="window__divider">
+                            <h2>SEKAI Stories One-shot</h2>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    window.open(
+                                        "https://forms.gle/CZANtFB3SkazSNik7",
+                                        "_blank",
+                                    );
+                                }}
+                                className="btn-blue btn-extend-width btn-regular"
+                            >
+                                Event Guidelines
+                            </button>
+                        </div>
+                        <div className="window__divider">
                             <h2>{t("settings.language")}</h2>
                             <select
                                 name="language"
@@ -152,6 +167,7 @@ const SettingsButton: React.FC = () => {
                                 Contribute for translation!
                             </a>
                         </div>
+
                         <div className="window__divider">
                             <h2>{t("settings.starting-box-type")}</h2>
                             <p>{t("settings.starting-box-type-description")}</p>
