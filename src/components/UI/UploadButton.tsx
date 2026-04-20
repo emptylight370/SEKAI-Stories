@@ -78,8 +78,8 @@ const UploadImageButton: React.FC<UploadImageButtonProps> = ({
                     }
                     show={setAlertWindow}
                 >
-                    <div className="window__content">
-                        <p>{alertMsg}</p>
+                    <div className="window__content text-center">
+                        <h3>{alertMsg}</h3>
                     </div>
                 </Window>
             )}
