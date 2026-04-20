@@ -88,9 +88,9 @@ export function ErrorFallback({ error }: { error: Error }) {
                         {t("error-boundary.unexpected")}
                     </p>
 
-                    {!showExperimental ? (
+                    {showExperimental ? (
                         <p className="text-center">
-                            {t("error-boundary.forget-variable")}
+                            Did you forget a variable?
                         </p>
                     ) : (
                         <>

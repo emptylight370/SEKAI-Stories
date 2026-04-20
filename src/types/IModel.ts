@@ -4,6 +4,7 @@ import {
     Live2DModel,
 } from "@sekai-world/pixi-live2d-display-mulmotion";
 import { ILive2DModelData } from "./ILive2DModelData";
+import { AdjustmentFilter } from "pixi-filters";
 
 export default interface IModel {
     character: string;
@@ -15,6 +16,8 @@ export default interface IModel {
     modelScale: number;
     modelRotation: number;
     modelBlur: number;
+    modelOpacity: number;
+    adjustmentFilter: AdjustmentFilter;
     virtualEffect: boolean;
     modelData: ILive2DModelData | undefined;
     expression: number;

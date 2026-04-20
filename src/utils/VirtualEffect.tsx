@@ -43,7 +43,7 @@ class TriangleParticle extends PIXI.Graphics {
         velocityY: number,
         rotationSpeed: number,
         lifetime: number,
-        fadeInDuration: number
+        fadeInDuration: number,
     ) {
         super();
         this.x = x;
@@ -132,7 +132,7 @@ class HologramLightEffect extends PIXI.Container {
     private static async addTexture(
         light: PIXI.Graphics,
         width: number,
-        height: number
+        height: number,
     ): Promise<void> {
         const sprite = await getBackground("/img/hologram_texture.png", false);
         light.clear();
@@ -140,7 +140,7 @@ class HologramLightEffect extends PIXI.Container {
             texture: sprite.texture,
             matrix: new PIXI.Matrix().scale(
                 width / sprite.texture.width,
-                height / sprite.texture.height
+                height / sprite.texture.height,
             ),
         });
         light.moveTo(width / 3, height);
@@ -179,7 +179,7 @@ const spawnHologram = (character: Live2DModel<InternalModel>) => {
 
 const spawnTriangle = (
     character: Live2DModel<InternalModel>,
-    activeTriangles: TriangleParticle[]
+    activeTriangles: TriangleParticle[],
 ) => {
     if (activeTriangles.length >= CONFIG.MAX_ACTIVE_TRIANGLES) {
         return;
@@ -235,7 +235,7 @@ const spawnTriangle = (
         velocityY,
         rotationSpeed,
         lifetime,
-        CONFIG.TRIANGLE_FADE_IN_SECONDS
+        CONFIG.TRIANGLE_FADE_IN_SECONDS,
     );
     character.addChild(triangle);
     activeTriangles.push(triangle);
@@ -258,7 +258,7 @@ const particleFunction = (
     app: PIXI.Application,
     model: Live2DModel<InternalModel>,
     activeTriangles: TriangleParticle[],
-    modelkey: string
+    modelkey: string,
 ) => {
     try {
         const now = performance.now();
@@ -286,7 +286,7 @@ const particleFunction = (
     } catch {
         if (activeParticleTickerList[modelkey]?.particleFunction) {
             app.ticker.remove(
-                activeParticleTickerList[modelkey]?.particleFunction
+                activeParticleTickerList[modelkey]?.particleFunction,
             );
             activeParticleTickerList[modelkey].particleFunction = null;
         }
@@ -298,7 +298,7 @@ export const virtualEffectParticles = (
     model: Live2DModel<InternalModel>,
     modelkey: string,
     app: PIXI.Application,
-    show: boolean
+    show: boolean,
 ) => {
     if (show) {
         const activeTriangles: TriangleParticle[] = [];
@@ -324,7 +324,7 @@ export const virtualEffectParticles = (
     } else {
         if (activeParticleTickerList[modelkey]?.particleFunction) {
             app.ticker.remove(
-                activeParticleTickerList[modelkey].particleFunction
+                activeParticleTickerList[modelkey].particleFunction,
             );
             activeParticleTickerList[modelkey].particleFunction = null;
         }

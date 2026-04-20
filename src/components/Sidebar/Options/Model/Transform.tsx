@@ -5,6 +5,7 @@ import IModel from "../../../../types/IModel";
 import { Checkbox } from "../../../UI/Checkbox";
 import InputWindow from "../../../UI/InputWindow";
 import { BlurFilter } from "pixi.js";
+import { SoftErrorContext } from "../../../../contexts/SoftErrorContext";
 
 const SNAP = 50;
 interface TransformProps {
@@ -14,11 +15,13 @@ interface TransformProps {
 const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
     const { t } = useTranslation();
     const scene = useContext(SceneContext);
+    const error = useContext(SoftErrorContext);
 
-    if (!scene) {
+    if (!scene || !error) {
         throw new Error("Context not found");
     }
     const { currentModel, modelWrapper, layers } = scene;
+    const { setErrorInformation } = error;
     const [showTransformInput, setShowTransformInput] =
         useState<boolean>(false);
     const [transformType, setTransformType] = useState<string>("");
@@ -43,7 +46,7 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
         }
     };
     const handleXTransform = async (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         let x = Number(event?.target.value);
         if (x > 640 - SNAP && x < 640 + SNAP) {
@@ -59,7 +62,7 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
     };
 
     const handleYTransform = async (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         let y = Number(event?.target.value);
         if (y > 540 - SNAP && y < 540 + SNAP) {
@@ -73,7 +76,7 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
     };
 
     const handleScaleTransform = async (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         const scale = Number(event?.target.value);
         currentModel?.root.scale.set(scale, scale);
@@ -81,7 +84,7 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
     };
 
     const handleRotationTransform = async (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         const rotation = Number(event?.target.value);
         if (currentModel?.model) {
@@ -90,8 +93,18 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
         updateModelState({ modelRotation: rotation });
     };
 
+    const handleOpacityTransform = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        const opacity = Number(event?.target.value);
+        if (currentModel?.adjustmentFilter) {
+            currentModel.adjustmentFilter.alpha = opacity;
+        }
+        updateModelState({ modelOpacity: opacity });
+    };
+
     const handleBlurTransform = async (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         const blur = Number(event?.target.value);
         if (currentModel?.root && currentModel.root.filters) {
@@ -105,6 +118,9 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
         const visible = Boolean(event?.target.checked);
         if (currentModel?.model) {
             currentModel.root.visible = visible;
+        }
+        if (visible && currentModel.modelOpacity <= 0.1) {
+            setErrorInformation(t("error.low-opacity-visible"));
         }
         updateModelState({ visible: visible });
     };
@@ -133,6 +149,13 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
             case "rotation": {
                 currentModel.root.angle = toChange;
                 updateModelState({ modelRotation: toChange });
+                break;
+            }
+            case "opacity": {
+                if (currentModel?.adjustmentFilter) {
+                    currentModel.adjustmentFilter.alpha = toChange;
+                }
+                updateModelState({ modelOpacity: toChange });
                 break;
             }
             case "blur": {
@@ -255,6 +278,33 @@ const Transform: React.FC<TransformProps> = ({ updateModelState }) => {
                     step={1}
                     value={currentModel?.modelRotation}
                     onChange={handleRotationTransform}
+                />
+            </div>
+            <div className="option__content">
+                <div className="transform-icons">
+                    <h3>
+                        {t("model.transform.opacity")} (
+                        {currentModel?.modelOpacity})
+                    </h3>
+                    <div>
+                        <i
+                            className="bi bi-pencil-fill"
+                            onClick={() => {
+                                setTransformType("opacity");
+                                setShowTransformInput(true);
+                            }}
+                        ></i>
+                    </div>
+                </div>
+                <input
+                    type="range"
+                    name="opacity"
+                    id="opacity "
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    value={currentModel?.modelOpacity}
+                    onChange={handleOpacityTransform}
                 />
             </div>
             <div className="option__content">

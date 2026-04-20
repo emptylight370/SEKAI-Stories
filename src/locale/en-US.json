@@ -149,6 +149,7 @@
             "y-position": "Y-Position",
             "scale": "Scale",
             "rotation": "Rotation",
+            "opacity": "Opacity",
             "blur": "Blur",
             "layering": "Layer Order"
         },
@@ -306,7 +307,8 @@
         "default-scene-fail": "An error has occurred while loading the default scene.\nPlease use the clear button, refresh your browser, or clear your cookies.\nIf the problem persists, please report this bug on GitHub.",
         "name-tag-inputs-limit": "The limit is 2 to 6 inputs for name tag.",
         "background-bookmark": "You cannot set a bookmark for a custom background.",
-        "hide-everything-warning": "The \"Hide models and dialogue\" option under Scene Text is enabled.\nPlease disable this option on Text Menu."
+        "hide-everything-warning": "The \"Hide models and dialogue\" option under Scene Text is enabled.\nPlease disable this option on Text Menu.",
+        "low-opacity-visible": "The model's opacity is near-zero.\nJust letting you know～"
     },
     "error-boundary": {
         "unexpected": "An unexpected error has occurred",
