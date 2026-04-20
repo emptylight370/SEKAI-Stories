@@ -86,16 +86,17 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
         const blurFilter = new PIXI.BlurFilter(0);
         const adjustmentLayer = new AdjustmentFilter();
         modelContainer.filters = [blurFilter, adjustmentLayer];
+        const isRoleplay = from === "roleplay";
         const newLayer = {
             [`character${nextLayer + 1}`]: {
                 character: "none",
                 root: modelContainer,
                 modelName: modelName,
                 model: sprite,
-                modelX: 640,
-                modelY: 870,
+                modelX: isRoleplay ? 960 : 640,
+                modelY: isRoleplay ? 540 : 865,
                 modelRotation: 0,
-                modelScale: 0.5,
+                modelScale: isRoleplay ? 1 : 0.5,
                 modelBlur: 0,
                 modelOpacity: 1,
                 adjustmentFilter: adjustmentLayer,
