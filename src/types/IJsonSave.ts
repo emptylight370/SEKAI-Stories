@@ -12,7 +12,7 @@ export interface IJsonSave {
         first: string;
         second: string;
     };
-    lighting?: ILighting;
+    lighting: ILighting;
     text: {
         nameTag: string;
         dialogue: string;

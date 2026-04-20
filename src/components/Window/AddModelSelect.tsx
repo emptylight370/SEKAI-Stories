@@ -29,7 +29,7 @@ const AddModelSelect: React.FC<AddModelSelectProps> = ({
                     }}
                 >
                     sekai.best
-                    <p>
+                    <p className="add-model-description">
                         {t("model.selected-layer.add-model.sekai-description")}
                     </p>
                 </button>
@@ -41,8 +41,22 @@ const AddModelSelect: React.FC<AddModelSelectProps> = ({
                     }}
                 >
                     SEKAI Stories
-                    <p>
+                    <p className="add-model-description">
                         {t("model.selected-layer.add-model.static-description")}
+                    </p>
+                </button>
+                <button
+                    className="btn-white btn-regular btn-extend-width"
+                    onClick={() => {
+                        addModel("roleplay");
+                        setShow(false);
+                    }}
+                >
+                    {t("model.selected-layer.add-model.roleplay-sprites")}
+                    <p className="add-model-description">
+                        {t(
+                            "model.selected-layer.add-model.roleplay-sprites-description",
+                        )}
                     </p>
                 </button>
                 <UploadImageButton
@@ -51,9 +65,9 @@ const AddModelSelect: React.FC<AddModelSelectProps> = ({
                     text={
                         <>
                             {t("model.selected-layer.add-model.upload-image")}
-                            <p>
+                            <p className="add-model-description">
                                 {t(
-                                    "model.selected-layer.add-model.upload-image-description"
+                                    "model.selected-layer.add-model.upload-image-description",
                                 )}
                             </p>
                         </>

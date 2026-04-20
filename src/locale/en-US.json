@@ -119,14 +119,25 @@
                 "sekai-description": "Get access to models provided by Sekai Viewer!",
                 "static": "SEKAI Stories",
                 "static-description": "Fallback option when Sekai Viewer is down.",
+                "roleplay-sprites": "Roleplay Sprites",
+                "roleplay-sprites-description": "Select from your roleplay sprites.",
                 "upload-image": "Upload Image",
-                "upload-image-description": "Upload a custom sprite image of your own."
+                "upload-image-description": "Upload an image of your own."
             },
             "delete-model-warn": "This is the only layer and cannot be deleted."
         },
         "character": {
             "header": "Character",
-            "select-character": "Select a character"
+            "select-character": "Select a character",
+            "roleplay": {
+                "new": "New",
+                "new-description": "Name this character."
+            }
+        },
+        "sprite": {
+            "select-sprite": "Select sprite",
+            "add-sprite": "Add Sprite",
+            "add-sprite-description": "Give this sprite a name."
         },
         "costume": {
             "header": "Costume",

@@ -26,6 +26,7 @@ const randomText = {
         "Come here, Mafuyu-chan.",
         "Ena threw a large basin on Akito.",
         "Ena fights against AI Art.",
+        "Ena was caught pirating Ph〇to〇hop.",  
         "Toya is enjoying Tsukasa's loud laugh.",
         "Kohane has been bitten by her pet snake.",
         "An woke up and started speaking in English.",
@@ -90,6 +91,8 @@ const randomText = {
         "Mabuhay ang MinoHaru.", // A parody on the massive AlDub Cult "Mabuhay ang AlDub"
         "WANDERHOY!",
         "UY PILIPINS.",
+        "Sumasayaw si T〇to ng Machine Love (Budots Edition).",
+        "ANG INETTTTTTTTTT",
         "?lat=15.779313780199093 &lng=119.98590787177731 &zoom=13", // wplace.live/
     ],
     zh: [

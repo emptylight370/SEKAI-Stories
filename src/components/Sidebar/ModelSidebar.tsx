@@ -28,6 +28,8 @@ import Transform from "./Options/Model/Transform";
 import Mouth from "./Options/Model/Mouth";
 import Live2D from "./Options/Model/Live2D";
 import { IEmotionName } from "../../types/IEmotionName";
+import RoleplayCharacter from "./Options/Model/RoleplayCharacter";
+import RoleplaySprites from "./Options/Model/RoleplaySprites";
 
 const ModelSidebar: React.FC = () => {
     const { t } = useTranslation();
@@ -250,26 +252,57 @@ const ModelSidebar: React.FC = () => {
                     </button>
                 </div>
             )}
-            <SidebarOption
-                header={t("model.character.header")}
-                option={openModelOption}
-                setOption={setOpenModelOption}
-                optionName="character"
-            >
-                <Character
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                    currentSelectedCharacter={currentSelectedCharacter}
-                    setCurrentSelectedCharacter={setCurrentSelectedCharacter}
-                    handleLive2DChange={handleLive2DChange}
-                    prepareModel={prepareModel}
-                    updateModelState={updateModelState}
-                    setLoadingMsg={setLoadingMsg}
-                    setSelectedParameter={setSelectedParameter}
-                />
-            </SidebarOption>
+            {currentModel?.from != "roleplay" && (
+                <SidebarOption
+                    header={t("model.character.header")}
+                    option={openModelOption}
+                    setOption={setOpenModelOption}
+                    optionName="character"
+                >
+                    <Character
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
+                        currentSelectedCharacter={currentSelectedCharacter}
+                        setCurrentSelectedCharacter={
+                            setCurrentSelectedCharacter
+                        }
+                        handleLive2DChange={handleLive2DChange}
+                        prepareModel={prepareModel}
+                        updateModelState={updateModelState}
+                        setLoadingMsg={setLoadingMsg}
+                        setSelectedParameter={setSelectedParameter}
+                    />
+                </SidebarOption>
+            )}
 
-            {currentSelectedCharacter != "custom" && (
+            {currentModel?.from == "roleplay" && (
+                <>
+                    <SidebarOption
+                        header={t("model.character.header")}
+                        option={openModelOption}
+                        setOption={setOpenModelOption}
+                        optionName="character"
+                    >
+                        <RoleplayCharacter
+                            currentSelectedCharacter={currentSelectedCharacter}
+                            setCurrentSelectedCharacter={
+                                setCurrentSelectedCharacter
+                            }
+                            updateModelState={updateModelState}
+                        />
+                    </SidebarOption>
+                    <SidebarOption
+                        header="Sprite"
+                        // header={t("model.costume.header")}
+                        option={openModelOption}
+                        setOption={setOpenModelOption}
+                        optionName="sprites"
+                    >
+                        <RoleplaySprites updateModelState={updateModelState} />
+                    </SidebarOption>
+                </>
+            )}
+            {currentModel?.model instanceof Live2DModel && (
                 <>
                     <SidebarOption
                         header={t("model.costume.header")}
@@ -291,25 +324,23 @@ const ModelSidebar: React.FC = () => {
                             setLoadingMsg={setLoadingMsg}
                         />
                     </SidebarOption>
+                    <SidebarOption
+                        header={t("model.emotion.header")}
+                        option={openModelOption}
+                        setOption={setOpenModelOption}
+                        optionName="emotion"
+                    >
+                        <Emotion
+                            setIsLoading={setIsLoading}
+                            setLoadingMsg={setLoadingMsg}
+                            bookmarkEmotions={bookmarkEmotions}
+                            setBookmarkEmotion={setBookmarkEmotion}
+                            nameEmotions={nameEmotions}
+                            setNameEmotions={setNameEmotions}
+                            updateModelState={updateModelState}
+                        />
+                    </SidebarOption>
                 </>
-            )}
-            {currentModel?.model instanceof Live2DModel && (
-                <SidebarOption
-                    header={t("model.emotion.header")}
-                    option={openModelOption}
-                    setOption={setOpenModelOption}
-                    optionName="emotion"
-                >
-                    <Emotion
-                        setIsLoading={setIsLoading}
-                        setLoadingMsg={setLoadingMsg}
-                        bookmarkEmotions={bookmarkEmotions}
-                        setBookmarkEmotion={setBookmarkEmotion}
-                        nameEmotions={nameEmotions}
-                        setNameEmotions={setNameEmotions}
-                        updateModelState={updateModelState}
-                    />
-                </SidebarOption>
             )}
             <SidebarOption
                 header={t("model.transform.header")}

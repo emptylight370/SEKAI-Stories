@@ -4,6 +4,8 @@ import { IEasyNameTag } from "../types/IEasyNameTag";
 import { announcementKey } from "../data/Constants";
 import { IBackgroundBookmark } from "../types/IBackgroundBookmark";
 import { SoftErrorContext } from "./SoftErrorContext";
+import { IRoleplaySpriteCharacters } from "../types/IRoleplaySprites";
+import localforage from "localforage";
 
 interface SidebarProviderProps {
     children: React.ReactNode;
@@ -41,6 +43,8 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
     >("default");
     const [loading, setLoading] = useState<number>(0);
     const [anniversary, setAnniversary] = useState<boolean>(false);
+    const [roleplaySprites, setRoleplaySprites] =
+        useState<IRoleplaySpriteCharacters>([]);
     const [settingsLoaded, setSettingsLoaded] = useState<boolean>(false);
 
     useEffect(() => {
@@ -115,6 +119,12 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
             );
             localStorage.setItem("startingBoxType", "default");
         }
+        localforage.getItem("test__custom_sprites").then((value) => {
+            if (value) {
+                setRoleplaySprites(value as IRoleplaySpriteCharacters);
+                console.log(value);
+            }
+        });
         const anniversaryCookie = localStorage.getItem("anniversary");
         if (!anniversaryCookie || anniversaryCookie === "true") {
             setAnniversary(true);
@@ -166,10 +176,12 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
                 startingBoxType,
                 setStartingBoxType,
                 loading,
+                roleplaySprites,
+                setRoleplaySprites,
                 setLoading,
+                settingsLoaded,
                 anniversary,
                 setAnniversary,
-                settingsLoaded,
             }}
         >
             {children}

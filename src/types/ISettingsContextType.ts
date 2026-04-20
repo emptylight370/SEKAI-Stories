@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { IEasyNameTag } from "./IEasyNameTag";
+import { IRoleplaySpriteCharacters } from "./IRoleplaySprites";
 
 export default interface ISettingsContextType {
     openedSidebar: string;
@@ -40,6 +41,8 @@ export default interface ISettingsContextType {
     setStartingBoxType: Dispatch<SetStateAction<"default" | "classic">>;
     loading: number;
     setLoading: Dispatch<SetStateAction<number>>;
+    roleplaySprites: IRoleplaySpriteCharacters;
+    setRoleplaySprites: Dispatch<SetStateAction<IRoleplaySpriteCharacters>>;
     settingsLoaded: boolean;
     anniversary: boolean;
     setAnniversary: Dispatch<SetStateAction<boolean>>;

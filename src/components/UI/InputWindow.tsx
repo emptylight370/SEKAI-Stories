@@ -8,10 +8,12 @@ interface WindowProps {
     confirmLabel?: string;
     description?: string;
     className?: string;
+    body?: React.ReactNode;
 }
 const InputWindow: React.FC<WindowProps> = ({
     show,
     confirmFunction,
+    body,
     description = t("global.enter-value"),
     confirmLabel = "OK",
     className = "",
@@ -80,6 +82,7 @@ const InputWindow: React.FC<WindowProps> = ({
                 <div className="window__content">
                     <h1 className="text-center">{t("global.input")}</h1>
                     <p className="text-center">{description}</p>
+                    {body && body}
                     <input
                         type="text"
                         value={data}

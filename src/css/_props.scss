@@ -191,3 +191,12 @@
 .blue {
     color: $dark-miku;
 }
+
+.add-model-description {
+    @media (width <= 768px) {
+        display: none;
+    }
+    @media (height <= 800px) {
+        display: none;
+    }
+}

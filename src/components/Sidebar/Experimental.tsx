@@ -5,7 +5,10 @@ import { SoftErrorContext } from "../../contexts/SoftErrorContext";
 import { SettingsContext } from "../../contexts/SettingsContext";
 import localforage from "localforage";
 import UploadImageButton from "../UI/UploadButton";
-import { ICustomSprite, ICustomSpriteGroups } from "../../types/ICustomSprite";
+import {
+    IRoleplaySprite,
+    IRoleplaySpriteCharacters,
+} from "../../types/IRoleplaySprites";
 
 const Crash: React.FC = () => {
     throw new Error("Can you hear the ominous bells tolling?");
@@ -27,8 +30,8 @@ const Experimental: React.FC = () => {
     const [rpImage, setRPImage] = useState<Blob | null>(null);
     const [group, setGroup] = useState("test__group");
     const [name, setName] = useState("test__name");
-    const [customSprites, setCustomSprites] =
-        useState<ICustomSpriteGroups>(null);
+    const [roleplaySprites, setRoleplaySprites] =
+        useState<IRoleplaySpriteCharacters>(null);
 
     useEffect(() => {
         const randomNumber = Math.floor(Math.random() * 100);
@@ -47,28 +50,30 @@ const Experimental: React.FC = () => {
         });
         localforage.getItem("test__custom_sprites").then((value) => {
             if (value) {
-                setCustomSprites(value as ICustomSpriteGroups);
+                setRoleplaySprites(value as IRoleplaySpriteCharacters);
             }
         });
     }, []);
 
     useEffect(() => {
-        localforage.setItem("test__custom_sprites", customSprites);
-    }, [customSprites]);
+        localforage.setItem("test__custom_sprites", roleplaySprites);
+    }, [roleplaySprites]);
 
     const handleUpsertSprite = (blob: Blob) => {
-        const newSprite: ICustomSprite = {
+        const newSprite: IRoleplaySprite = {
             name,
             blob,
         };
-        setCustomSprites((prev) => {
-            const updatedGroups: ICustomSpriteGroups = prev ? [...prev] : [];
+        setRoleplaySprites((prev) => {
+            const updatedGroups: IRoleplaySpriteCharacters = prev
+                ? [...prev]
+                : [];
 
-            const existingGroup = updatedGroups.find((g) => g.group === group);
+            const existingGroup = updatedGroups.find((g) => g.name === group);
 
             if (!existingGroup) {
                 updatedGroups.push({
-                    group,
+                    name: group,
                     sprites: [newSprite],
                 });
 
@@ -93,11 +98,13 @@ const Experimental: React.FC = () => {
     };
 
     const handleDeleteGroup = (spriteGroup: string) => {
-        setCustomSprites((prev) => {
-            const updatedGroups: ICustomSpriteGroups = prev ? [...prev] : [];
+        setRoleplaySprites((prev) => {
+            const updatedGroups: IRoleplaySpriteCharacters = prev
+                ? [...prev]
+                : [];
 
             const groupIndex = updatedGroups.findIndex(
-                (g) => g.group === spriteGroup,
+                (g) => g.name === spriteGroup,
             );
             if (groupIndex === -1) return updatedGroups;
 
@@ -108,11 +115,13 @@ const Experimental: React.FC = () => {
     };
 
     const handleDeleteSprite = (spriteGroup: string, spriteName: string) => {
-        setCustomSprites((prev) => {
-            const updatedGroups: ICustomSpriteGroups = prev ? [...prev] : [];
+        setRoleplaySprites((prev) => {
+            const updatedGroups: IRoleplaySpriteCharacters = prev
+                ? [...prev]
+                : [];
 
             const groupIndex = updatedGroups.findIndex(
-                (g) => g.group === spriteGroup,
+                (g) => g.name === spriteGroup,
             );
             if (groupIndex === -1) return updatedGroups;
 
@@ -275,15 +284,15 @@ const Experimental: React.FC = () => {
                         Save
                     </button>
                 )}
-                {customSprites && (
+                {roleplaySprites && (
                     <div>
-                        {customSprites.map((spriteGroup) => (
-                            <div key={spriteGroup.group}>
-                                <h3>{spriteGroup.group}</h3>
+                        {roleplaySprites.map((spriteGroup) => (
+                            <div key={spriteGroup.name}>
+                                <h3>{spriteGroup.name}</h3>
                                 <button
                                     className="btn-red btn-regular btn-extend-width"
                                     onClick={() => {
-                                        handleDeleteGroup(spriteGroup.group);
+                                        handleDeleteGroup(spriteGroup.name);
                                     }}
                                 >
                                     Delete Group
@@ -305,7 +314,7 @@ const Experimental: React.FC = () => {
                                                     className="btn-red btn-regular btn-extend-width"
                                                     onClick={() => {
                                                         handleDeleteSprite(
-                                                            spriteGroup.group,
+                                                            spriteGroup.name,
                                                             sprite.name,
                                                         );
                                                     }}

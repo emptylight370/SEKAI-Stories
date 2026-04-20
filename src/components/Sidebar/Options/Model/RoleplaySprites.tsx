@@ -1,0 +1,138 @@
+import React, { useContext, useState } from "react";
+import UploadImageButton from "../../../UI/UploadButton";
+import { useTranslation } from "react-i18next";
+import IModel from "../../../../types/IModel";
+import { SettingsContext } from "../../../../contexts/SettingsContext";
+import { SoftErrorContext } from "../../../../contexts/SoftErrorContext";
+import { SceneContext } from "../../../../contexts/SceneContext";
+import {
+    IRoleplaySprite,
+    IRoleplaySpriteCharacters,
+} from "../../../../types/IRoleplaySprites";
+import localforage from "localforage";
+import InputWindow from "../../../UI/InputWindow";
+
+interface RoleplaySpritesProps {
+    updateModelState: (updates: Partial<IModel>) => void;
+}
+
+const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
+    updateModelState,
+}) => {
+    const { t } = useTranslation();
+    const scene = useContext(SceneContext);
+    const settings = useContext(SettingsContext);
+    const error = useContext(SoftErrorContext);
+    if (!scene || !settings || !error) throw new Error("Context not found");
+    const { currentModel } = scene;
+    const { roleplaySprites, setRoleplaySprites } = settings;
+    const { setErrorInformation } = error;
+    const [showNewSprite, setShowNewSprite] = useState(false);
+    const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+
+    if (!roleplaySprites || !currentModel) return;
+    const handleCreateSprite = (newSpriteName: string, uploadedFile: File) => {
+        console.log(newSpriteName, uploadedFile);
+        if (newSpriteName.trim() === "") {
+            setErrorInformation("The sprite name cannot be empty.");
+            return;
+        }
+        const characterName = currentModel.character;
+        const existingCharacter = roleplaySprites.find(
+            (g) => g.name === characterName,
+        );
+        const existingSprite = existingCharacter?.sprites.some(
+            (s) => s.name === newSpriteName,
+        );
+
+        if (existingSprite) {
+            setErrorInformation("This sprite name already exists.");
+            return;
+        }
+
+        const newSprite: IRoleplaySprite = {
+            name: newSpriteName,
+            blob: uploadedFile!,
+        };
+        let updatedList: IRoleplaySpriteCharacters;
+
+        if (!existingCharacter) {
+            updatedList = [
+                ...roleplaySprites,
+                { name: characterName, sprites: [newSprite] },
+            ];
+        } else {
+            updatedList = roleplaySprites.map((char) => {
+                if (char.name === characterName) {
+                    return { ...char, sprites: [...char.sprites, newSprite] };
+                }
+                return char;
+            });
+        }
+        try {
+            setRoleplaySprites(updatedList);
+            localforage.setItem("test__custom_sprites", updatedList);
+
+            setUploadedFile(null);
+            setShowNewSprite(false);
+        } catch {
+            setErrorInformation("Failed to save sprite locally.");
+        }
+    };
+
+    const handleSpriteChange = (
+        event: React.ChangeEvent<HTMLSelectElement>,
+    ) => {
+        const value = event.target.value;
+        updateModelState({ modelName: value });
+    };
+
+    return (
+        <>
+            <select
+                value={currentModel.modelName}
+                onChange={handleSpriteChange}
+            >
+                <option value="none" disabled>
+                    {t("model.sprite.select-sprite")}
+                </option>
+                {currentModel.character != "none" &&
+                    roleplaySprites[
+                        roleplaySprites.findIndex(
+                            (g) => g.name === currentModel.character,
+                        )
+                    ].sprites.map((sprite) => (
+                        <option key={sprite.name} value={sprite.name}>
+                            {sprite.name}
+                        </option>
+                    ))}
+            </select>
+            <UploadImageButton
+                id="add-sprite"
+                text={t("model.sprite.add-sprite")}
+                disabled={currentModel.character == "none"}
+                uploadFunction={async (file: File) => {
+                    setShowNewSprite(true);
+                    setUploadedFile(file);
+                }}
+            />
+            {showNewSprite && (
+                <InputWindow
+                    show={setShowNewSprite}
+                    description={t("model.sprite.add-sprite-description")}
+                    body={
+                        <img
+                            src={URL.createObjectURL(uploadedFile!)}
+                            className="width-100"
+                        />
+                    }
+                    confirmFunction={(x: string) => {
+                        handleCreateSprite(x, uploadedFile!);
+                    }}
+                />
+            )}
+        </>
+    );
+};
+
+export default RoleplaySprites;

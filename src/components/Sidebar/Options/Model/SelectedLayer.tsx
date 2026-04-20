@@ -219,7 +219,9 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
                 {Object.keys(models).map((model, idx) => (
                     <option key={model} value={model}>
                         {t("model.selected-layer.layer")} {idx + 1}:{" "}
-                        {t(`character.${models[model].character}`)}
+                        {models[model].from == "roleplay"
+                            ? models[model].character
+                            : t(`character.${models[model].character}`)}
                     </option>
                 ))}
             </select>
