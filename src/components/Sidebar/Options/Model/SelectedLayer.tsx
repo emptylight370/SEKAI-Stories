@@ -7,6 +7,7 @@ import AddModelSelect from "../../../Window/AddModelSelect";
 import { Cubism4InternalModel } from "@sekai-world/pixi-live2d-display-mulmotion";
 import IModel from "../../../../types/IModel";
 import { SettingsContext } from "../../../../contexts/SettingsContext";
+import { AdjustmentFilter } from "pixi-filters";
 
 interface SelectedLayerProps {
     isLoading: boolean;
@@ -83,7 +84,8 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
         modelContainer.addChildAt(sprite, 0);
         modelWrapper?.addChildAt(modelContainer, layers);
         const blurFilter = new PIXI.BlurFilter(0);
-        modelContainer.filters = [blurFilter];
+        const adjustmentLayer = new AdjustmentFilter();
+        modelContainer.filters = [blurFilter, adjustmentLayer];
         const newLayer = {
             [`character${nextLayer + 1}`]: {
                 character: "none",
@@ -95,6 +97,8 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
                 modelRotation: 0,
                 modelScale: 0.5,
                 modelBlur: 0,
+                modelOpacity: 1,
+                adjustmentFilter: adjustmentLayer,
                 virtualEffect: false,
                 expression: 99999,
                 pose: 99999,
@@ -132,7 +136,8 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
         );
         modelContainer.position.set(960, 540);
         const blurFilter = new PIXI.BlurFilter(0);
-        modelContainer.filters = [blurFilter];
+        const adjustmentFilter = new AdjustmentFilter();
+        modelContainer.filters = [blurFilter, adjustmentFilter];
         const newLayer = {
             [`character${nextLayer + 1}`]: {
                 character: "custom",
@@ -144,6 +149,8 @@ const SelectedLayer: React.FC<SelectedLayerProps> = ({
                 modelRotation: 0,
                 modelScale: sprite.scale.x,
                 modelBlur: 0,
+                modelOpacity: 1,
+                adjustmentFilter: adjustmentFilter,
                 virtualEffect: false,
                 expression: 99999,
                 pose: 99999,

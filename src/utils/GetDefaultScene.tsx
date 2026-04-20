@@ -152,11 +152,14 @@ const LoadModel = async (
         saturation: 1,
         brightness: 1,
     };
-    const adjustmentFilter = new AdjustmentFilter(lighting);
-    modelWrapper.filters = [adjustmentFilter];
-
+    const lightingFilter = new AdjustmentFilter(lighting);
+    modelWrapper.filters = [lightingFilter];
+    const adjustmentFilter = new AdjustmentFilter({
+        alpha: 1,
+    });
+    modelContainer.filters = [lightingFilter];
     const blurFilter = new PIXI.BlurFilter(0);
-    modelContainer.filters = [blurFilter];
+    modelContainer.filters = [blurFilter, adjustmentFilter];
 
     container.addChildAt(modelWrapper, childAt);
     return {

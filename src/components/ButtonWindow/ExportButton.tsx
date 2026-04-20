@@ -112,6 +112,7 @@ const ExportButton: React.FC = () => {
                         scale: model.modelScale,
                         rotation: model.modelRotation,
                         blur: model.modelBlur,
+                        opacity: model.modelOpacity,
                     },
                     modelExpression: model.expression,
                     modelPose: model.pose,
@@ -229,7 +230,10 @@ const ExportButton: React.FC = () => {
             const blurFilter = new PIXI.BlurFilter(
                 model.modelTransform?.blur ?? 0,
             );
-            modelContainer.filters = [blurFilter];
+            const adjustmentFilter = new AdjustmentFilter({
+                alpha: model.modelTransform?.opacity ?? 1,
+            });
+            modelContainer.filters = [blurFilter, adjustmentFilter];
             modelWrapper?.addChildAt(modelContainer, idx);
             if (model.modelExpression && model.modelExpression !== 99999) {
                 const manager =
@@ -278,7 +282,9 @@ const ExportButton: React.FC = () => {
                     modelScale: modelContainer.scale.x,
                     modelRotation: modelContainer.angle,
                     modelBlur: model.modelTransform?.blur ?? 0,
+                    modelOpacity: model.modelTransform?.opacity ?? 1,
                     modelData: modelData,
+                    adjustmentFilter: adjustmentFilter,
                     virtualEffect: false,
                     expression: model.modelExpression ?? 99999,
                     pose: model.modelPose ?? 99999,
