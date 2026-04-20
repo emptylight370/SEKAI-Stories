@@ -119,7 +119,7 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
             );
             localStorage.setItem("startingBoxType", "default");
         }
-        localforage.getItem("test__custom_sprites").then((value) => {
+        localforage.getItem("roleplaySprites").then((value) => {
             if (value) {
                 setRoleplaySprites(value as IRoleplaySpriteCharacters);
                 console.log(value);

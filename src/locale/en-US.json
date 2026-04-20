@@ -135,6 +135,7 @@
             }
         },
         "sprite": {
+            "header": "Sprite",
             "select-sprite": "Select sprite",
             "add-sprite": "Add Sprite",
             "add-sprite-description": "Give this sprite a name."

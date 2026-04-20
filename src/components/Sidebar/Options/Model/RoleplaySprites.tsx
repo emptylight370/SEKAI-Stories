@@ -14,10 +14,12 @@ import InputWindow from "../../../UI/InputWindow";
 
 interface RoleplaySpritesProps {
     updateModelState: (updates: Partial<IModel>) => void;
+    prepareSprite: (character: string, spriteName: string, overrideList?: IRoleplaySpriteCharacters) => void;
 }
 
 const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
     updateModelState,
+    prepareSprite,
 }) => {
     const { t } = useTranslation();
     const scene = useContext(SceneContext);
@@ -71,10 +73,9 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
         }
         try {
             setRoleplaySprites(updatedList);
-            localforage.setItem("test__custom_sprites", updatedList);
-
-            setUploadedFile(null);
-            setShowNewSprite(false);
+            localforage.setItem("roleplaySprites", updatedList);
+            updateModelState({ modelName: newSpriteName });
+            prepareSprite(characterName, newSpriteName, updatedList);
         } catch {
             setErrorInformation("Failed to save sprite locally.");
         }
@@ -84,6 +85,8 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
         event: React.ChangeEvent<HTMLSelectElement>,
     ) => {
         const value = event.target.value;
+        const characterName = currentModel.character;
+        prepareSprite(characterName, value);
         updateModelState({ modelName: value });
     };
 

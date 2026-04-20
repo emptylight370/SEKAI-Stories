@@ -30,6 +30,8 @@ import Live2D from "./Options/Model/Live2D";
 import { IEmotionName } from "../../types/IEmotionName";
 import RoleplayCharacter from "./Options/Model/RoleplayCharacter";
 import RoleplaySprites from "./Options/Model/RoleplaySprites";
+import * as PIXI from "pixi.js";
+import { IRoleplaySpriteCharacters } from "../../types/IRoleplaySprites";
 
 const ModelSidebar: React.FC = () => {
     const { t } = useTranslation();
@@ -51,7 +53,8 @@ const ModelSidebar: React.FC = () => {
         setCurrentModel,
         initialState,
     } = scene;
-    const { setLoading, openModelOption, setOpenModelOption } = settings;
+    const { setLoading, openModelOption, setOpenModelOption, roleplaySprites } =
+        settings;
     const { setErrorInformation } = softError;
 
     const abortController = useRef<AbortController | null>(null);
@@ -181,6 +184,52 @@ const ModelSidebar: React.FC = () => {
         [currentModel, currentKey, modelWrapper],
     );
 
+    const prepareSprite = useCallback(
+        async (
+            character: string,
+            spriteName: string,
+            overrideList?: IRoleplaySpriteCharacters,
+        ) => {
+            if (!currentModel || !roleplaySprites)
+                throw new Error("An error has occurred...");
+            setLoading(0);
+            const list = overrideList ?? roleplaySprites;
+            const characterIndex = list.findIndex((g) => g.name === character);
+            if (characterIndex === -1) {
+                setErrorInformation("The character does not exist!");
+                throw new Error("The character does not exist!");
+            }
+
+            const spriteIndex = list[characterIndex].sprites.findIndex(
+                (s) => s.name === spriteName,
+            );
+
+            if (spriteIndex === -1) {
+                setErrorInformation("The sprite does not exist!");
+                throw new Error("The sprite does not exist!");
+            }
+
+            setLoading(50);
+            const file = list[characterIndex].sprites[spriteIndex].blob;
+            const texture = await PIXI.Texture.fromURL(
+                URL.createObjectURL(file),
+            );
+
+            const sprite = new PIXI.Sprite(texture);
+            const bounds = sprite.getLocalBounds();
+            currentModel.root.removeChildren();
+            currentModel.root.addChildAt(sprite, 0);
+            currentModel.root.pivot.set(bounds.width / 2, bounds.height / 2);
+            currentModel.root.scale.set(currentModel?.modelScale);
+            currentModel.root.position.set(
+                currentModel?.modelX,
+                currentModel?.modelY,
+            );
+            setLoading(100);
+        },
+        [currentModel, currentKey, modelWrapper],
+    );
+
     if (!models) return <p>{t("loadings.please-wait")}</p>;
 
     const updateModelState = (updates: Partial<IModel>) => {
@@ -289,16 +338,19 @@ const ModelSidebar: React.FC = () => {
                                 setCurrentSelectedCharacter
                             }
                             updateModelState={updateModelState}
+                            prepareSprite={prepareSprite}
                         />
                     </SidebarOption>
                     <SidebarOption
-                        header="Sprite"
-                        // header={t("model.costume.header")}
+                        header={t("model.sprite.header")}
                         option={openModelOption}
                         setOption={setOpenModelOption}
                         optionName="sprites"
                     >
-                        <RoleplaySprites updateModelState={updateModelState} />
+                        <RoleplaySprites
+                            updateModelState={updateModelState}
+                            prepareSprite={prepareSprite}
+                        />
                     </SidebarOption>
                 </>
             )}

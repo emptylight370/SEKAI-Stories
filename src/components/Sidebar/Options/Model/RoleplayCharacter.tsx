@@ -15,12 +15,18 @@ interface RoleplayCharacterProps {
     currentSelectedCharacter: string;
     setCurrentSelectedCharacter: Dispatch<SetStateAction<string>>;
     updateModelState: (updates: Partial<IModel>) => void;
+    prepareSprite: (
+        character: string,
+        spriteName: string,
+        overrideList?: IRoleplaySpriteCharacters,
+    ) => void;
 }
 
 const RoleplayCharacter: React.FC<RoleplayCharacterProps> = ({
     currentSelectedCharacter,
     setCurrentSelectedCharacter,
     updateModelState,
+    prepareSprite,
 }) => {
     const { t } = useTranslation();
 
@@ -58,8 +64,28 @@ const RoleplayCharacter: React.FC<RoleplayCharacterProps> = ({
             updatedCharacters.push(newCharacter);
             setCurrentSelectedCharacter(name);
             updateModelState({ character: name });
-            localforage.setItem("test__custom_sprites", updatedCharacters);
+            localforage.setItem("roleplaySprites", updatedCharacters);
             return updatedCharacters;
+        });
+    };
+
+    const handleCharacterChange = (
+        event: React.ChangeEvent<HTMLSelectElement>,
+    ) => {
+        const characterName = event.target.value;
+        setCurrentSelectedCharacter(characterName);
+        updateModelState({ character: characterName });
+        const characterIndex = roleplaySprites.findIndex(
+            (g) => g.name === characterName,
+        );
+
+        if (roleplaySprites[characterIndex].sprites.length == 0) return;
+
+        const firstSprite = roleplaySprites[characterIndex].sprites[0];
+        prepareSprite(characterName, firstSprite.name);
+        updateModelState({
+            character: characterName,
+            modelName: firstSprite.name,
         });
     };
 
@@ -67,11 +93,7 @@ const RoleplayCharacter: React.FC<RoleplayCharacterProps> = ({
         <>
             <select
                 value={currentSelectedCharacter}
-                onChange={(e) => {
-                    const value = e.target.value;
-                    setCurrentSelectedCharacter(value);
-                    updateModelState({ character: value });
-                }}
+                onChange={handleCharacterChange}
             >
                 <option value="none" disabled>
                     {t("model.character.select-character")}
