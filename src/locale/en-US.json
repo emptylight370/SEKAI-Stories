@@ -131,7 +131,9 @@
             "select-character": "Select a character",
             "roleplay": {
                 "new": "New",
-                "new-description": "Name this character."
+                "new-description": "Name this character.",
+                "delete-warn": "This character contains sprites. Continuing will discard them!",
+                "no-sprite-warn": "This character does not have any sprites. Start by adding a new one."
             }
         },
         "sprite": {
@@ -320,7 +322,15 @@
         "name-tag-inputs-limit": "The limit is 2 to 6 inputs for name tag.",
         "background-bookmark": "You cannot set a bookmark for a custom background.",
         "hide-everything-warning": "The \"Hide models and dialogue\" option under Scene Text is enabled.\nPlease disable this option on Text Menu.",
-        "low-opacity-visible": "The model's opacity is near-zero.\nJust letting you know～"
+        "low-opacity-visible": "The model's opacity is near-zero.\nJust letting you know～",
+        "character-name-empty": "The character name cannot be empty.",
+        "character-name-invalid": "This character name is not allowed. Please choose a different one.",
+        "character-name-exists": "This character name already exists.",
+        "sprite-name-empty": "The sprite name cannot be empty.",
+        "sprite-name-invalid": "This sprite name is not allowed. Please choose a different one.",
+        "sprite-name-exists": "This sprite name already exists.",
+        "nonexistent-character": "This character does not exist.",
+        "nonexistent-sprite": "This sprite does not exist."
     },
     "error-boundary": {
         "unexpected": "An unexpected error has occurred",

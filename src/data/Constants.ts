@@ -6,3 +6,21 @@ export const textTypeYPositions = [
     [745, 825],
     [745, 810],
 ];
+
+export const invalidCharacterNames = ["custom", "none", "blank", "others"];
+
+export const characterEasterEggs: Record<string, string> = {
+    sayori: "I want breakfast.",
+    natsuki: "Manga is literature!",
+    yuri: "The tendrils of my hair illuminate beneath the amber glow.\nBathing.\nIt must be this one.\nThe last remaining streetlight to have withstood the test of time.\nThe last yet to be replaced by the sickening blue-green hue of the future.\nI bathe. Calm; breathing air of the present but living in the past.\nThe light flickers.\nI flicker back.",
+    monika: "Just Monika.",
+    sans: "it's a beautiful day outside.\nbirds are singing, flowers are blooming...\non days like these, kids like you...\nShould be burning in hell.",
+    chara: "About time.",
+    flowey: "It's me, your best friend!",
+    undyne: "NGAHHHHHHHHHHHHHHHHHH!",
+    alphys: "UNDYNE!!!\nI CAN'T TAKE THIS ANY LONGER!!!\nI'M MADLY IN LOVE WITH YOU!!!\nHOLD ME, UNDYNE!! HOLD ME!!!\nI START HOLLERING!!\nUNDYNE!!!! I LOVE YOU!!!",
+    tenna: "It's TV Time!",
+    ralsei: "K-Kris!!?",
+    susie: "Dammit, Kris! Where the hell are we?!",
+    teto: "Teto, there's a dead human in our house!"
+};

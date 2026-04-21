@@ -196,7 +196,7 @@ const ModelSidebar: React.FC = () => {
             const list = overrideList ?? roleplaySprites;
             const characterIndex = list.findIndex((g) => g.name === character);
             if (characterIndex === -1) {
-                setErrorInformation("The character does not exist!");
+                setErrorInformation(t("error.nonexistent-character"));
                 throw new Error("The character does not exist!");
             }
 
@@ -205,7 +205,7 @@ const ModelSidebar: React.FC = () => {
             );
 
             if (spriteIndex === -1) {
-                setErrorInformation("The sprite does not exist!");
+                setErrorInformation(t("error.nonexistent-character"));
                 throw new Error("The sprite does not exist!");
             }
 

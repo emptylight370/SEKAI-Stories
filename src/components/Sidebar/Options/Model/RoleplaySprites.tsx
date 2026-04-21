@@ -14,7 +14,11 @@ import InputWindow from "../../../UI/InputWindow";
 
 interface RoleplaySpritesProps {
     updateModelState: (updates: Partial<IModel>) => void;
-    prepareSprite: (character: string, spriteName: string, overrideList?: IRoleplaySpriteCharacters) => void;
+    prepareSprite: (
+        character: string,
+        spriteName: string,
+        overrideList?: IRoleplaySpriteCharacters,
+    ) => void;
 }
 
 const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
@@ -36,7 +40,7 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
     const handleCreateSprite = (newSpriteName: string, uploadedFile: File) => {
         console.log(newSpriteName, uploadedFile);
         if (newSpriteName.trim() === "") {
-            setErrorInformation("The sprite name cannot be empty.");
+            setErrorInformation(t("error.sprite-name-empty"));
             return;
         }
         const characterName = currentModel.character;
@@ -48,7 +52,7 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
         );
 
         if (existingSprite) {
-            setErrorInformation("This sprite name already exists.");
+            setErrorInformation(t("error.sprite-name-exists"));
             return;
         }
 
@@ -90,6 +94,35 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
         updateModelState({ modelName: value });
     };
 
+    const handleDeleteSprite = () => {
+        const characterName = currentModel.character;
+        const existingCharacter = roleplaySprites.find(
+            (g) => g.name === characterName,
+        );
+        if (!existingCharacter) {
+            setErrorInformation(t("error.nonexistent-character"));
+            return;
+        }
+        const spriteIndex = existingCharacter.sprites.findIndex(
+            (s) => s.name === currentModel.modelName,
+        );
+        if (spriteIndex === -1) {
+            setErrorInformation(t("error.nonexistent-sprite"));
+            return;
+        }
+        existingCharacter.sprites.splice(spriteIndex, 1);
+        const updatedCharacters = roleplaySprites.map((char) => {
+            if (char.name === characterName) {
+                return existingCharacter;
+            }
+            return char;
+        });
+
+        localforage.setItem("roleplaySprites", updatedCharacters);
+        setRoleplaySprites(updatedCharacters);
+        updateModelState({ modelName: "none" });
+    };
+
     return (
         <>
             <select
@@ -110,15 +143,25 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
                         </option>
                     ))}
             </select>
-            <UploadImageButton
-                id="add-sprite"
-                text={t("model.sprite.add-sprite")}
-                disabled={currentModel.character == "none"}
-                uploadFunction={async (file: File) => {
-                    setShowNewSprite(true);
-                    setUploadedFile(file);
-                }}
-            />
+            <div className="layer-buttons">
+                <UploadImageButton
+                    id="add-sprite"
+                    text={<i className="bi bi-plus-circle"></i>}
+                    disabled={currentModel.character == "none"}
+                    uploadFunction={async (file: File) => {
+                        setShowNewSprite(true);
+                        setUploadedFile(file);
+                    }}
+                    type="round"
+                />
+                <button
+                    className="btn-white btn-circle"
+                    onClick={handleDeleteSprite}
+                    disabled={currentModel.modelName === "none"}
+                >
+                    <i className="bi bi-x-circle"></i>
+                </button>
+            </div>
             {showNewSprite && (
                 <InputWindow
                     show={setShowNewSprite}
