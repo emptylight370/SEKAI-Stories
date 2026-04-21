@@ -7,7 +7,7 @@ export const textTypeYPositions = [
     [745, 810],
 ];
 
-export const invalidCharacterNames = ["custom", "none", "blank", "others"];
+export const invalidNames = ["custom", "none", "blank", "others"];
 
 export const characterEasterEggs: Record<string, string> = {
     sayori: "I want breakfast.",
@@ -22,5 +22,6 @@ export const characterEasterEggs: Record<string, string> = {
     tenna: "It's TV Time!",
     ralsei: "K-Kris!!?",
     susie: "Dammit, Kris! Where the hell are we?!",
-    teto: "Teto, there's a dead human in our house!"
+    teto: "Teto, there's a dead human in our house!",
+    omori: "Welcome to White Space. You have been living here for as long as you can remember.",
 };

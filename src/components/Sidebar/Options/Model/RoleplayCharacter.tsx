@@ -11,10 +11,7 @@ import localforage from "localforage";
 import { useTranslation } from "react-i18next";
 import { SceneContext } from "../../../../contexts/SceneContext";
 import Window from "../../../UI/Window";
-import {
-    characterEasterEggs,
-    invalidCharacterNames,
-} from "../../../../data/Constants";
+import { characterEasterEggs, invalidNames } from "../../../../data/Constants";
 
 interface RoleplayCharacterProps {
     currentSelectedCharacter: string;
@@ -68,7 +65,7 @@ const RoleplayCharacter: React.FC<RoleplayCharacterProps> = ({
             setErrorInformation(t("error.character-name-empty"));
             return;
         }
-        if (invalidCharacterNames.includes(name)) {
+        if (invalidNames.includes(name)) {
             setErrorInformation(t("error.character-name-invalid"));
             return;
         }

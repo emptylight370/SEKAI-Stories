@@ -11,6 +11,7 @@ import {
 } from "../../../../types/IRoleplaySprites";
 import localforage from "localforage";
 import InputWindow from "../../../UI/InputWindow";
+import { invalidNames } from "../../../../data/Constants";
 
 interface RoleplaySpritesProps {
     updateModelState: (updates: Partial<IModel>) => void;
@@ -41,6 +42,10 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
         console.log(newSpriteName, uploadedFile);
         if (newSpriteName.trim() === "") {
             setErrorInformation(t("error.sprite-name-empty"));
+            return;
+        }
+        if (invalidNames.includes(newSpriteName)) {
+            setErrorInformation(t("error.sprite-name-invalid"));
             return;
         }
         const characterName = currentModel.character;
@@ -175,6 +180,7 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
                     confirmFunction={(x: string) => {
                         handleCreateSprite(x, uploadedFile!);
                     }}
+                    className="window__90_width"
                 />
             )}
         </>
