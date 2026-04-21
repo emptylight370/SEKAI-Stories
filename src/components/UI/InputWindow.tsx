@@ -83,16 +83,16 @@ const InputWindow: React.FC<WindowProps> = ({
                     <h1 className="text-center">{t("global.input")}</h1>
                     <p className="text-center">{description}</p>
                     {body && body}
-                    <input
-                        type="text"
-                        value={data}
-                        onChange={(e) => {
-                            const input = e.target.value;
-                            setData(input);
-                        }}
-                        autoFocus
-                    />
                 </div>
+                <input
+                    type="text"
+                    value={data}
+                    onChange={(e) => {
+                        const input = e.target.value;
+                        setData(input);
+                    }}
+                    autoFocus
+                />
                 <div className="window__buttons">
                     {confirmFunction && (
                         <button
