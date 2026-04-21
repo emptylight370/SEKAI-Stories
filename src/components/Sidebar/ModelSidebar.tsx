@@ -324,6 +324,30 @@ const ModelSidebar: React.FC = () => {
                 </SidebarOption>
             )}
 
+            {(currentModel?.from == "sekai" ||
+                currentModel?.from == "static") && (
+                <SidebarOption
+                    header={t("model.costume.header")}
+                    option={openModelOption}
+                    setOption={setOpenModelOption}
+                    optionName="costume"
+                >
+                    <Costume
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
+                        currentSelectedCharacter={currentSelectedCharacter}
+                        handleLive2DChange={handleLive2DChange}
+                        prepareModel={prepareModel}
+                        updateModelState={updateModelState}
+                        setSelectedParameter={setSelectedParameter}
+                        setCurrentSelectedCharacter={
+                            setCurrentSelectedCharacter
+                        }
+                        setLoadingMsg={setLoadingMsg}
+                    />
+                </SidebarOption>
+            )}
+
             {currentModel?.from == "roleplay" && (
                 <>
                     <SidebarOption
@@ -356,26 +380,6 @@ const ModelSidebar: React.FC = () => {
             )}
             {currentModel?.model instanceof Live2DModel && (
                 <>
-                    <SidebarOption
-                        header={t("model.costume.header")}
-                        option={openModelOption}
-                        setOption={setOpenModelOption}
-                        optionName="costume"
-                    >
-                        <Costume
-                            isLoading={isLoading}
-                            setIsLoading={setIsLoading}
-                            currentSelectedCharacter={currentSelectedCharacter}
-                            handleLive2DChange={handleLive2DChange}
-                            prepareModel={prepareModel}
-                            updateModelState={updateModelState}
-                            setSelectedParameter={setSelectedParameter}
-                            setCurrentSelectedCharacter={
-                                setCurrentSelectedCharacter
-                            }
-                            setLoadingMsg={setLoadingMsg}
-                        />
-                    </SidebarOption>
                     <SidebarOption
                         header={t("model.emotion.header")}
                         option={openModelOption}
