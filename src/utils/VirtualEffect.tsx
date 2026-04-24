@@ -4,7 +4,11 @@ import {
     Live2DModel,
 } from "@sekai-world/pixi-live2d-display-mulmotion";
 import * as PIXI from "pixi.js";
-import { getBackground } from "./GetBackground";
+import {
+    HologramLightEffect,
+    IActiveParticleTickerFunctionsInterface,
+    TriangleParticle,
+} from "../types/IVirtualEffect";
 
 const CONFIG = {
     TRIANGLE_COLORS: [0xff00ff, 0x00ffff, 0xffff00],
@@ -24,142 +28,6 @@ const CONFIG = {
 
     MAX_ACTIVE_TRIANGLES: 15,
 };
-
-class TriangleParticle extends PIXI.Graphics {
-    initialAlpha: number;
-    maxLifetime: number;
-    fadeInDuration: number;
-    currentLifetime: number;
-    rotationSpeed: number;
-    velocityX: number;
-    velocityY: number;
-    constructor(
-        x: number,
-        y: number,
-        color: number,
-        size: number,
-        isFilled: boolean,
-        velocityX: number,
-        velocityY: number,
-        rotationSpeed: number,
-        lifetime: number,
-        fadeInDuration: number,
-    ) {
-        super();
-        this.x = x;
-        this.y = y;
-        this.initialAlpha = 1;
-        this.alpha = 0;
-        this.maxLifetime = lifetime;
-        this.fadeInDuration = fadeInDuration;
-        this.currentLifetime = 0;
-
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = rotationSpeed;
-
-        if (isFilled) {
-            this.beginFill(color);
-            this.drawPolygon([
-                -size / 2,
-                size / 2,
-                size / 2,
-                size / 2,
-                0,
-                -size / 2,
-            ]);
-            this.endFill();
-        } else {
-            this.lineStyle(10, color);
-            this.drawPolygon([
-                -size / 2,
-                size / 2,
-                size / 2,
-                size / 2,
-                0,
-                -size / 2,
-            ]);
-        }
-
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-
-        this.blendMode = PIXI.BLEND_MODES.ADD;
-        this.pivot.set(0, 0);
-    }
-
-    update(deltaFrames: number, app: PIXI.Application) {
-        this.x += this.velocityX * deltaFrames;
-        this.y += this.velocityY * deltaFrames;
-
-        this.rotation += this.rotationSpeed * deltaFrames;
-
-        this.currentLifetime += app.ticker.deltaMS / 1000;
-
-        if (this.currentLifetime < this.fadeInDuration) {
-            this.alpha =
-                this.initialAlpha *
-                (this.currentLifetime / this.fadeInDuration);
-        } else {
-            const fadeOutTime = this.maxLifetime - this.fadeInDuration;
-            const elapsedFadeOutTime =
-                this.currentLifetime - this.fadeInDuration;
-            this.alpha =
-                this.initialAlpha * (1 - elapsedFadeOutTime / fadeOutTime);
-        }
-
-        return this.currentLifetime >= this.maxLifetime;
-    }
-}
-
-class HologramLightEffect extends PIXI.Container {
-    light: PIXI.Graphics;
-    elapsed: number = 0;
-    color: number;
-
-    constructor(width: number, height: number, color: number = 0xffffff) {
-        super();
-
-        this.width = width;
-        this.height = height;
-        this.color = color;
-
-        this.light = new PIXI.Graphics();
-        this.light.alpha = 0.7;
-        this.addChild(this.light);
-        HologramLightEffect.addTexture(this.light, width, height);
-    }
-
-    private static async addTexture(
-        light: PIXI.Graphics,
-        width: number,
-        height: number,
-    ): Promise<void> {
-        const sprite = await getBackground("/img/hologram_texture.png", false);
-        light.clear();
-        light.beginTextureFill({
-            texture: sprite.texture,
-            matrix: new PIXI.Matrix().scale(
-                width / sprite.texture.width,
-                height / sprite.texture.height,
-            ),
-        });
-        light.moveTo(width / 3, height);
-        light.lineTo(0, 0);
-        light.lineTo(width, 0);
-        light.lineTo((2 * width) / 3, height);
-        light.closePath();
-        light.endFill();
-        light.pivot.set(width / 2, height / 2);
-        light.position.set(width / 2, height / 2);
-    }
-
-    update(delta: number) {
-        this.elapsed += delta;
-        this.light.alpha = 0.9 + 0.1 * Math.sin(this.elapsed * 0.1);
-        this.light.scale.x = 1 + 0.01 * Math.sin(this.elapsed * 0.1);
-        // this.light.scale.y = 1 + 0.03 * Math.cos(this.elapsed * 0.17);
-    }
-}
 
 const spawnHologram = (character: Live2DModel<InternalModel>) => {
     const bounds = character.getLocalBounds();
@@ -241,116 +109,84 @@ const spawnTriangle = (
     activeTriangles.push(triangle);
 };
 
-interface activeParticleTickerFunctionsInterface {
-    activeTriangles: TriangleParticle[];
-    particleFunction: ((delta: number) => void) | null;
-    lastTriangleSpawnTime: number;
-    hologram: HologramLightEffect;
-}
-
-const activeParticleTickerList: Record<
-    string,
-    activeParticleTickerFunctionsInterface | null
-> = {};
-
 const particleFunction = (
     delta: number,
     app: PIXI.Application,
     model: Live2DModel<InternalModel>,
-    activeTriangles: TriangleParticle[],
-    modelkey: string,
+    entity: Omit<IActiveParticleTickerFunctionsInterface, "particleFunction">,
 ) => {
-    try {
-        const now = performance.now();
-        if (activeParticleTickerList[modelkey]?.lastTriangleSpawnTime) {
-            const lastTriangleSpawnTime =
-                activeParticleTickerList[modelkey]?.lastTriangleSpawnTime;
-            if (
-                now - lastTriangleSpawnTime >
-                CONFIG.TRIANGLE_SPAWN_INTERVAL_MS
-            ) {
-                spawnTriangle(model, activeTriangles);
-                activeParticleTickerList[modelkey].lastTriangleSpawnTime = now;
-            }
+    const now = performance.now();
+    if (entity?.lastTriangleSpawnTime) {
+        const lastTriangleSpawnTime = entity?.lastTriangleSpawnTime;
+        if (now - lastTriangleSpawnTime > CONFIG.TRIANGLE_SPAWN_INTERVAL_MS) {
+            spawnTriangle(model, entity.activeTriangles);
+            entity.lastTriangleSpawnTime = now;
         }
+    }
 
-        for (let i = activeTriangles.length - 1; i >= 0; i--) {
-            const triangle = activeTriangles[i];
-            const expired = triangle.update(delta, app);
-            if (expired) {
-                app.stage.removeChild(triangle);
-                activeTriangles.splice(i, 1);
-                triangle.destroy();
-            }
+    for (let i = entity.activeTriangles.length - 1; i >= 0; i--) {
+        const triangle = entity.activeTriangles[i];
+        const expired = triangle.update(delta, app);
+        if (expired) {
+            app.stage.removeChild(triangle);
+            entity.activeTriangles.splice(i, 1);
+            triangle.destroy();
         }
-    } catch {
-        if (activeParticleTickerList[modelkey]?.particleFunction) {
-            app.ticker.remove(
-                activeParticleTickerList[modelkey]?.particleFunction,
-            );
-            activeParticleTickerList[modelkey].particleFunction = null;
-        }
-        console.info("Removed the virtual ticker.");
     }
 };
 
 export const virtualEffectParticles = (
     model: Live2DModel<InternalModel>,
-    modelkey: string,
     app: PIXI.Application,
     show: boolean,
-) => {
+    virtualEffectEntity: IActiveParticleTickerFunctionsInterface | null,
+): IActiveParticleTickerFunctionsInterface | null => {
     if (show) {
         const activeTriangles: TriangleParticle[] = [];
         const hologram = spawnHologram(model);
         const lastTriangleSpawnTime = 1;
 
-        const newParticleFunction = (delta: number) => {
-            particleFunction(delta, app, model, activeTriangles, modelkey);
+        const entity: Omit<
+            IActiveParticleTickerFunctionsInterface,
+            "particleFunction"
+        > = {
+            activeTriangles,
+            hologram,
+            lastTriangleSpawnTime,
         };
-        if (
-            !activeParticleTickerList[modelkey] ||
-            !activeParticleTickerList.particleFunction
-        ) {
-            activeParticleTickerList[modelkey] = {
-                activeTriangles: activeTriangles,
-                particleFunction: newParticleFunction,
-                lastTriangleSpawnTime: lastTriangleSpawnTime,
-                hologram: hologram,
-            };
-        }
+        const newParticleFunction = (delta: number) => {
+            particleFunction(delta, app, model, entity);
+        };
 
         app.ticker.add(newParticleFunction);
+
+        return {
+            ...entity,
+            particleFunction: newParticleFunction,
+        };
     } else {
-        if (activeParticleTickerList[modelkey]?.particleFunction) {
-            app.ticker.remove(
-                activeParticleTickerList[modelkey].particleFunction,
-            );
-            activeParticleTickerList[modelkey].particleFunction = null;
+        if (virtualEffectEntity?.particleFunction) {
+            app.ticker.remove(virtualEffectEntity.particleFunction);
+            virtualEffectEntity.particleFunction = null;
         }
-        if (activeParticleTickerList[modelkey]?.activeTriangles) {
-            while (
-                activeParticleTickerList[modelkey]?.activeTriangles.length > 0
-            ) {
-                const triangle =
-                    activeParticleTickerList[modelkey]?.activeTriangles.pop();
+
+        if (virtualEffectEntity?.activeTriangles) {
+            while (virtualEffectEntity?.activeTriangles.length > 0) {
+                const triangle = virtualEffectEntity?.activeTriangles.pop();
                 if (triangle && triangle.parent) {
                     triangle.parent.removeChild(triangle);
                     triangle.destroy();
                 }
             }
         }
-        if (activeParticleTickerList[modelkey]?.hologram) {
-            const hologram = activeParticleTickerList[modelkey]?.hologram;
+
+        if (virtualEffectEntity?.hologram) {
+            const hologram = virtualEffectEntity?.hologram;
             hologram.parent.removeChild(hologram);
             hologram.destroy();
         }
-
-        // if (_particleTickerFunction) {
-        //     app.ticker.remove(_particleTickerFunction);
-        //     _particleTickerFunction = null;
-        // }
     }
+    return null;
 };
 
 export const virtualEffectCRT = () => {

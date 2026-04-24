@@ -64,7 +64,7 @@ const Costume: React.FC<CostumeProps> = ({
     if (!scene || !settings || !softError) {
         throw new Error("Context not found");
     }
-    const { app, currentKey, currentModel } = scene;
+    const { app, currentModel } = scene;
     const { setLoading } = settings;
     const { setErrorInformation } = softError;
     if (!currentModel) return;
@@ -134,11 +134,11 @@ const Costume: React.FC<CostumeProps> = ({
     const handleVirtualEffect = (value: boolean) => {
         if (!currentModel) return;
 
-        virtualEffectParticles(
+        const entity = virtualEffectParticles(
             currentModel.model as Live2DModel,
-            currentKey,
             app as PIXI.Application,
             value,
+            currentModel.virtualEffectEntity,
         );
 
         if (value && currentModel?.model) {
@@ -152,6 +152,7 @@ const Costume: React.FC<CostumeProps> = ({
         }
         updateModelState({
             virtualEffect: value,
+            virtualEffectEntity: entity,
         });
     };
 
