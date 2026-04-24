@@ -96,6 +96,37 @@ const Filter: React.FC = () => {
         });
     };
 
+    const handleVignette = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        if (!filter?.container) return;
+
+        const value = event.target.checked;
+        let vignetteContainer;
+
+        if (value) {
+            const vignetteImage = await getBackground(
+                "/img/vignette-round.png",
+            );
+            vignetteImage.anchor.set(0.5, 0.5);
+            vignetteImage.position.set(1920 / 2, 1080 / 2);
+            vignetteContainer = new PIXI.Container();
+
+            vignetteContainer.addChildAt(vignetteImage, 0);
+            filter.container.addChildAt(vignetteContainer, 3);
+        } else {
+            filter.vignette?.container?.destroy();
+        }
+
+        setFilter({
+            ...filter,
+            vignette: {
+                container: vignetteContainer,
+                show: value,
+            },
+        });
+    };
+
     const handleDroop = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!filter?.container) return;
 
@@ -162,6 +193,12 @@ const Filter: React.FC = () => {
                 label={t("background.filters.sick")}
                 checked={filter?.sick?.show}
                 onChange={handleSick}
+            />
+            <Checkbox
+                id="vignette"
+                label={t("background.filters.vignette")}
+                checked={filter?.vignette?.show}
+                onChange={handleVignette}
             />
             <Checkbox
                 id="drooping-lines"

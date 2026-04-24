@@ -51,6 +51,7 @@
                 "contrast": "Contrast"
             },
             "sick": "Sick",
+            "vignette": "Vignette",
             "drooping-lines": "Drooping Lines",
             "pov": "POV/FOV",
             "pov-settings": {
