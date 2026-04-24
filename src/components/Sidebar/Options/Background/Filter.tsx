@@ -37,6 +37,10 @@ const Filter: React.FC = () => {
         setFilter({
             ...filter,
             flashback: value,
+            monochrome: {
+                contrast: 1,
+                show: false,
+            },
         });
     };
 
@@ -59,6 +63,7 @@ const Filter: React.FC = () => {
 
         setFilter({
             ...filter,
+            flashback: false,
             monochrome: {
                 contrast: 1,
                 show: value,
@@ -72,88 +77,67 @@ const Filter: React.FC = () => {
 
         const value = event.target.checked;
 
+        let sickContainer;
         if (value) {
-            const sickContainer = await sickEffect(app, filter.container);
+            sickContainer = await sickEffect(app, filter.container);
             filter.container.addChildAt(sickContainer, 3);
-
-            setFilter({
-                ...filter,
-                sick: {
-                    container: sickContainer,
-                    show: true,
-                },
-            });
         } else {
             if (!filter.sick) return;
             const sickContainer = filter.sick.container;
             sickContainer?.destroy();
-            setFilter({
-                ...filter,
-                sick: {
-                    container: null,
-                    show: false,
-                },
-            });
         }
+
+        setFilter({
+            ...filter,
+            sick: {
+                container: sickContainer,
+                show: value,
+            },
+        });
     };
 
     const handleDroop = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!filter?.container) return;
 
         const value = event.target.checked;
+        let droopContainer;
 
         if (value) {
             const droopLines = await getBackground("/img/droop.png");
-            const droopContainer = new PIXI.Container();
+            droopContainer = new PIXI.Container();
 
             droopContainer.addChildAt(droopLines, 0);
 
             filter.container.addChildAt(droopContainer, 3);
-
-            setFilter({
-                ...filter,
-                droop: {
-                    container: droopContainer,
-                    show: true,
-                },
-            });
         } else {
             filter.droop?.container?.destroy();
-            setFilter({
-                ...filter,
-                droop: {
-                    container: null,
-                    show: false,
-                },
-            });
         }
+
+        setFilter({
+            ...filter,
+            droop: {
+                container: droopContainer,
+                show: value,
+            },
+        });
     };
+
     const handlePOV = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!filter?.container) return;
         const value = event.target.checked;
-        if (value) {
-            setFilter({
-                ...filter,
-                pov: {
-                    show: true,
-                    x: 0,
-                    y: 0,
-                    zoom: 1,
-                },
-            });
-        } else {
+        if (!value) {
             filter.container.position.set(1920 / 2, 1080 / 2);
             filter.container.scale.set(1, 1);
-            setFilter({
-                ...filter,
-                pov: {
-                    show: false,
-                    x: 0,
-                    y: 0,
-                    zoom: 1,
-                },
-            });
         }
+        setFilter({
+            ...filter,
+            pov: {
+                show: value,
+                x: 0,
+                y: 0,
+                zoom: 1,
+            },
+        });
     };
 
     return (
