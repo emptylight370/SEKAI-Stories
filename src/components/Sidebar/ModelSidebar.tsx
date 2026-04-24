@@ -32,6 +32,7 @@ import RoleplayCharacter from "./Options/Model/RoleplayCharacter";
 import RoleplaySprites from "./Options/Model/RoleplaySprites";
 import * as PIXI from "pixi.js";
 import { IRoleplaySpriteCharacters } from "../../types/IRoleplaySprites";
+import { destroyVirtualEffectEntity } from "../../utils/DestroyVirtualEffectEntity";
 
 const ModelSidebar: React.FC = () => {
     const { t } = useTranslation();
@@ -44,6 +45,7 @@ const ModelSidebar: React.FC = () => {
     }
 
     const {
+        app,
         models,
         text,
         setModels,
@@ -175,6 +177,11 @@ const ModelSidebar: React.FC = () => {
                 initialState ? 640 : currentModel?.modelX,
                 initialState ? 870 : currentModel?.modelY,
             );
+            if (currentModel.virtualEffectEntity)
+                destroyVirtualEffectEntity(
+                    currentModel.virtualEffectEntity,
+                    app as PIXI.Application,
+                );
 
             setLoading(100);
             setLoadingMsg(``);

@@ -9,6 +9,7 @@ import {
     IActiveParticleTickerFunctionsInterface,
     TriangleParticle,
 } from "../types/IVirtualEffect";
+import { destroyVirtualEffectEntity } from "./DestroyVirtualEffectEntity";
 
 const CONFIG = {
     TRIANGLE_COLORS: [0xff00ff, 0x00ffff, 0xffff00],
@@ -165,26 +166,8 @@ export const virtualEffectParticles = (
             particleFunction: newParticleFunction,
         };
     } else {
-        if (virtualEffectEntity?.particleFunction) {
-            app.ticker.remove(virtualEffectEntity.particleFunction);
-            virtualEffectEntity.particleFunction = null;
-        }
-
-        if (virtualEffectEntity?.activeTriangles) {
-            while (virtualEffectEntity?.activeTriangles.length > 0) {
-                const triangle = virtualEffectEntity?.activeTriangles.pop();
-                if (triangle && triangle.parent) {
-                    triangle.parent.removeChild(triangle);
-                    triangle.destroy();
-                }
-            }
-        }
-
-        if (virtualEffectEntity?.hologram) {
-            const hologram = virtualEffectEntity?.hologram;
-            hologram.parent.removeChild(hologram);
-            hologram.destroy();
-        }
+        if (virtualEffectEntity)
+            destroyVirtualEffectEntity(virtualEffectEntity, app);
     }
     return null;
 };
