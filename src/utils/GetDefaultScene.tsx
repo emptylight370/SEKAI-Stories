@@ -178,6 +178,7 @@ const LoadModel = async (
                 modelOpacity: 1,
                 adjustmentFilter: adjustmentFilter,
                 virtualEffect: false,
+                virtualEffectEntity: null,
                 expression: 0,
                 pose: 0,
                 idle: true,

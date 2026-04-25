@@ -286,6 +286,7 @@ const ExportButton: React.FC = () => {
                     modelData: modelData,
                     adjustmentFilter: adjustmentFilter,
                     virtualEffect: false,
+                    virtualEffectEntity: null,
                     expression: model.modelExpression ?? 99999,
                     pose: model.modelPose ?? 99999,
                     idle: model.modelIdle,
