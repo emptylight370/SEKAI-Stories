@@ -4,11 +4,11 @@ import {
     Live2DModel,
 } from "@sekai-world/pixi-live2d-display-mulmotion";
 import * as PIXI from "pixi.js";
+import { IActiveParticleTickerFunctionsInterface } from "../types/IVirtualEffect";
 import {
     HologramLightEffect,
-    IActiveParticleTickerFunctionsInterface,
     TriangleParticle,
-} from "../types/IVirtualEffect";
+} from "../model/VirtualEffectModel";
 import { destroyVirtualEffectEntity } from "./DestroyVirtualEffectEntity";
 
 const CONFIG = {
@@ -36,14 +36,11 @@ const spawnHologram = (character: Live2DModel<InternalModel>) => {
     const hologram = new HologramLightEffect(bounds.width, bounds.height);
     character.addChild(hologram);
 
-    const animateHologram = () => {
-        hologram.update(0.1);
-        requestAnimationFrame(animateHologram);
-    };
-
-    animateHologram();
-
     return hologram;
+};
+
+const hologramFunction = (hologram: HologramLightEffect) => {
+    hologram.update(0.1);
 };
 
 const spawnTriangle = (
@@ -114,7 +111,10 @@ const particleFunction = (
     delta: number,
     app: PIXI.Application,
     model: Live2DModel<InternalModel>,
-    entity: Omit<IActiveParticleTickerFunctionsInterface, "particleFunction">,
+    entity: Omit<
+        IActiveParticleTickerFunctionsInterface,
+        "particleFunction" | "crtFunction" | "hologramFunction"
+    >,
 ) => {
     const now = performance.now();
     if (entity?.lastTriangleSpawnTime) {
@@ -136,55 +136,13 @@ const particleFunction = (
     }
 };
 
-export const virtualEffectParticles = (
-    model: Live2DModel<InternalModel>,
-    app: PIXI.Application,
-    show: boolean,
-    virtualEffectEntity: IActiveParticleTickerFunctionsInterface | null,
-): IActiveParticleTickerFunctionsInterface | null => {
-    if (show) {
-        const activeTriangles: TriangleParticle[] = [];
-        const hologram = spawnHologram(model);
-        const lastTriangleSpawnTime = 1;
-
-        const entity: Omit<
-            IActiveParticleTickerFunctionsInterface,
-            "particleFunction"
-        > = {
-            activeTriangles,
-            hologram,
-            lastTriangleSpawnTime,
-        };
-        const newParticleFunction = (delta: number) => {
-            particleFunction(delta, app, model, entity);
-        };
-
-        app.ticker.add(newParticleFunction);
-
-        return {
-            ...entity,
-            particleFunction: newParticleFunction,
-        };
-    } else {
-        if (virtualEffectEntity)
-            destroyVirtualEffectEntity(virtualEffectEntity, app);
-    }
-    return null;
-};
-
-export const virtualEffectCRT = () => {
+const virtualEffectCRT = () => {
     const crtFilter = new CRTFilter({
         time: 2,
         lineWidth: 10,
         lineContrast: 0.1,
         vignetting: 0,
     });
-    const animateCRT = () => {
-        crtFilter.time += 0.2;
-        crtFilter.lineWidth = 7 + 5 * Math.sin(crtFilter.time * 0.01);
-        crtFilter.seed = Math.random();
-        requestAnimationFrame(animateCRT);
-    };
 
     const adjustmentFilter = new AdjustmentFilter({
         alpha: 0.8,
@@ -194,7 +152,59 @@ export const virtualEffectCRT = () => {
         red: 0.7,
     });
 
-    animateCRT();
-
     return [crtFilter, adjustmentFilter];
+};
+
+const crtFunction = (crtFilter: CRTFilter) => {
+    crtFilter.time += 0.2;
+    crtFilter.lineWidth = 7 + 5 * Math.sin(crtFilter.time * 0.01);
+    crtFilter.seed = Math.random();
+};
+
+export const toggleVirtualEffect = (
+    model: Live2DModel<InternalModel>,
+    app: PIXI.Application,
+    show: boolean,
+    virtualEffectEntity: IActiveParticleTickerFunctionsInterface | null,
+): IActiveParticleTickerFunctionsInterface | null => {
+    if (show) {
+        const activeTriangles: TriangleParticle[] = [];
+        const hologram = spawnHologram(model);
+        const newHologramFunction = () => {
+            hologramFunction(hologram);
+        };
+        const lastTriangleSpawnTime = 1;
+
+        const entity: Omit<
+            IActiveParticleTickerFunctionsInterface,
+            "particleFunction" | "crtFunction" | "hologramFunction"
+        > = {
+            activeTriangles,
+            hologram,
+            lastTriangleSpawnTime,
+        };
+        const newParticleFunction = (delta: number) => {
+            particleFunction(delta, app, model, entity);
+        };
+
+        const [crtFilter, adjustmentFilter] = virtualEffectCRT();
+        const newCRTFunction = () => crtFunction(crtFilter as CRTFilter);
+        model.filters = [crtFilter, adjustmentFilter];
+
+        app.ticker.add(newHologramFunction);
+        app.ticker.add(newParticleFunction);
+        app.ticker.add(newCRTFunction);
+
+        return {
+            ...entity,
+            particleFunction: newParticleFunction,
+            crtFunction: newCRTFunction,
+            hologramFunction: newHologramFunction
+        };
+    } else {
+        if (virtualEffectEntity)
+            destroyVirtualEffectEntity(virtualEffectEntity, app);
+        model.filters = [];
+    }
+    return null;
 };

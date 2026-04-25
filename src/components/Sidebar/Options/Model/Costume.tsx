@@ -5,10 +5,7 @@ import { useTranslation } from "react-i18next";
 import { SceneContext } from "../../../../contexts/SceneContext";
 import { SettingsContext } from "../../../../contexts/SettingsContext";
 import { SoftErrorContext } from "../../../../contexts/SoftErrorContext";
-import {
-    virtualEffectCRT,
-    virtualEffectParticles,
-} from "../../../../utils/VirtualEffect";
+import { toggleVirtualEffect } from "../../../../utils/VirtualEffect";
 import { Live2DModel } from "@sekai-world/pixi-live2d-display-mulmotion";
 import { ILive2DModelList } from "../../../../types/ILive2DModelList";
 import { ILive2DModelData } from "../../../../types/ILive2DModelData";
@@ -111,6 +108,7 @@ const Costume: React.FC<CostumeProps> = ({
                 pose: 99999,
                 expression: 99999,
                 virtualEffect: false,
+                virtualEffectEntity: null,
                 modelName: modelBase,
                 modelData: modelData,
                 visible: true,
@@ -134,22 +132,13 @@ const Costume: React.FC<CostumeProps> = ({
     const handleVirtualEffect = (value: boolean) => {
         if (!currentModel) return;
 
-        const entity = virtualEffectParticles(
+        const entity = toggleVirtualEffect(
             currentModel.model as Live2DModel,
             app as PIXI.Application,
             value,
             currentModel.virtualEffectEntity,
         );
 
-        if (value && currentModel?.model) {
-            const [crtFilter, adjustmentFilter] = virtualEffectCRT();
-
-            currentModel.model.filters = [crtFilter, adjustmentFilter];
-        } else {
-            if (currentModel?.model) {
-                currentModel.model.filters = [];
-            }
-        }
         updateModelState({
             virtualEffect: value,
             virtualEffectEntity: entity,

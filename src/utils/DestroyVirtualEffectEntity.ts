@@ -10,6 +10,16 @@ export const destroyVirtualEffectEntity = (
         entity.particleFunction = null;
     }
 
+    if (entity?.crtFunction) {
+        app.ticker.remove(entity.crtFunction);
+        entity.crtFunction = null;
+    }
+
+    if (entity?.hologramFunction) {
+        app.ticker.remove(entity.hologramFunction);
+        entity.hologramFunction = null;
+    }
+
     if (entity?.activeTriangles) {
         while (entity?.activeTriangles.length > 0) {
             const triangle = entity?.activeTriangles.pop();

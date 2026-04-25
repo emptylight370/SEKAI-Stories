@@ -90,6 +90,7 @@ const Character: React.FC<CharacterProps> = ({
                 pose: 99999,
                 expression: 99999,
                 virtualEffect: false,
+                virtualEffectEntity: null,
                 modelName: isStatic
                     ? (firstFile as string)
                     : (firstFile as ILive2DModelList).modelBase,
