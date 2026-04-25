@@ -4,11 +4,11 @@ import {
     Live2DModel,
 } from "@sekai-world/pixi-live2d-display-mulmotion";
 import * as PIXI from "pixi.js";
+import { IActiveParticleTickerFunctionsInterface } from "../types/IVirtualEffect";
 import {
     HologramLightEffect,
-    IActiveParticleTickerFunctionsInterface,
     TriangleParticle,
-} from "../types/IVirtualEffect";
+} from "../model/VirtualEffectModel";
 import { destroyVirtualEffectEntity } from "./DestroyVirtualEffectEntity";
 
 const CONFIG = {
