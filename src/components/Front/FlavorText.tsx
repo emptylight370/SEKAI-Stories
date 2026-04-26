@@ -14,7 +14,7 @@ const randomText = {
         "Tsukasa is laughing in the hallway like a kid again.",
         'Emu breaks the fourth wall, staring at you and says "Wonderhoy!"',
         "Ichika is fangirling over Miku. Again.",
-        "Saki. Saki on fire?",
+        "Saki collapses after walking for 10 meters.",
         "Honami is driving without her driver license.",
         "Shiho is forming a new band with her little Phennies.",
         "Shizuku is giving Shiho some make up.",
@@ -52,17 +52,20 @@ const randomText = {
         "Troupe is now rehearsing...",
         "Band is now playing...",
         "私は雨。(turns into ame-chan)",
-        "恋をして",
         "██ ██ ██ ██ /  ██ ██ ██",
         "kurukurukurukurukurikaesu",
         "saa anyo anyo kocchi oide",
+        "恋をして",
         "jamie paige is so mid. i mean, sincerely, who listen to ts?",
+        "I spend my hours doing alchemy",
+        "じゃ！",
         "Burn Your Dread.",
         "It's a amazing!",
         "This was a triumph.",
         "Bonds of people is the true power.",
         "It's pronounced 'DEKO-NINA'.",
         "Stream Moe Shop!",
+        "Stream Jamie Paige!",
         "Untitled.",
     ],
     fil: [
@@ -203,7 +206,7 @@ const FlavorText: React.FC = () => {
 export default FlavorText;
 
 /* 
-    LAST UPDATE: 04/10/2026
+    LAST UPDATE: 04/30/2026
     Will not list the obvious PJSK references.
     Placed here for people who needs explaination when translating.
 
@@ -219,7 +222,7 @@ export default FlavorText;
         -> can also be a programming socks humor (iykwim)
     "Saki. Saki on fire?"
         -> A viral TikTok of someone accidentally burning one of her Saki plush.
-        -> https://www.tiktok.com/@liloubow/video/7464075124753370398
+        -> https://www.tiktok.com/@liloubow/video/7464075124753370398 (dead link :<)
     "Honami is driving without her driver license."
         -> A reoccuring joke of someone having a dream of Honami running over Tsukasa with a car.
     "Setsuna has been mistakenly called Kanade for the 1888th time."
@@ -243,6 +246,12 @@ export default FlavorText;
     "恋をして"
         -> (koi o shite)
         -> Song Reference: "Song of a Eared Robot" and "Machine Love"
+    "jamie paige is so mid. i mean, sincerely, who listen to ts?",
+        -> Jamie Paige Song Reference: "Aggrandicize"
+    "I spend my hours doing alchemy",
+        -> Jamie Paige Song Reference: "Cadmium Colors"
+    "じゃ！",
+        -> Jamie Paige's Song Signature
     "██ ██ ██ ██ / ██ ██ ██",
         -> Song Reference: "Letter to the Black World"
         -> Yes, it spells that morse code from the song
@@ -264,7 +273,7 @@ export default FlavorText;
         -> In the default scenes, there are three VA jokes.
             -> Satou Hinata, VA of Akiyama Mizuki, is the same VA of Kazuno Leah from LLS!
             -> Furihata Ai, VA of Momoi Airi, is the same VA of Kurosawa Ruby from LLS!
-            -> Kusunoki Tomori, VA of Yoisaki Kanade, is the same VA of Yuki Setsuna from LL! Nijigaku
+            -> Kusunoki Tomori, VA of Yoisaki Kanade, was the past VA of Yuki Setsuna from LL! Nijigaku
     "Girls are now composing..."
     "Squad is now vibing..."
     "Idols are now practicing..."
