@@ -23,6 +23,8 @@ const randomText = {
         "Airi lost her fang.",
         "Setsuna has been mistakenly called Kanade for the 1888th time.",
         "Mizuki is five kilometers away from your house.",
+        "Mizuki stole the precious thing.",
+        "Mizu-Mizu-Kii!",
         "Come here, Mafuyu-chan.",
         "Ena threw a large basin on Akito.",
         "Ena fights against AI Art.",
@@ -230,6 +232,8 @@ export default FlavorText;
         -> She is the character on the Don't Fight The Music's jacket.
         -> People mistakenly thought it was Kanade on the said jacket.
         -> 1888 is the maximum Master combo on the said chart.
+    "Mizu-Mizu-Kii!"
+        -> Nico Yazawa's catchphrase's "Nico Nico Nii!" from Love Live!
     "Come here, Mafuyu-chan."
         -> A popular Akito/Mafuyu ship fanfic
         -> https://old.reddit.com/r/ProjectSekai/comments/11j0ih2/come_here_mafuyuchan/jb363p0/
@@ -261,6 +265,8 @@ export default FlavorText;
         -> Persona 3 Song Reference: "Burn My Dread" and "Full Moon Full Life"
     "It's a amazing!",
         -> Song Reference: "Envy Baby"
+    "Mizuki stole the precious thing."
+        -> Touhou Reference: "Marisa Stole the Precious Thing" by IOSYS
     "This was a triumph.",
         -> Portal Song Reference: "Still Alive"
     "Bonds of people is the true power.",
