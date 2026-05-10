@@ -8,7 +8,7 @@ import { destroySekaiTransitionEntity } from "./DestroySekaiTranstitionEntity";
 
 const CONFIG = {
     TRIANGLE_COLORS: [0xff00ff, 0x00ffff, 0xffff00],
-    TRIANGLE_SIZE_MIN: 100,
+    TRIANGLE_SIZE_MIN: 50,
     TRIANGLE_SIZE_MAX: 200,
     TRIANGLE_VELOCITY_X_MIN: -5,
     TRIANGLE_VELOCITY_X_MAX: -15,
@@ -115,8 +115,8 @@ const particleFunction = (
             entity.activeTriangles.splice(i, 1);
             triangle.destroy();
         }
-        entity.flash.update(app);
     }
+    entity.flash.update(app);
 };
 
 export const toggleSekaiTransition = (

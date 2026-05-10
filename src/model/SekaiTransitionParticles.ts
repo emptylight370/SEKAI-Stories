@@ -18,18 +18,17 @@ export class Flash extends PIXI.Graphics {
         this.totalDuration = fadeInSeconds + fadeOutSeconds;
     }
     update(app: PIXI.Application) {
-        this.currentLifetime += app.ticker.deltaMS / 100000;
+        this.currentLifetime += app.ticker.deltaMS / 1000;
 
         if (this.currentLifetime < this.fadeInSeconds) {
             this.alpha = Math.max(this.currentLifetime / this.fadeInSeconds, 0);
         } else {
             this.alpha = Math.min(
                 (this.totalDuration - this.currentLifetime) /
-                    (this.fadeOutSeconds),
+                    this.fadeOutSeconds,
                 1,
             );
         }
-        console.log(this.currentLifetime);
     }
 
     reset() {
