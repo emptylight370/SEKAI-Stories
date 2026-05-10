@@ -1,5 +1,6 @@
 import { AdjustmentFilter } from "pixi-filters";
 import * as PIXI from "pixi.js";
+import { ISekaiTransitionEntity } from "./ISekaiTransitionEntity";
 
 export interface IFilter {
     container: PIXI.Container;
@@ -11,6 +12,10 @@ export interface IFilter {
         contrast: number;
         show: boolean;
         adjustmentFilter?: AdjustmentFilter;
+    };
+    sekaiTransition?: {
+        show: boolean;
+        entity: ISekaiTransitionEntity | null;
     };
     pov?: {
         show?: boolean;

@@ -8,6 +8,7 @@ import * as PIXI from "pixi.js";
 import { useTranslation } from "react-i18next";
 import POVFilter from "./POVFilter";
 import Contrast from "./Contrast";
+import { toggleSekaiTransition } from "../../../../utils/SekaiTransition";
 
 const Filter: React.FC = () => {
     const scene = useContext(SceneContext);
@@ -171,6 +172,29 @@ const Filter: React.FC = () => {
         });
     };
 
+    const handleSekaiTransition = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        if (!filter?.container || !app) return;
+        const value = event.target.checked;
+        const container = filter.container;
+
+        const entity = toggleSekaiTransition(
+            container,
+            app,
+            value,
+            filter.sekaiTransition?.entity,
+        );
+
+        setFilter({
+            ...filter,
+            sekaiTransition: {
+                show: value,
+                entity: entity,
+            },
+        });
+    };
+
     return (
         <div>
             <Checkbox
@@ -211,6 +235,12 @@ const Filter: React.FC = () => {
                 label={t("background.filters.pov")}
                 checked={filter?.pov?.show}
                 onChange={handlePOV}
+            />
+            <Checkbox
+                id="sekaiTransition"
+                label={t("background.filters.sekaiTransition")}
+                checked={filter?.sekaiTransition?.show}
+                onChange={handleSekaiTransition}
             />
             {filter?.pov?.show && (
                 <POVFilter filter={filter} setFilter={setFilter} />
