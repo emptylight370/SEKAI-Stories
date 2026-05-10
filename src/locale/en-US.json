@@ -58,7 +58,8 @@
                 "zoom": "Zoom",
                 "povx": "X-Position",
                 "povy": "Y-Position"
-            }
+            },
+            "sekai-transition": "SEKAI Transition"
         }
     },
     "text": {

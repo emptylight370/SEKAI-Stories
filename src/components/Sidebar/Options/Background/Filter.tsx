@@ -238,7 +238,7 @@ const Filter: React.FC = () => {
             />
             <Checkbox
                 id="sekaiTransition"
-                label={t("background.filters.sekaiTransition")}
+                label={t("background.filters.sekai-transition")}
                 checked={filter?.sekaiTransition?.show}
                 onChange={handleSekaiTransition}
             />
