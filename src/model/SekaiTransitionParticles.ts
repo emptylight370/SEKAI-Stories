@@ -1,4 +1,41 @@
 import * as PIXI from "pixi.js";
+
+export class Flash extends PIXI.Graphics {
+    currentLifetime: number;
+    fadeInSeconds: number;
+    fadeOutSeconds: number;
+    totalDuration: number;
+    constructor(fadeInSeconds: number, fadeOutSeconds: number) {
+        super();
+        this.pivot.set(0, 0);
+        this.beginFill(0xffffff);
+        this.drawPolygon([0, 0, 0, 1080, 1920, 1080, 1920, 0]);
+        this.endFill();
+        this.currentLifetime = 0;
+        this.alpha = 0;
+        this.fadeInSeconds = fadeInSeconds;
+        this.fadeOutSeconds = fadeOutSeconds;
+        this.totalDuration = fadeInSeconds + fadeOutSeconds;
+    }
+    update(app: PIXI.Application) {
+        this.currentLifetime += app.ticker.deltaMS / 100000;
+
+        if (this.currentLifetime < this.fadeInSeconds) {
+            this.alpha = Math.max(this.currentLifetime / this.fadeInSeconds, 0);
+        } else {
+            this.alpha = Math.min(
+                (this.totalDuration - this.currentLifetime) /
+                    (this.fadeOutSeconds),
+                1,
+            );
+        }
+        console.log(this.currentLifetime);
+    }
+
+    reset() {
+        this.currentLifetime = 0;
+    }
+}
 export class DeceleratedTriangleParticle extends PIXI.Graphics {
     maxLifetime: number;
     decelerationDuration: number;
@@ -33,7 +70,7 @@ export class DeceleratedTriangleParticle extends PIXI.Graphics {
 
         this.decelerationDuration = decelerationDuration;
 
-        this.blendMode = PIXI.BLEND_MODES.ADD;
+        this.blendMode = PIXI.BLEND_MODES.LIGHTEN;
         this.pivot.set(0, 0);
 
         if (isFilled) {
@@ -67,10 +104,8 @@ export class DeceleratedTriangleParticle extends PIXI.Graphics {
         this.rotation += this.rotationSpeed * deltaFrames;
 
         this.currentLifetime += app.ticker.deltaMS / 1000;
-
         this.alpha = 1 - this.currentLifetime / this.maxLifetime;
 
-        // const decelerationTime = this.maxLifetime - this.decelerationDuration;
         if (this.currentLifetime > this.decelerationDuration) {
             const friction = 0.99;
             this.velocityX *= Math.pow(friction, deltaFrames);

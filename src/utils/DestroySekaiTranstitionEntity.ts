@@ -14,6 +14,9 @@ export const destroySekaiTransitionEntity = (
             }
         }
     }
+    if (entity?.flash) {
+        entity.flash.destroy();
+    }
     if (entity?.particleFunction) {
         app.ticker.remove(entity.particleFunction);
         entity.particleFunction = null;

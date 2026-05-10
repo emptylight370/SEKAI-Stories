@@ -1,4 +1,7 @@
-import { DeceleratedTriangleParticle } from "../model/SekaiTransitionParticles";
+import {
+    DeceleratedTriangleParticle,
+    Flash,
+} from "../model/SekaiTransitionParticles";
 import { ISekaiTransitionEntity } from "../types/ISekaiTransitionEntity";
 import * as PIXI from "pixi.js";
 import { destroySekaiTransitionEntity } from "./DestroySekaiTranstitionEntity";
@@ -16,8 +19,10 @@ const CONFIG = {
     TRIANGLE_LIFETIME_SECONDS_MIN: 3,
     TRIANGLE_LIFETIME_SECONDS_MAX: 8,
     TRIANGLE_DECELERATE_AFTER: 1,
-
     MAX_ACTIVE_TRIANGLES: 100,
+
+    FLASH_FADE_IN: 1,
+    FLASH_FADE_OUT: 3,
 };
 
 const spawnTriangles = (
@@ -75,7 +80,6 @@ const spawnTriangles = (
                     CONFIG.TRIANGLE_LIFETIME_SECONDS_MIN) +
             CONFIG.TRIANGLE_LIFETIME_SECONDS_MIN;
 
-        // 4. Create and Add
         const triangle = new DeceleratedTriangleParticle(
             spawnX,
             spawnY,
@@ -101,7 +105,7 @@ const particleFunction = (
 ) => {
     if (entity.activeTriangles.length == 0) {
         spawnTriangles(entity, app);
-        // Flash screen function
+        entity.flash.reset();
     }
     for (let i = entity.activeTriangles.length - 1; i >= 0; i--) {
         const triangle = entity.activeTriangles[i];
@@ -111,6 +115,7 @@ const particleFunction = (
             entity.activeTriangles.splice(i, 1);
             triangle.destroy();
         }
+        entity.flash.update(app);
     }
 };
 
@@ -123,9 +128,11 @@ export const toggleSekaiTransition = (
     if (show) {
         const container = new PIXI.Container();
         const activeTriangles: DeceleratedTriangleParticle[] = [];
+        const flash = new Flash(CONFIG.FLASH_FADE_IN, CONFIG.FLASH_FADE_OUT);
 
         const entity: Omit<ISekaiTransitionEntity, "particleFunction"> = {
             activeTriangles,
+            flash,
             container,
         };
 
@@ -133,6 +140,7 @@ export const toggleSekaiTransition = (
             particleFunction(delta, entity, app);
         };
 
+        container.addChild(flash);
         mainContainer.addChild(container);
         app.ticker.add(newParticleFunction);
 
