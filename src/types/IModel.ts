@@ -5,7 +5,7 @@ import {
 } from "@sekai-world/pixi-live2d-display-mulmotion";
 import { ILive2DModelData } from "./ILive2DModelData";
 import { AdjustmentFilter } from "pixi-filters";
-import { IActiveParticleTickerFunctionsInterface } from "./IVirtualEffect";
+import { IVirtualEffectEntity } from "./IVirtualEffectEntity";
 
 export default interface IModel {
     character: string;
@@ -27,5 +27,5 @@ export default interface IModel {
     visible: boolean;
     from: string;
     parametersChanged: Record<string, number>;
-    virtualEffectEntity: IActiveParticleTickerFunctionsInterface | null;
+    virtualEffectEntity: IVirtualEffectEntity | null;
 }

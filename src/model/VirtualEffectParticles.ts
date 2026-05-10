@@ -1,10 +1,9 @@
 import * as PIXI from "pixi.js";
 import { getBackground } from "../utils/GetBackground";
-
 export class TriangleParticle extends PIXI.Graphics {
     initialAlpha: number;
     maxLifetime: number;
-    fadeInDuration: number;
+    fadeDuration: number;
     currentLifetime: number;
     rotationSpeed: number;
     velocityX: number;
@@ -19,7 +18,7 @@ export class TriangleParticle extends PIXI.Graphics {
         velocityY: number,
         rotationSpeed: number,
         lifetime: number,
-        fadeInDuration: number,
+        fadeDuration: number,
     ) {
         super();
         this.x = x;
@@ -27,7 +26,7 @@ export class TriangleParticle extends PIXI.Graphics {
         this.initialAlpha = 1;
         this.alpha = 0;
         this.maxLifetime = lifetime;
-        this.fadeInDuration = fadeInDuration;
+        this.fadeDuration = fadeDuration;
         this.currentLifetime = 0;
 
         this.rotation = Math.random() * Math.PI * 2;
@@ -71,18 +70,15 @@ export class TriangleParticle extends PIXI.Graphics {
 
         this.currentLifetime += app.ticker.deltaMS / 1000;
 
-        if (this.currentLifetime < this.fadeInDuration) {
+        if (this.currentLifetime < this.fadeDuration) {
             this.alpha =
-                this.initialAlpha *
-                (this.currentLifetime / this.fadeInDuration);
+                this.initialAlpha * (this.currentLifetime / this.fadeDuration);
         } else {
-            const fadeOutTime = this.maxLifetime - this.fadeInDuration;
-            const elapsedFadeOutTime =
-                this.currentLifetime - this.fadeInDuration;
+            const fadeOutTime = this.maxLifetime - this.fadeDuration;
+            const elapsedFadeOutTime = this.currentLifetime - this.fadeDuration;
             this.alpha =
                 this.initialAlpha * (1 - elapsedFadeOutTime / fadeOutTime);
         }
-
         return this.currentLifetime >= this.maxLifetime;
     }
 }

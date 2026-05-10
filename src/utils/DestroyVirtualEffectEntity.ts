@@ -1,8 +1,8 @@
 import * as PIXI from "pixi.js";
-import { IActiveParticleTickerFunctionsInterface } from "../types/IVirtualEffect";
+import { IVirtualEffectEntity } from "../types/IVirtualEffectEntity";
 
 export const destroyVirtualEffectEntity = (
-    entity: IActiveParticleTickerFunctionsInterface,
+    entity: IVirtualEffectEntity,
     app: PIXI.Application,
 ) => {
     if (entity?.particleFunction) {

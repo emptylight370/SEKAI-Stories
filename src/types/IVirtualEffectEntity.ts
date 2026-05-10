@@ -1,9 +1,9 @@
 import {
     TriangleParticle,
     HologramLightEffect,
-} from "../model/VirtualEffectModel";
+} from "../model/VirtualEffectParticles";
 
-export interface IActiveParticleTickerFunctionsInterface {
+export interface IVirtualEffectEntity {
     activeTriangles: TriangleParticle[];
     hologramFunction: (() => void) | null;
     particleFunction: ((delta: number) => void) | null;

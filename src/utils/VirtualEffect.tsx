@@ -4,11 +4,11 @@ import {
     Live2DModel,
 } from "@sekai-world/pixi-live2d-display-mulmotion";
 import * as PIXI from "pixi.js";
-import { IActiveParticleTickerFunctionsInterface } from "../types/IVirtualEffect";
+import { IVirtualEffectEntity } from "../types/IVirtualEffectEntity";
 import {
     HologramLightEffect,
     TriangleParticle,
-} from "../model/VirtualEffectModel";
+} from "../model/VirtualEffectParticles";
 import { destroyVirtualEffectEntity } from "./DestroyVirtualEffectEntity";
 
 const CONFIG = {
@@ -112,7 +112,7 @@ const particleFunction = (
     app: PIXI.Application,
     model: Live2DModel<InternalModel>,
     entity: Omit<
-        IActiveParticleTickerFunctionsInterface,
+        IVirtualEffectEntity,
         "particleFunction" | "crtFunction" | "hologramFunction"
     >,
 ) => {
@@ -165,8 +165,8 @@ export const toggleVirtualEffect = (
     model: Live2DModel<InternalModel>,
     app: PIXI.Application,
     show: boolean,
-    virtualEffectEntity: IActiveParticleTickerFunctionsInterface | null,
-): IActiveParticleTickerFunctionsInterface | null => {
+    virtualEffectEntity: IVirtualEffectEntity | null,
+): IVirtualEffectEntity | null => {
     if (show) {
         const activeTriangles: TriangleParticle[] = [];
         const hologram = spawnHologram(model);
@@ -176,7 +176,7 @@ export const toggleVirtualEffect = (
         const lastTriangleSpawnTime = 1;
 
         const entity: Omit<
-            IActiveParticleTickerFunctionsInterface,
+            IVirtualEffectEntity,
             "particleFunction" | "crtFunction" | "hologramFunction"
         > = {
             activeTriangles,
@@ -199,7 +199,7 @@ export const toggleVirtualEffect = (
             ...entity,
             particleFunction: newParticleFunction,
             crtFunction: newCRTFunction,
-            hologramFunction: newHologramFunction
+            hologramFunction: newHologramFunction,
         };
     } else {
         if (virtualEffectEntity)
