@@ -6,7 +6,12 @@ export interface IFilter {
     container: PIXI.Container;
     flashback?: boolean;
     sick?: { container?: PIXI.Container | null; show?: boolean };
-    vignette?: { container?: PIXI.Container | null; show?: boolean };
+    vignette?: {
+        container?: PIXI.Container | null;
+        show?: boolean;
+        adjustmentFilter?: AdjustmentFilter;
+        contrast: number;
+    };
     droop?: { container?: PIXI.Container | null; show?: boolean };
     monochrome?: {
         contrast: number;

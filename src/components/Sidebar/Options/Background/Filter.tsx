@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import POVFilter from "./POVFilter";
 import Contrast from "./Contrast";
 import { toggleSekaiTransition } from "../../../../utils/SekaiTransition";
+import Vignette from "./Vignette";
 
 const Filter: React.FC = () => {
     const scene = useContext(SceneContext);
@@ -104,6 +105,7 @@ const Filter: React.FC = () => {
 
         const value = event.target.checked;
         let vignetteContainer;
+        let adjustmentFilter: AdjustmentFilter | undefined;
 
         if (value) {
             const vignetteImage = await getBackground(
@@ -114,7 +116,11 @@ const Filter: React.FC = () => {
             vignetteContainer = new PIXI.Container();
 
             vignetteContainer.addChildAt(vignetteImage, 0);
+            adjustmentFilter = new AdjustmentFilter({
+                contrast: 1,
+            });
             filter.container.addChildAt(vignetteContainer, 3);
+            vignetteContainer.filters = [adjustmentFilter];
         } else {
             filter.vignette?.container?.destroy();
         }
@@ -124,6 +130,8 @@ const Filter: React.FC = () => {
             vignette: {
                 container: vignetteContainer,
                 show: value,
+                contrast: 1,
+                adjustmentFilter,
             },
         });
     };
@@ -224,6 +232,9 @@ const Filter: React.FC = () => {
                 checked={filter?.vignette?.show}
                 onChange={handleVignette}
             />
+            {filter?.vignette?.show && (
+                <Vignette filter={filter} setFilter={setFilter} />
+            )}
             <Checkbox
                 id="drooping-lines"
                 label={t("background.filters.drooping-lines")}
