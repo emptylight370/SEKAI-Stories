@@ -24,4 +24,5 @@ export const characterEasterEggs: Record<string, string> = {
     susie: "Dammit, Kris! Where the hell are we?!",
     teto: "Teto, there's a dead human in our house!",
     omori: "Welcome to White Space. You have been living here for as long as you can remember.",
+    chihiro: "Yay!"
 };
