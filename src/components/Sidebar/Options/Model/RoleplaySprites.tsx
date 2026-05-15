@@ -180,7 +180,7 @@ const RoleplaySprites: React.FC<RoleplaySpritesProps> = ({
                     confirmFunction={(x: string) => {
                         handleCreateSprite(x, uploadedFile!);
                     }}
-                    className="window__90_width"
+                    // className="window__90_width"
                 />
             )}
         </>
