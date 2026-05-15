@@ -1,6 +1,6 @@
 export const staticUrl = "/live2d";
 export const sekaiUrl = "https://storage.sekai.best/sekai-live2d-assets/live2d";
-export const announcementKey = "2026.05.20";
+export const announcementKey = "2026.05.15";
 export const textTypeYPositions = [
     [775, 845],
     [745, 825],
@@ -24,5 +24,5 @@ export const characterEasterEggs: Record<string, string> = {
     susie: "Dammit, Kris! Where the hell are we?!",
     teto: "Teto, there's a dead human in our house!",
     omori: "Welcome to White Space. You have been living here for as long as you can remember.",
-    chihiro: "Yay!"
+    chihiro: "Yay!",
 };
