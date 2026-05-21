@@ -44,6 +44,4 @@ export default interface ISettingsContextType {
     roleplaySprites: IRoleplaySpriteCharacters;
     setRoleplaySprites: Dispatch<SetStateAction<IRoleplaySpriteCharacters>>;
     settingsLoaded: boolean;
-    anniversary: boolean;
-    setAnniversary: Dispatch<SetStateAction<boolean>>;
 }

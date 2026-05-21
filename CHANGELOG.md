@@ -1,3 +1,13 @@
+# 2026.05.21
+- Removed SEKAI Stories One-shot Announcement
+
+# 2026.05.15
+- Introducing Roleplay Sprites! Upload your own custom roleplay sprites. These will be saved locally on your browser!
+- Added SEKAI Transition filter! 
+- Added Vignette filter, inspired from the recent event, ""
+- Added opacity slider on Transform options.
+- Added One-Shot 2026 Scenes to default scenes.
+
 # 2026 04.15
 - Updated Thai Localization
 - Added new models from the latest JP April Fools update

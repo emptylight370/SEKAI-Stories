@@ -42,7 +42,6 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
         "default" | "classic"
     >("default");
     const [loading, setLoading] = useState<number>(0);
-    const [anniversary, setAnniversary] = useState<boolean>(false);
     const [roleplaySprites, setRoleplaySprites] =
         useState<IRoleplaySpriteCharacters>([]);
     const [settingsLoaded, setSettingsLoaded] = useState<boolean>(false);
@@ -125,10 +124,7 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
                 console.log(value);
             }
         });
-        const anniversaryCookie = localStorage.getItem("anniversary");
-        if (!anniversaryCookie || anniversaryCookie === "true") {
-            setAnniversary(true);
-        }
+
         setSettingsLoaded(true);
     }, []);
 
@@ -180,8 +176,6 @@ export const SettingsProvider: React.FC<SidebarProviderProps> = ({
                 setRoleplaySprites,
                 setLoading,
                 settingsLoaded,
-                anniversary,
-                setAnniversary,
             }}
         >
             {children}

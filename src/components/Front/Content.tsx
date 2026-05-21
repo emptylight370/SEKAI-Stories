@@ -12,7 +12,6 @@ import SoftError from "../UI/SoftError";
 import ExportButton from "../ButtonWindow/ExportButton";
 import ClearButton from "../ButtonWindow/ClearButton";
 import ContentBackground from "./ContentBackground";
-import AnniversaryAnnouncement from "../Window/AnniversaryAnnouncement";
 
 const Content: React.FC = () => {
     const scene = useContext(SceneContext);
@@ -45,15 +44,13 @@ const Content: React.FC = () => {
         throw new Error("Context is not loaded properly.");
     }
 
-    const { hide, setHide, showTutorial, setShowTutorial, anniversary } =
-        settings;
+    const { hide, setHide, showTutorial, setShowTutorial } = settings;
     const { showErrorInformation } = softError;
 
     return (
         <div id="content" className="center" style={{ position: "relative" }}>
             <ContentBackground />
 
-            {anniversary && <AnniversaryAnnouncement />}
             {showTutorial && <Tutorial show={setShowTutorial} />}
 
             {!hide && <SidebarSelect />}
