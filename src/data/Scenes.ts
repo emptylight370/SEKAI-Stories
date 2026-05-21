@@ -1,5 +1,6 @@
 import { InitialScene } from "../types/IInitialScene";
 
+const blankSprites = ["blank_1", "blank_2"];
 export const randomInitialScene: Record<string, InitialScene[]> = {
     default: [
         {
@@ -436,9 +437,10 @@ export const randomInitialScene: Record<string, InitialScene[]> = {
             background: "/background_special/blank_bg.png",
             text: "",
             nameTag: "",
-            modelX: 1025,
-            modelY: 540,
-            pngName: "blank",
+            modelX: 960,
+            modelY: 550,
+            pngName:
+                blankSprites[Math.floor(Math.random() * blankSprites.length)],
             sceneText: "",
             choices: {
                 choice1: "",
