@@ -51,13 +51,15 @@
                 "contrast": "ความคมชัด"
             },
             "sick": "ป่วย",
+            "vignette": "วิกเนต",
             "drooping-lines": "อึดอัด",
             "pov": "POV/FOV",
             "pov-settings": {
                 "zoom": "ซูม",
                 "povx": "ตำแหน่ง X",
                 "povy": "ตำแหน่ง Y"
-            }
+            },
+            "sekai-transition": "SEKAI แทรนซิชัน"
         }
     },
     "text": {
@@ -119,14 +121,28 @@
                 "sekai-description": "เข้าถึงโมเดลต่างๆที่นำเสนอโดย Sekai Viewer!",
                 "static": "SEKAI Stories",
                 "static-description": "ตัวเลือกสำรองกรณี Sekai Viewer ล่ม",
+                "roleplay-sprites": "สไปรท์บทบาทสมมติ",
+                "roleplay-sprites-description": "เลือกจากสไปรท์บทบาทสมมติของคุณ",
                 "upload-image": "อัปโหลดรูปภาพ",
-                "upload-image-description": "อัปโหลดรูปภาพสไปรต์ของคุณ"
+                "upload-image-description": "อัปโหลดรูปภาพของคุณ"
             },
             "delete-model-warn": "นี่เป็นเลเยอร์เดียวและไม่สามารถลบได้"
         },
         "character": {
             "header": "ตัวละคร",
-            "select-character": "เลือกตัวละคร"
+            "select-character": "เลือกตัวละคร",
+            "roleplay": {
+                "new": "ใหม่",
+                "new-description": "ตั้งชื่อตัวละครนี้",
+                "delete-warn": "ตัวละครนี้มีสไปรท์อยู่ ดำเนินการต่อจะลบสไปรท์เหล่านั้นทิ้ง!",
+                "no-sprite-warn": "ตัวละครนี้ไม่มีสไปรท์ใดๆ เริ่มจากการเพิ่มสไปรท์ใหม่ก่อน"
+            }
+        },
+        "sprite": {
+            "header": "สไปรท์",
+            "select-sprite": "เลือกสไปรท์",
+            "add-sprite": "เพิ่มสไปรท์",
+            "add-sprite-description": "ตั้งชื่อให้สไปรท์นี้"
         },
         "costume": {
             "header": "เครื่องแต่งกาย",
@@ -149,6 +165,7 @@
             "y-position": "ตำแหน่ง Y",
             "scale": "ขนาด",
             "rotation": "หมุน",
+            "opacity": "ความทึบแสง",
             "blur": "เบลอ",
             "layering": "ลำดับเลเยอร์"
         },
@@ -306,7 +323,16 @@
         "default-scene-fail": "เกิดข้อผิดพลาดขณะโหลดฉากเริ่มต้น\nโปรดใช้ปุ่มล้าง รีเฟรชเบราว์เซอร์ของคุณ หรือล้างคุกกี้ของคุณ\nหากปัญหายังคงอยู่ โปรดรายงานปัญหานี้บน GitHub",
         "name-tag-inputs-limit": "จำกัดการใส่ข้อมูลสำหรับป้ายชื่อไว้ที่ 2 ถึง 6 รายการ",
         "background-bookmark": "คุณไม่สามารถตั้งค่าบุ๊กมาร์กสำหรับพื้นหลังแบบกำหนดเองได้",
-        "hide-everything-warning": "ตัวเลือก \"ซ่อนโมเดลและบทสนทนา\" ใต้ข้อความฉากได้รับการเปิดใช้งานแล้ว\nโปรดปิดใช้งานตัวเลือกนี้ในเมนูข้อความ"
+        "hide-everything-warning": "ตัวเลือก \"ซ่อนโมเดลและบทสนทนา\" ใต้ข้อความฉากได้รับการเปิดใช้งานแล้ว\nโปรดปิดใช้งานตัวเลือกนี้ในเมนูข้อความ",
+        "low-opacity-visible": "ความทึบของโมเดลใกล้เคียงกับศูนย์\nแค่ให้คุณทราบ～",
+        "character-name-empty": "ชื่อตัวละครไม่สามารถเว้นว่างได้",
+        "character-name-invalid": "ไม่อนุญาตให้ใช้ชื่อตัวละครนี้ โปรดเลือกชื่ออื่น",
+        "character-name-exists": "ชื่อตัวละครนี้มีอยู่แล้ว",
+        "sprite-name-empty": "ชื่อสไปรท์ไม่สามารถเว้นว่างได้",
+        "sprite-name-invalid": "ไม่อนุญาตให้ใช้ชื่อสไปรท์นี้ โปรดเลือกชื่ออื่น",
+        "sprite-name-exists": "ชื่อสไปรท์นี้มีอยู่แล้ว",
+        "nonexistent-character": "ตัวละครนี้ไม่มีอยู่",
+        "nonexistent-sprite": "สไปรท์นี้ไม่มีอยู่"
     },
     "error-boundary": {
         "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิดขึ้น",
